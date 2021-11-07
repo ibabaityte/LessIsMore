@@ -5,10 +5,10 @@ import checkAuth from "../middleware/check.auth.js";
 
 const router = Router();
 
-router. post("/products/create", ProductController.create);
-router.get("/products/list", checkAdmin, ProductController.list);
+router.post("/products/create", checkAdmin, ProductController.create);
+router.get("/products/list", checkAuth, ProductController.list);
 router.get("/products/:id", checkAuth, ProductController.get);
-router.put("/products/:id", checkAuth, ProductController.update);
-router.delete("/products/:id", checkAuth, ProductController.remove);
+router.put("/products/:id", checkAdmin, ProductController.update);
+router.delete("/products/:id", checkAdmin, ProductController.remove);
 
 export default router;
