@@ -5,14 +5,4 @@ const infoToUpdate = (req) => {
     }
     return object;
 };
-
-const userUpdateValidation = (req) => {
-    // validating
-    for(let i in req.body) {
-        if(!req.body[i]) {
-            return false;
-        }
-    }
-};
-
-export {infoToUpdate, userUpdateValidation};
+export {infoToUpdate};

@@ -4,7 +4,8 @@ import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 dotenv.config();
 
-import {infoToUpdate, userUpdateValidation} from "../utils/userControllerUtils.js";
+import {infoToUpdate} from "../utils/userControllerUtils.js";
+import {inputValidation} from "../utils/validationUtils.js"
 const secretKey = process.env.JWT_SECRET;
 
 const register = (req, res) => {
@@ -153,12 +154,13 @@ const remove = (req, res) => {
 };
 
 const update = (req, res) => {
-    if (userUpdateValidation(req) === false) {
+    if (inputValidation(req) === false) {
         return res.status(400).send({
             code: "400",
-            message: "All inputs must be completed. Please complete the required information."
+            message: "All inputs must be completed. Please complete the missing information."
         });
     }
+
     User.findByIdAndUpdate(req.params.userId, infoToUpdate(req), {new: true}).then(user => {
         if (!user) {
             return res.status(404).send({
