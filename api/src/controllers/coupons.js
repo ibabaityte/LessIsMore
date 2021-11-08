@@ -1,8 +1,11 @@
+// model import
 import Coupon from "../models/coupon.js";
+
+// util imports
 import {inputValidation} from "../utils/validationUtils.js";
 
 const create = (req, res) => {
-    if(inputValidation(req) === false) {
+    if (!inputValidation(req)) {
         return res.status(400).send({
             code: "400",
             message: "All fields must be completed"
@@ -30,30 +33,30 @@ const create = (req, res) => {
 };
 
 const remove = (req, res) => {
-      Coupon.findByIdAndRemove(req.params.id).then(data => {
-          if(!data) {
-              return res.status(404).send({
-                  code: "404",
-                  message: "Coupon not found with id " + req.params.id
-              });
-          }
-          res.status(200).send({
-              code: "200",
-              message: "Coupon expired"
-          });
-      }).catch(err => {
-          console.log(err);
-          if(err.kind === "ObjectId" || err.name === "Not found") {
-              return res.status(404).send({
-                  code: "404",
-                  message: "Coupon not found with id " + req.params.id
-              });
-          }
-          return res.status(500).send({
-              code: "500",
-              message: "An error occurred while trying to delete coupon"
-          });
-      });
+    Coupon.findByIdAndRemove(req.params.id).then(data => {
+        if (!data) {
+            return res.status(404).send({
+                code: "404",
+                message: "Coupon not found with id " + req.params.id
+            });
+        }
+        res.status(200).send({
+            code: "200",
+            message: "Coupon expired"
+        });
+    }).catch(err => {
+        console.log(err);
+        if (err.kind === "ObjectId" || err.name === "Not found") {
+            return res.status(404).send({
+                code: "404",
+                message: "Coupon not found with id " + req.params.id
+            });
+        }
+        return res.status(500).send({
+            code: "500",
+            message: "An error occurred while trying to delete coupon"
+        });
+    });
 };
 
 export default {create, remove};

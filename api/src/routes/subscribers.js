@@ -1,6 +1,11 @@
+// package import
 import {Router} from "express";
-import SubscriberController from "../controllers/subscribers.js";
+
+// middleware import
 import checkAdmin from "../middleware/check.admin.js"
+
+// controller import
+import SubscriberController from "../controllers/subscribers.js";
 
 const router = Router();
 

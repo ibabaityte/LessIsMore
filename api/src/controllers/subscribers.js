@@ -1,3 +1,4 @@
+// model import
 import Subscriber from "../models/subscriber.js";
 
 const create = (req, res) => {
@@ -23,13 +24,16 @@ const create = (req, res) => {
 const list = (req, res) => {
     Subscriber.find({"userType": "USER"})
         .then(data => {
-            res.status(200).send(data);
-        }).catch(err => {
-            console.log(err);
-            res.status(500).send({
-                code: "500",
-                message: "An error occurred while retrieving subscriber list"
+            res.status(200).send({
+                code: "200",
+                data: data
             });
+        }).catch(err => {
+        console.log(err);
+        res.status(500).send({
+            code: "500",
+            message: "An error occurred while retrieving subscriber list"
+        });
     });
 };
 

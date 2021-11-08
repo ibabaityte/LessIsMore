@@ -1,7 +1,7 @@
+// model import
 import Order from "../models/order.js";
 
 const create = (req, res) => {
-    console.log(req.body.items);
     if (!req.body.items) {
         return res.status(400).send({
             code: "400",
@@ -22,22 +22,25 @@ const create = (req, res) => {
             data: data
         });
     }).catch(err => {
+        console.log(err);
         res.status(500).send({
             code: "500",
-            message: err.message || "Some error occurred while creating an order"
+            message: "Some error occurred while creating an order"
         });
     });
 }
 
 const list = (req, res) => {
-    // console.log(req.query.order);
     Order
         .find({'userId': req.decodedToken.userId})
         .populate("userId", "email firstName lastName phoneNumber city street buildingNumber postalCodeail firstName lastName phoneNumber city street buildingNumber postalCode")
-        .populate("items", )
+        .populate("items",)
         .then(data => {
-        res.status(200).send(data);
-    }).catch((err) => {
+            res.status(200).send({
+                code: "200",
+                data: data
+            });
+        }).catch((err) => {
         console.log(err);
         res.status(500).send({
             code: "500",
@@ -47,23 +50,27 @@ const list = (req, res) => {
 };
 
 const remove = (req, res) => {
-    Order.findByIdAndRemove(req.params.id).then(order => {
-        if(!order) {
+    Order.findByIdAndRemove(req.params.id).then(data => {
+        if (!data) {
             return res.status(404).send({
+                code: "404",
                 message: "Order not found with id " + req.params.id
             });
         }
         res.status(200).send({
+            code: "200",
             message: "Order deleted successfully"
         });
     }).catch(err => {
         console.log(err);
-        if(err.kind === "ObjectId" || err.name === "NotFound") {
+        if (err.kind === "ObjectId" || err.name === "NotFound") {
             return res.status(404).send({
+                code: "404",
                 message: "Order not found with id " + req.params.id
             });
         }
         return res.status(500).send({
+            code: "500",
             message: "Could not delete this order"
         });
     });

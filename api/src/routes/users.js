@@ -1,7 +1,12 @@
+// package import
 import {Router} from "express";
-import UsersController from "../controllers/users.js";
+
+// middleware import
 import checkAuth from "../middleware/check.auth.js";
 import checkAdmin from "../middleware/check.admin.js"
+
+// controller import
+import UsersController from "../controllers/users.js";
 
 const router = Router();
 

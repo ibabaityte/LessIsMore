@@ -1,6 +1,11 @@
-import CouponController from "../controllers/coupons.js";
+// package import
+import {Router} from "express";
+
+// middleware import
 import checkAdmin from "../middleware/check.admin.js";
-import Router from "express";
+
+// controller import
+import CouponController from "../controllers/coupons.js";
 
 const router = Router();
 
