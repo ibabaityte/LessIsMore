@@ -8,6 +8,7 @@ dotenv.config();
 import UserRoutes from "./routes/users.js";
 import OrderRoutes from "./routes/orders.js";
 import ProductRoutes from "./routes/products.js";
+import CouponRoutes from "./routes/coupons.js";
 
 const api = express();
 const port = process.env.PORT || 8080;
@@ -17,9 +18,11 @@ api.use(cors());
 api.use(bodyParser.urlencoded({extended: true}));
 api.use(bodyParser.json());
 api.use(express.json());
+
 api.use(UserRoutes);
 api.use(OrderRoutes);
 api.use(ProductRoutes);
+api.use(CouponRoutes);
 
 mongoose.connect(`mongodb://127.0.0.1:27017/${dbUrl}`,  (err) => {
     if(err){

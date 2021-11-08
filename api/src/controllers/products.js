@@ -6,7 +6,7 @@ const create = (req, res) => {
     if (inputValidation(req) === false) {
         return res.status(400).send({
             code: "400",
-            message: "Fields not set"
+            message: "All fields must be completed"
         });
     }
 
@@ -97,6 +97,7 @@ const remove = (req, res) => {
     Product.findByIdAndRemove(req.params.id).then(product => {
         if (!product) {
             return res.status(404).send({
+                code: "404",
                 message: "Product not found with id " + req.params.id
             });
         }
