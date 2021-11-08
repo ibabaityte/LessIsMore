@@ -9,6 +9,7 @@ import UserRoutes from "./routes/users.js";
 import OrderRoutes from "./routes/orders.js";
 import ProductRoutes from "./routes/products.js";
 import CouponRoutes from "./routes/coupons.js";
+import SubscriberRoutes from "./routes/subscribers.js";
 
 const api = express();
 const port = process.env.PORT || 8080;
@@ -23,6 +24,7 @@ api.use(UserRoutes);
 api.use(OrderRoutes);
 api.use(ProductRoutes);
 api.use(CouponRoutes);
+api.use(SubscriberRoutes);
 
 mongoose.connect(`mongodb://127.0.0.1:27017/${dbUrl}`,  (err) => {
     if(err){
