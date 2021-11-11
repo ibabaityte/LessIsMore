@@ -3,6 +3,9 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 
+// config
+dotenv.config();
+
 // model import
 import User from "../models/user.js";
 
@@ -10,11 +13,8 @@ import User from "../models/user.js";
 import {infoToUpdate, testEmail, testPassword} from "../utils/userControllerUtils.js";
 import {inputValidation} from "../utils/validationUtils.js"
 
-// config
-dotenv.config();
-
 // constants from env file
-const secretKey = process.env.JWT_SECRET;
+const secretKey = process.env.JWT;
 
 const register = (req, res) => {
     if (!inputValidation(req)) {

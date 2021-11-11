@@ -4,6 +4,7 @@ import cors from "cors";
 import mongoose from "mongoose";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
+
 dotenv.config();
 
 // route imports
@@ -32,8 +33,8 @@ api.use(CouponRoutes);
 api.use(SubscriberRoutes);
 
 // connecting to DB
-mongoose.connect(`mongodb://127.0.0.1:27017/${dbUrl}`,  (err) => {
-    if(err){
+mongoose.connect(`mongodb://127.0.0.1:27017/${dbUrl}`, (err) => {
+    if (err) {
         console.log(err);
     } else {
         console.log("Successfully connected to database");

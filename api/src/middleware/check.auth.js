@@ -1,8 +1,10 @@
 // package import
 import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
+dotenv.config();
 
 // constants from env file
-const secretKey = process.env.JWT_SECRET;
+const secretKey = process.env.JWT;
 
 // checking if a user is authorised to be able to make a request
 export default async (req, res, next) => {

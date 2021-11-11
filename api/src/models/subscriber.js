@@ -1,5 +1,6 @@
 // package import
 import mongoose from "mongoose";
+
 const {Schema} = mongoose;
 
 const subscriberSchema = new Schema({

@@ -4,8 +4,9 @@ import Product from "../models/product.js";
 // util imports
 import {inputValidation} from "../utils/validationUtils.js";
 import {infoToUpdate} from "../utils/userControllerUtils.js";
+import cloudinary from "../utils/cloudinaryConfig.js";
 
-const create = (req, res) => {
+const create = async (req, res) => {
     if (!inputValidation(req)) {
         return res.status(400).send({
             code: "400",
@@ -13,12 +14,18 @@ const create = (req, res) => {
         });
     }
 
+    // uploading image to cloudinary
+    const cloudinaryResult = await cloudinary.uploader.upload(req.file.path);
+
     const newProduct = new Product({
         title: req.body.title,
-        description: req.body.description
+        description: req.body.description,
+        price: req.body.price,
+        photo: cloudinaryResult.secure_url,
+        cloudinaryId: cloudinaryResult.public_id
     });
 
-    newProduct.save().then(data => {
+    await newProduct.save().then(data => {
         res.status(200).send({
             code: "200",
             message: "New product created",
@@ -103,8 +110,12 @@ const update = (req, res) => {
     });
 };
 
-const remove = (req, res) => {
-    Product.findByIdAndRemove(req.params.id).then(data => {
+const remove = async (req, res) => {
+    let product = await Product.findById(req.params.id);
+    cloudinary.uploader.destroy(product.cloudinaryId).catch(err => {console.log(err)});
+
+    Product.deleteOne().then(data => {
+        console.log(data);
         if (!data) {
             return res.status(404).send({
                 code: "404",
