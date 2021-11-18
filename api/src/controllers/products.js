@@ -4,6 +4,7 @@ import Product from "../models/product.js";
 // util imports
 import {inputValidation} from "../utils/validationUtils.js";
 import {infoToUpdate} from "../utils/userControllerUtils.js";
+import {generateFilterConfig} from "../utils/filterUtils.js";
 import cloudinary from "../utils/cloudinaryConfig.js";
 
 const create = async (req, res) => {
@@ -41,13 +42,12 @@ const create = async (req, res) => {
 }
 
 const list = (req, res) => {
-    Product.find({"userType": "USER"})
-        .then(data => {
-            res.status(200).send({
-                code: "200",
-                data: data
-            });
-        }).catch((err) => {
+    Product.find(generateFilterConfig(req)).then(data => {
+        res.status(200).send({
+            code: "200",
+            data: data
+        });
+    }).catch((err) => {
         console.log(err);
         res.status(500).send({
             code: "500",
@@ -112,7 +112,9 @@ const update = (req, res) => {
 
 const remove = async (req, res) => {
     let product = await Product.findById(req.params.id);
-    cloudinary.uploader.destroy(product.cloudinaryId).catch(err => {console.log(err)});
+    cloudinary.uploader.destroy(product.cloudinaryId).catch(err => {
+        console.log(err)
+    });
 
     Product.deleteOne().then(data => {
         if (!data) {
@@ -162,4 +164,5 @@ const search = (req, res) => {
         res.status(500).send(err);
     });
 };
+
 export default {create, list, get, update, remove, search};
