@@ -139,4 +139,27 @@ const remove = async (req, res) => {
     });
 };
 
-export default {create, list, get, update, remove};
+const search = (req, res) => {
+    const keyword = req.query.keyword;
+    if (keyword === "") {
+        return res.status(400).send({
+            code: "400",
+            message: "Search parameter can not be empty"
+        });
+    }
+    Product.find({'title': {'$regex': keyword, '$options': 'i'}}).then(data => {
+        if (data.length === 0) {
+            return res.status(404).send({
+                message: "No products were found"
+            });
+        } else {
+            res.status(200).send({
+                code: "200",
+                data: data
+            });
+        }
+    }).catch((err) => {
+        res.status(500).send(err);
+    });
+};
+export default {create, list, get, update, remove, search};
