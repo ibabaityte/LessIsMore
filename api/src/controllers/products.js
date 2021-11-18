@@ -115,7 +115,6 @@ const remove = async (req, res) => {
     cloudinary.uploader.destroy(product.cloudinaryId).catch(err => {console.log(err)});
 
     Product.deleteOne().then(data => {
-        console.log(data);
         if (!data) {
             return res.status(404).send({
                 code: "404",

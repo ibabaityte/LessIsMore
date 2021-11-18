@@ -10,6 +10,6 @@ import CouponController from "../controllers/coupons.js";
 const router = Router();
 
 router.post("/coupons/create", checkAdmin, CouponController.create);
-router.delete("/coupons/:id", CouponController.remove);
+router.delete("/coupons/:id", checkAdmin, CouponController.remove);
 
 export default router;

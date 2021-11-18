@@ -8,7 +8,6 @@ const secretKey = process.env.JWT;
 
 // checking if logged in user is an admin to be able to make specific requests only admin can make
 export default async (req, res, next) => {
-    console.log(secretKey);
     try {
         req.decodedToken = jwt.verify(req.headers.authorization, secretKey);
         if (req.decodedToken.userType === "ADMIN") {

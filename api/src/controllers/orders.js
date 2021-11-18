@@ -19,7 +19,8 @@ const create = (req, res) => {
     const newOrder = new Order({
         userId: req.decodedToken.userId,
         products: products,
-        comment: req.body.comment
+        comment: req.body.comment,
+        bill: req.body.bill
     });
 
     newOrder.save().then(data => {
