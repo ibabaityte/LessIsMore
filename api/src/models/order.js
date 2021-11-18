@@ -8,11 +8,16 @@ const orderSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"
     },
-    items: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Product"
+    products: [{
+        product: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Product"
+        },
+        quantity: Number,
+        size: String
     }],
-    comment: String
+    comment: String,
+    bill: Number
 });
 
 const Order = mongoose.model("Order", orderSchema);

@@ -246,7 +246,7 @@ const init = (req, res) => {
 }
 
 const listAllUsers = (req, res) => {
-    User.find({userType: "ADMIN"}).then(data => {
+    User.find({userType: "USER"}).then(data => {
         res.status(200).send({
             code: "200",
             data: data

@@ -8,6 +8,9 @@ const productSchema = new Schema({
     description: String,
     price: String,
     photo: String,
+    category: String,
+    size: String,
+    amount: String,
     cloudinaryId: String
 });
 
