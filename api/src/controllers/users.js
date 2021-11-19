@@ -130,7 +130,9 @@ const login = (req, res) => {
 };
 
 const get = (req, res) => {
-    User.findById(req.params.userId).then(data => {
+    User.findById(req.params.userId)
+        .populate(req.body.filter ? "favorites" : null )
+        .then(data => {
         if (!data) {
             return res.status(404).send({
                 code: "404",

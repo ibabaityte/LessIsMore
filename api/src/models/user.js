@@ -22,7 +22,11 @@ const userSchema = new Schema({
     city: String,
     street: String,
     buildingNumber: String,
-    postalCode: String
+    postalCode: String,
+    favorites: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Product"
+    }]
 });
 
 const User = mongoose.model("User", userSchema);
