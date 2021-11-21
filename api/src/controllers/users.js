@@ -10,8 +10,8 @@ dotenv.config();
 import User from "../models/user.js";
 
 // util imports
-import {infoToUpdate, testEmail, testPassword} from "../utils/userControllerUtils.js";
-import {inputValidation} from "../utils/validationUtils.js"
+import {infoToUpdate} from "../utils/userControllerUtils.js";
+import {inputValidation,  testEmail, testPassword} from "../utils/validationUtils.js"
 
 // constants from env file
 const secretKey = process.env.JWT;
@@ -20,7 +20,7 @@ const register = (req, res) => {
     if (!inputValidation(req)) {
         return res.status(400).send({
             code: "400",
-            message: "Username and password can not be empty."
+            message: "Fields can not be empty. Please fill in all fields."
         });
     }
 
@@ -55,12 +55,15 @@ const register = (req, res) => {
                     //create new user
                     const newUser = new User({
                         email: req.body.email,
-                        password: hash
+                        password: hash,
+                        firstName: req.body.firstName,
+                        lastName: req.body.lastName
                     });
                     //save user in database
                     newUser.save().then(data => {
                         res.status(200).send({
                             code: "200",
+                            message: "User registered successfully",
                             data: data
                         });
                     }).catch((err) => {
@@ -78,10 +81,18 @@ const register = (req, res) => {
 
 const login = (req, res) => {
     User.findOne({email: req.body.email}).then(data => {
+
         if (!inputValidation(req)) {
             return res.status(400).send({
                 code: "400",
                 message: "Username and password can not be empty."
+            });
+        }
+
+        if (!testEmail(req)) {
+            return res.status(400).send({
+                code: "400",
+                message: "You have entered an invalid email address. Try again."
             });
         }
 
@@ -106,6 +117,8 @@ const login = (req, res) => {
                         return res.status(200).send({
                             message: "Logged in successfully.",
                             token: token,
+                            firstName: data.firstName,
+                            lastName: data.lastName,
                             userId: data._id,
                             userType: data.userType,
                             email: data.email,

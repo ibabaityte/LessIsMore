@@ -3,14 +3,18 @@ import {Routes, Route, Link} from "react-router-dom";
 
 // component imports
 import LoginRegisterPanel from "./LoginRegisterPanel.js";
-import Login from "../users/Login";
-import Register from "../users/Register";
+import Login from "./users/Login";
+import Register from "./users/Register";
+
+// util imports
+import {logout} from "../utils/users/userUtils";
 
 const Header = () => {
     return (
         <div>
             <h1>This is the header</h1>
             <Link to="/loginRegisterPanel">User</Link>
+            <button onClick={() => logout()}>Logout</button>
             <Routes>
                 <Route path="/loginRegisterPanel/*" element={<LoginRegisterPanel/>}/>
                 <Route path="/login" element={<Login/>}/>
