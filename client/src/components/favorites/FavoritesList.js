@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useState, useRef} from "react";
 
 // component imports
-import FavoriteProduct from "./FavoriteProduct";
+import ProductCard from "../shop/ProductCard";
 
 // util imports
 import {initFavorites} from "../../utils/users/userUtils";
@@ -18,18 +18,18 @@ const FavoritesList = () => {
 
     useEffect(() => {
         if (componentMounted.current) {
-            initFavorites(user, favorites, setFavorites);
+            initFavorites(user, setFavorites);
         }
         return () => {
             componentMounted.current = false;
         }
-    }, [favorites, user]);
+    }, [user]);
 
     return (
         <div>
             {
                 favorites.map((favorite) => (
-                    <FavoriteProduct
+                    <ProductCard
                         key={favorite._id}
                         title={favorite.title}
                         price={favorite.price}

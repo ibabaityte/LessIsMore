@@ -18,7 +18,7 @@ const Header = (props) => {
 
     return (
         <div>
-            <h1>Less is more</h1>
+            <h1><Link to="/">Less is more</Link></h1>
                     <UserContext.Consumer>
                         {
                             ({user}) => (

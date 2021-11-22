@@ -63,7 +63,7 @@ const logout = () => {
     window.location.href = "/";
 }
 
-const initFavorites = (user, favorites, setFavorites) => {
+const initFavorites = (user, setFavorites) => {
     axios.get(`${API_URL}/${user.userId}`, generateRequestConfig()).then((response) => {
         // console.log(response.data.favorites);
         setFavorites(response.data.favorites);

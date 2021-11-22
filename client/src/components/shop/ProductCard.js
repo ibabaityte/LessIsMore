@@ -1,6 +1,6 @@
 import React from "react";
 
-const FavoriteProduct = (props) => {
+const ProductCard = (props) => {
 
     const {
         title,
@@ -12,9 +12,10 @@ const FavoriteProduct = (props) => {
         <div>
             <div>{title}</div>
             <div>{price}</div>
-            <img style={{width:"300px",height:"300px"}} src={photo} alt="product"/>
+            <img style={{width: "300px", height: "300px"}} src={photo} alt="product"/>
+            <button>Add to cart</button>
         </div>
     );
 }
 
-export default FavoriteProduct;
+export default ProductCard;
