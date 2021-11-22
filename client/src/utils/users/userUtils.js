@@ -12,13 +12,17 @@ const login = (setMessage, setUser, user) => {
                 firstName: result.data.firstName,
                 lastName: result.data.lastName,
                 token: result.data.token,
+                userId: result.data.userId,
                 userType: result.data.userType
             };
+
+            // console.log(user.userId);
 
             localStorage.setItem("userEmail", user.email);
             localStorage.setItem("userFirstName", user.firstName);
             localStorage.setItem("userLastName", user.lastName);
             localStorage.setItem("userToken", user.token);
+            localStorage.setItem("userId", user.userId);
             localStorage.setItem("userType", user.userType);
             setUser(user);
 

@@ -20,6 +20,7 @@ const App = () => {
         firstName: localStorage.getItem("userFirstName"),
         lastName: localStorage.getItem("userLastName"),
         token: localStorage.getItem("userToken"),
+        userId: localStorage.getItem("userId"),
         userType: localStorage.getItem("userType")
     });
 

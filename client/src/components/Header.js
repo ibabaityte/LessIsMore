@@ -18,23 +18,20 @@ const Header = (props) => {
     return (
         <div>
             <h1>Less is more</h1>
-            {
-                isAuth ? <div>
                     <UserContext.Consumer>
                         {
                             ({user}) => (
-                                user ?
+                                user.token !== null ?
                                     <div>
                                         <h4>Hello, {user.firstName}</h4>
                                         <Link to="/userProfile">User</Link>
                                         <button onClick={() => logout()}>Logout</button>
                                     </div>
-                                    : null
+                                    :
+                                    <Link to="/userProfile">User</Link>
                             )
                         }
                     </UserContext.Consumer>
-                </div> : <Link to="/userProfile">User</Link>
-            }
 
             <Routes>
                 <Route path="/userProfile/*" element={<UserProfile isAuth={isAuth}/>}/>
