@@ -7,7 +7,7 @@ import {UserContext} from "../../utils/context/UserContext";
 // component imports
 import UserInfoComponent from "../common/UserInfo.js";
 import ShippingInfo from "./ShippingInfo.js";
-import {init} from "../../utils/users/shippingInfoUtils";
+import {initShippingInfo} from "../../utils/users/shippingInfoUtils";
 
 const UserProfile = (props) => {
     const {isAuth} = props;
@@ -22,7 +22,7 @@ const UserProfile = (props) => {
     });
 
     useEffect(() => {
-        init(user, setShippingInfo);
+        initShippingInfo(user, setShippingInfo);
     }, [setShippingInfo, user]);
 
     return (
@@ -49,7 +49,7 @@ const UserProfile = (props) => {
             }
             <Routes>
                 <Route
-                    path="shippingInfo/*"
+                    path="shippingInfo"
                     element={
                         <ShippingInfo
                             shippingInfo={shippingInfo}

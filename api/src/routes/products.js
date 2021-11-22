@@ -14,7 +14,7 @@ import ProductController from "../controllers/products.js";
 const router = Router();
 
 router.post("/products/create", upload.single("image"), checkAdmin, ProductController.create);
-router.get("/products/list", checkAuth, ProductController.list);
+router.get("/products/list", ProductController.list);
 router.get("/products/get/:id", checkAuth, ProductController.get);
 router.put("/products/update/:id", checkAdmin, ProductController.update);
 router.delete("/products/delete/:id", checkAdmin, ProductController.remove);

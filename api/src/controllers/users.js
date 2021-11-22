@@ -143,7 +143,6 @@ const login = (req, res) => {
 };
 
 const get = (req, res) => {
-    // console.log(req.query.favorites);
     User.findById(req.params.userId)
         .populate(req.query.favorites ? "favorites" : null )
         .then(data => {
@@ -176,7 +175,6 @@ const remove = (req, res) => {
             message: "User profile deleted successfully"
         });
     }).catch(err => {
-        console.log(err);
         if (err.kind === "ObjectId" || err.name === "NotFound") {
             return res.status(404).send({
                 code: "404",

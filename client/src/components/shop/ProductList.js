@@ -10,7 +10,6 @@ import {initProducts} from "../../utils/shop/shopUtils";
 import ProductCard from "./ProductCard";
 
 const ProductList = () => {
-
     const [products, setProducts] = useState([]);
 
     useEffect(() => {

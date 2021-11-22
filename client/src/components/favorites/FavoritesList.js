@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState, useRef} from "react";
+import React, {useContext, useEffect, useState} from "react";
 
 // component imports
 import ProductCard from "../shop/ProductCard";
@@ -14,16 +14,10 @@ const FavoritesList = () => {
     const {user} = useContext(UserContext);
 
     const [favorites, setFavorites] = useState([]);
-    const componentMounted = useRef(true);
 
     useEffect(() => {
-        if (componentMounted.current) {
-            initFavorites(user, setFavorites);
-        }
-        return () => {
-            componentMounted.current = false;
-        }
-    }, [user]);
+        initFavorites(user, setFavorites);
+    }, [user, setFavorites]);
 
     return (
         <div>

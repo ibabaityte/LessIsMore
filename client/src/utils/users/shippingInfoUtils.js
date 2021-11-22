@@ -26,21 +26,23 @@ const updateShippingInfo = (user, shippingInfo, setShippingInfo, setMessage) => 
         });
 }
 
-const init = (user, setNewShippingInfo) => {
-    axios.get(`${API_URL}/${user.userId}`, generateRequestConfig()).then((response) => {
-        const shippingInfo = {
-            phoneNumber: response.data.phoneNumber,
-            city: response.data.city,
-            street: response.data.street,
-            buildingNumber: response.data.buildingNumber,
-            postalCode: response.data.postalCode
-        };
-        setNewShippingInfo(shippingInfo);
-    });
+const initShippingInfo = (user, setNewShippingInfo) => {
+    if(user.token) {
+        axios.get(`${API_URL}/${user.userId}`, generateRequestConfig()).then((response) => {
+            const shippingInfo = {
+                phoneNumber: response.data.phoneNumber,
+                city: response.data.city,
+                street: response.data.street,
+                buildingNumber: response.data.buildingNumber,
+                postalCode: response.data.postalCode
+            };
+            setNewShippingInfo(shippingInfo);
+        });
+    }
 }
 
 
 export {
     updateShippingInfo,
-    init
+    initShippingInfo
 }
