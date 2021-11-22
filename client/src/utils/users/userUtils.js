@@ -1,5 +1,6 @@
 import axios from "axios";
-import {LOGIN_URL, REGISTER_URL} from "../constants/apiConstants.js";
+import {API_URL, LOGIN_URL, REGISTER_URL} from "../constants/apiConstants.js";
+import {generateRequestConfig} from "../request/axiosRequestConfig";
 
 const login = (setMessage, setUser, user) => {
     const {email, password} = user;
@@ -62,8 +63,17 @@ const logout = () => {
     window.location.href = "/";
 }
 
+const initFavorites = (user, favorites, setFavorites) => {
+    console.log("init favorites");
+    axios.get(`${API_URL}/${user.userId}`, generateRequestConfig()).then((response) => {
+        // console.log(response.data.favorites);
+        setFavorites(response.data.favorites);
+    });
+}
+
 export {
     login,
     register,
-    logout
+    logout,
+    initFavorites
 }

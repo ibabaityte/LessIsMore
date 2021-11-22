@@ -1,7 +1,11 @@
 let generateRequestConfig = () => {
     return {
-        'headers': {
+        'headers':
+            {
             'Authorization': localStorage.getItem('userToken')
+        },
+        'params': {
+            'favorites': true
         }
     };
 };

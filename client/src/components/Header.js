@@ -5,6 +5,7 @@ import {Routes, Route, Link} from "react-router-dom";
 import UserProfile from "./users/UserProfile.js";
 import Login from "./users/Login";
 import Register from "./users/Register";
+import FavoritesList from "./favorites/FavoritesList";
 
 // util imports
 import {logout} from "../utils/users/userUtils";
@@ -21,10 +22,11 @@ const Header = (props) => {
                     <UserContext.Consumer>
                         {
                             ({user}) => (
-                                user.token !== null ?
+                                !!user.token  ?
                                     <div>
                                         <h4>Hello, {user.firstName}</h4>
                                         <Link to="/userProfile">User</Link>
+                                        <Link to="/favorites">Favorites</Link>
                                         <button onClick={() => logout()}>Logout</button>
                                     </div>
                                     :
@@ -35,6 +37,7 @@ const Header = (props) => {
 
             <Routes>
                 <Route path="/userProfile/*" element={<UserProfile isAuth={isAuth}/>}/>
+                <Route path="/favorites" element={<FavoritesList/>}/>
                 <Route path="/login" element={<Login/>}/>
                 <Route path="/register" element={<Register/>}/>
             </Routes>
