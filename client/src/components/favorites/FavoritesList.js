@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, {useContext, useEffect, useState, useRef} from "react";
 
 // component imports
 import FavoriteProduct from "./FavoriteProduct";
@@ -14,12 +14,16 @@ const FavoritesList = () => {
     const {user} = useContext(UserContext);
 
     const [favorites, setFavorites] = useState([]);
+    const componentMounted = useRef(true);
 
     useEffect(() => {
-        initFavorites(user, favorites,setFavorites);
-    }, []);
-
-    console.log(favorites);
+        if (componentMounted.current) {
+            initFavorites(user, favorites, setFavorites);
+        }
+        return () => {
+            componentMounted.current = false;
+        }
+    }, [favorites, user]);
 
     return (
         <div>

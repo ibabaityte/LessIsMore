@@ -12,7 +12,7 @@ const FavoriteProduct = (props) => {
         <div>
             <div>{title}</div>
             <div>{price}</div>
-            <div>{photo}</div>
+            <img style={{width:"300px",height:"300px"}} src={photo} alt="product"/>
         </div>
     );
 }

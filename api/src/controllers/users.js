@@ -143,7 +143,7 @@ const login = (req, res) => {
 };
 
 const get = (req, res) => {
-    console.log(req.query.favorites);
+    // console.log(req.query.favorites);
     User.findById(req.params.userId)
         .populate(req.query.favorites ? "favorites" : null )
         .then(data => {
