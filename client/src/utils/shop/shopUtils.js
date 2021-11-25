@@ -5,9 +5,8 @@ const initProducts = (setProducts) => {
     axios.get(`${API_URL}/products/list`).then((response) => {
         setProducts(response.data.data);
     });
-    // console.log("nx");
 }
 
 export {
-    initProducts
+    initProducts,
 }

@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useState} from "react";
 
 // component imports
-import ProductCard from "../shop/ProductCard";
+import ProductCard from "../products/ProductCard";
 
 // util imports
 import {initFavorites} from "../../utils/users/userUtils";

@@ -1,20 +1,16 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 
 // context imports
 import MessageComponent from "../common/Message";
 
-// util imports
-import {initProducts} from "../../utils/shop/shopUtils";
-
 // component imports
 import ProductCard from "./ProductCard";
 
-const ProductList = () => {
-    const [products, setProducts] = useState([]);
-
-    useEffect(() => {
-        initProducts(setProducts);
-    }, []);
+const ProductList = (props) => {
+    const {
+        products,
+        setSelectedProduct
+    } = props;
 
     return (
         <div>
@@ -23,10 +19,12 @@ const ProductList = () => {
             {
                 products.map((product) => (
                     <ProductCard
-                        key={product._id}
+                        product={product}
+                        setSelectedProduct={setSelectedProduct}
                         title={product.title}
                         price={product.price}
                         photo={product.photo}
+                        key={product._id}
                     />
                 ))
             }

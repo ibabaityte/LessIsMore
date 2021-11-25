@@ -9,8 +9,7 @@ import UserInfoComponent from "../common/UserInfo.js";
 import ShippingInfo from "./ShippingInfo.js";
 import {initShippingInfo} from "../../utils/users/shippingInfoUtils";
 
-const UserProfile = (props) => {
-    const {isAuth} = props;
+const UserProfile = () => {
     const {user} = useContext(UserContext);
 
     const [shippingInfo, setShippingInfo] = useState({
@@ -28,7 +27,7 @@ const UserProfile = (props) => {
     return (
         <div>
             {
-                isAuth ?
+                user.token ?
                     <div>
                         <h1>This is the user profile panel</h1>
                         <h3>User information:</h3>
@@ -51,10 +50,7 @@ const UserProfile = (props) => {
                 <Route
                     path="shippingInfo"
                     element={
-                        <ShippingInfo
-                            shippingInfo={shippingInfo}
-                            setShippingInfo={setShippingInfo}
-                        />
+                        <ShippingInfo/>
                     }
                 />
             </Routes>

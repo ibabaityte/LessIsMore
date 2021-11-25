@@ -1,19 +1,21 @@
 import React from "react";
+import {Link} from "react-router-dom";
 
 const ProductCard = (props) => {
 
     const {
+        product,
+        setSelectedProduct,
         title,
         price,
-        photo
+        photo,
     } = props;
 
     return (
         <div>
-            <div>{title}</div>
+            <Link to="/product" onClick={() => {setSelectedProduct(product)}}>{title}</Link>
             <div>{price}</div>
             <img style={{width: "300px", height: "300px"}} src={photo} alt="product"/>
-            <button>Add to cart</button>
         </div>
     );
 }

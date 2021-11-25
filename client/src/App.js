@@ -4,7 +4,7 @@ import {Route, Routes} from "react-router-dom";
 
 // component imports
 import Header from "./components/Header";
-import ProductList from "./components/shop/ProductList";
+import Products from "./components/products/Products";
 import AdminPanel from "./components/admin/AdminPanel";
 
 // context imports
@@ -36,7 +36,7 @@ const App = () => {
                 <ApiMessageContext.Provider value={{message, setMessage}}>
                     <Header isAuth={isAuth}/>
                     <Routes>
-                        <Route path="/" element={<ProductList/>}/>
+                        <Route path="/*" element={<Products/>}/>
                         <Route path="/adminPanel" element={<AdminPanel/>}/>
                     </Routes>
                 </ApiMessageContext.Provider>
