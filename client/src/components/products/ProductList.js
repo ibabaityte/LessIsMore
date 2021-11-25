@@ -19,12 +19,12 @@ const ProductList = (props) => {
             {
                 products.map((product) => (
                     <ProductCard
+                        key={product._id}
                         product={product}
-                        setSelectedProduct={setSelectedProduct}
                         title={product.title}
                         price={product.price}
                         photo={product.photo}
-                        key={product._id}
+                        setSelectedProduct={setSelectedProduct}
                     />
                 ))
             }

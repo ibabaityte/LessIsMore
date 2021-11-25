@@ -5,7 +5,6 @@ import {Routes, Route, Link} from "react-router-dom";
 import UserProfile from "./users/UserProfile.js";
 import Login from "./users/Login";
 import Register from "./users/Register";
-import FavoritesList from "./favorites/FavoritesList";
 
 // util imports
 import {logout} from "../utils/users/userUtils";
@@ -33,7 +32,6 @@ const Header = () => {
             }
             <Routes>
                 <Route path="userProfile/*" element={<UserProfile/>}/>
-                <Route path="favorites" element={<FavoritesList/>}/>
                 <Route path="login" element={<Login/>}/>
                 <Route path="register" element={<Register/>}/>
             </Routes>

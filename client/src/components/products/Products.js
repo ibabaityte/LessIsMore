@@ -7,6 +7,7 @@ import {initProducts} from "../../utils/shop/shopUtils";
 // component imports
 import Product from "./Product";
 import ProductList from "./ProductList";
+import FavoritesList from "../favorites/FavoritesList";
 
 const Products = () => {
     const [products, setProducts] = useState([]);
@@ -25,6 +26,7 @@ const Products = () => {
                            setSelectedProduct={setSelectedProduct}/>
                        }
                 />
+                <Route path="favorites" element={<FavoritesList setSelectedProduct={setSelectedProduct}/>}/>
                 <Route path="product"
                        element={<Product
                            product={selectedProduct}

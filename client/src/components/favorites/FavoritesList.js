@@ -9,12 +9,12 @@ import {initFavorites} from "../../utils/users/userUtils";
 // context imports
 import {UserContext} from "../../utils/context/UserContext";
 
-const FavoritesList = () => {
+const FavoritesList = (props) => {
 
+    const {setSelectedProduct} = props;
     const {user} = useContext(UserContext);
 
     const [favorites, setFavorites] = useState([]);
-
     useEffect(() => {
         initFavorites(user, setFavorites);
     }, [user, setFavorites]);
@@ -25,9 +25,11 @@ const FavoritesList = () => {
                 favorites.map((favorite) => (
                     <ProductCard
                         key={favorite._id}
+                        product={favorite}
                         title={favorite.title}
                         price={favorite.price}
                         photo={favorite.photo}
+                        setSelectedProduct={setSelectedProduct}
                     />
                 ))
             }
