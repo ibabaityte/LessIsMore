@@ -7,9 +7,14 @@ import {handleLogin, handleChangeLogin} from "../../utils/users/userHandlers.js"
 // style imports
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import {ApiMessageContext} from "../../utils/context/ApiMessageContext";
+
+// component imports
 import MessageComponent from "../common/Message";
+
+// context imports
 import {UserContext} from "../../utils/context/UserContext";
+import {ApiMessageContext} from "../../utils/context/ApiMessageContext";
+
 
 const Login = () => {
 
