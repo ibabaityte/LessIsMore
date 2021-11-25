@@ -21,7 +21,7 @@ const Subscribe = (props) => {
             setModalOpen(true);
             localStorage.setItem('modalVisible',"yes");
         }
-    },[])
+    },[setModalOpen])
 
     return (
         <div>

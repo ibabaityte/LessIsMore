@@ -1,5 +1,4 @@
-import React, {useState, useEffect} from "react";
-import './App.css';
+import React, {useState} from "react";
 import {Route, Routes} from "react-router-dom";
 
 // component imports
@@ -13,10 +12,12 @@ import Footer from "./components/Footer";
 import {ApiMessageContext} from "./utils/context/ApiMessageContext.js";
 import {UserContext} from "./utils/context/UserContext";
 
+// style imports
+import './App.css';
+
 const App = () => {
 
     const [modalOpen, setModalOpen] = useState(false);
-    const [isAuth, setIsAuth] = useState(false);
     const [message, setMessage] = useState(localStorage.getItem("apiMessage"));
     const [user, setUser] = useState({
         email: localStorage.getItem("userEmail"),
@@ -27,17 +28,11 @@ const App = () => {
         userType: localStorage.getItem("userType")
     });
 
-    useEffect(() => {
-        if (!isAuth) {
-            setIsAuth(!!user.token);
-        }
-    }, [isAuth, user.token]);
-
     return (
         <div className="App">
             <UserContext.Provider value={{user, setUser}}>
                 <ApiMessageContext.Provider value={{message, setMessage}}>
-                    <Header isAuth={isAuth}/>
+                    <Header/>
                     <Subscribe modalOpen={modalOpen} setModalOpen={setModalOpen}/>
                     <Routes>
                         <Route path="/*" element={<Products/>}/>
