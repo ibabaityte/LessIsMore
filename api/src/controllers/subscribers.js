@@ -1,9 +1,18 @@
 // model import
 import Subscriber from "../models/subscriber.js";
+import {testEmail} from "../utils/validationUtils.js";
 
 const create = (req, res) => {
 
     Subscriber.findOne({email: req.body.email}).then(data => {
+
+        if (!testEmail(req)) {
+            return res.status(400).send({
+                code: "400",
+                message: "You have entered an invalid email address. Try again."
+            });
+        }
+
         if (data) {
             return res.status(409).send({
                 code: "409",
