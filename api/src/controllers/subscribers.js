@@ -6,7 +6,7 @@ const create = (req, res) => {
 
     Subscriber.findOne({email: req.body.email}).then(data => {
 
-        if (!testEmail(req)) {
+        if (!testEmail(req.body.email)) {
             return res.status(400).send({
                 code: "400",
                 message: "You have entered an invalid email address. Try again."

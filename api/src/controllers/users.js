@@ -11,7 +11,12 @@ import User from "../models/user.js";
 
 // util imports
 import {infoToUpdate} from "../utils/userControllerUtils.js";
-import {inputValidation,  testEmail, testPassword} from "../utils/validationUtils.js"
+import {
+    inputValidation,
+    testEmail,
+    testPassword,
+    isUpperCase
+} from "../utils/validationUtils.js"
 
 // constants from env file
 const secretKey = process.env.JWT;
@@ -24,14 +29,21 @@ const register = (req, res) => {
         });
     }
 
-    if (!testPassword(req)) {
+    if(!isUpperCase(req.body.firstName) || !isUpperCase(req.body.lastName)) {
+        return res.status(400).send({
+            code: "400",
+            message: "Firstname and last name should start with uppercase letters. Try again. "
+        });
+    }
+
+    if (!testPassword(req.body.password)) {
         return res.status(400).send({
             code: "400",
             message: "Password has to contain at least one number."
         });
     }
 
-    if (!testEmail(req)) {
+    if (!testEmail(req.body.email)) {
         return res.status(400).send({
             code: "400",
             message: "You have entered an invalid email address. Try again."
@@ -89,7 +101,7 @@ const login = (req, res) => {
             });
         }
 
-        if (!testEmail(req)) {
+        if (!testEmail(req.body.email)) {
             return res.status(400).send({
                 code: "400",
                 message: "You have entered an invalid email address. Try again."

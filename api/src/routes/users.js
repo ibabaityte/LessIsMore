@@ -11,7 +11,7 @@ import UsersController from "../controllers/users.js";
 const router = Router();
 
 router.post("/login", UsersController.login);
-router.post("/register", checkAuth, UsersController.register);
+router.post("/register", UsersController.register);
 router.get("/:userId", checkAuth, UsersController.get);
 router.delete("/:userId", checkAuth, UsersController.remove);
 router.put("/:userId", checkAuth, UsersController.update);

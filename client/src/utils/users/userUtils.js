@@ -53,7 +53,7 @@ const register = (setMessage, newUser, setNewUser) => {
             window.location.href = "/login"
         })
         .catch((err) => {
-            console.log(err.response.data);
+            // console.log(err.response.data);
             setMessage(err.response.data.message);
         });
 }
