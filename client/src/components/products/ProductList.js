@@ -9,7 +9,9 @@ import ProductCard from "./ProductCard";
 const ProductList = (props) => {
     const {
         products,
-        setSelectedProduct
+        setSelectedProduct,
+        favorites,
+        setFavorites
     } = props;
 
     return (
@@ -25,6 +27,8 @@ const ProductList = (props) => {
                         price={product.price}
                         photo={product.photo}
                         setSelectedProduct={setSelectedProduct}
+                        favorites={favorites}
+                        setFavorites={setFavorites}
                     />
                 ))
             }
