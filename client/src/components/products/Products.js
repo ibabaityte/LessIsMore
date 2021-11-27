@@ -18,11 +18,12 @@ const Products = () => {
     const [selectedProduct, setSelectedProduct] = useState([]);
     const [favorites, setFavorites] = useState([{}]);
     const [searchQuery, setSearchQuery] = useState("");
+    const [filter, setFilter] = useState("");
 
     const {user} = useContext(UserContext);
 
     useEffect(() => {
-        initProducts(setProducts);
+        initProducts(setProducts, "all");
         if(user.token) {
             initFavorites(user, setFavorites);
         }
@@ -40,6 +41,8 @@ const Products = () => {
                            setFavorites={setFavorites}
                            searchQuery={searchQuery}
                            setSearchQuery={setSearchQuery}
+                           filter={filter}
+                           setFilter={setFilter}
                        />}
                 />
                 <Route path="favorites"

@@ -1,14 +1,14 @@
 const generateFilterConfig = (req) => {
     const category = req.query.category;
 
-    if(category) {
+    if(category === "all") {
         return {
-            'userType': "USER",
-            'category': category
+            'userType': "USER"
         };
     } else {
         return {
-            'userType': "USER"
+            'userType': "USER",
+            'category': category
         };
     }
 }

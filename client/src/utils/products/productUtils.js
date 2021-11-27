@@ -1,8 +1,8 @@
 import axios from "axios";
 import {API_URL} from "../constants/apiConstants";
 
-const initProducts = (setProducts) => {
-    axios.get(`${API_URL}/products/list`).then((response) => {
+const initProducts = (setProducts, category) => {
+    axios.get(`${API_URL}/products/list`, {"params": {"category": category}}).then((response) => {
         setProducts(response.data.data);
     });
 }
@@ -24,7 +24,13 @@ const searchProducts = (e, setProducts, searchQuery, setMessage) => {
     }
 };
 
+const filterProducts = (filter) => {
+    console.log(filter);
+
+};
+
 export {
     initProducts,
-    searchProducts
+    searchProducts,
+    filterProducts
 }

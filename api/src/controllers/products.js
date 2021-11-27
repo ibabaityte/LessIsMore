@@ -23,7 +23,8 @@ const create = async (req, res) => {
         description: req.body.description,
         price: req.body.price,
         photo: cloudinaryResult.secure_url,
-        cloudinaryId: cloudinaryResult.public_id
+        cloudinaryId: cloudinaryResult.public_id,
+        category: req.body.category
     });
 
     await newProduct.save().then(data => {

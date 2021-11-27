@@ -6,6 +6,7 @@ import MessageComponent from "../common/Message";
 // component imports
 import ProductCard from "./ProductCard";
 import Search from "./Search";
+import Filter from "./Filter";
 
 const ProductList = (props) => {
     const {
@@ -15,7 +16,9 @@ const ProductList = (props) => {
         favorites,
         setFavorites,
         searchQuery,
-        setSearchQuery
+        setSearchQuery,
+        filter,
+        setFilter
     } = props;
 
     return (
@@ -25,6 +28,11 @@ const ProductList = (props) => {
             <Search
                 searchQuery={searchQuery}
                 setSearchQuery={setSearchQuery}
+                setProducts={setProducts}
+            />
+            <Filter
+                filter={filter}
+                setFilter={setFilter}
                 setProducts={setProducts}
             />
             {
