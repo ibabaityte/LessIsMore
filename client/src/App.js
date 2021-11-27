@@ -44,7 +44,7 @@ const App = () => {
                     <Subscribe modalOpen={modalOpen} setModalOpen={setModalOpen}/>
                     <Routes>
                         <Route path="/*" element={<Products/>}/>
-                        <Route path="/adminPanel" element={<AdminPanel/>}/>
+                        <Route path="/adminPanel/*" element={<AdminPanel/>}/>
                     </Routes>
                     <Footer setModalOpen={setModalOpen}/>
                 </ApiMessageContext.Provider>
