@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import {Route, Routes} from "react-router-dom";
 
 // component imports
@@ -11,6 +11,9 @@ import Footer from "./components/Footer";
 // context imports
 import {ApiMessageContext} from "./utils/context/ApiMessageContext.js";
 import {UserContext} from "./utils/context/UserContext";
+
+// util imports
+import {automaticLogout} from "./utils/users/userUtils";
 
 // style imports
 import './App.css';
@@ -25,7 +28,12 @@ const App = () => {
         lastName: localStorage.getItem("userLastName"),
         token: localStorage.getItem("userToken"),
         userId: localStorage.getItem("userId"),
-        userType: localStorage.getItem("userType")
+        userType: localStorage.getItem("userType"),
+        expirationTimestamp: localStorage.getItem("expirationTimestamp")
+    });
+
+    useEffect(() => {
+        automaticLogout(user.expirationTimestamp);
     });
 
     return (

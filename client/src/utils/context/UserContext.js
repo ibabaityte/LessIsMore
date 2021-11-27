@@ -7,7 +7,8 @@ export const UserContext = createContext({
         lastName: "",
         token: "",
         userId: "",
-        userType: ""
+        userType: "",
+        expirationTimestamp: ""
     },
     setUser: () => {}
 });

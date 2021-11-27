@@ -17,14 +17,13 @@ const login = (setMessage, setUser, user) => {
                 userType: result.data.userType
             };
 
-            // console.log(user.userId);
-
             localStorage.setItem("userEmail", user.email);
             localStorage.setItem("userFirstName", user.firstName);
             localStorage.setItem("userLastName", user.lastName);
             localStorage.setItem("userToken", user.token);
             localStorage.setItem("userId", user.userId);
             localStorage.setItem("userType", user.userType);
+            localStorage.setItem('expirationTimestamp', result.data.expirationTimestamp);
             setUser(user);
 
             // API message context
@@ -70,9 +69,21 @@ const initFavorites = (user, setFavorites) => {
     });
 }
 
+const automaticLogout = (ExpirationTimestamp) => {
+    const delay = ExpirationTimestamp - Date.now();
+    const expirationTimer = setTimeout(() => {
+        if(delay >= 0) {
+            localStorage.clear();
+            window.location = '/';
+        }
+    }, delay);
+    return () => clearTimeout(expirationTimer);
+};
+
 export {
     login,
     register,
     logout,
-    initFavorites
+    initFavorites,
+    automaticLogout
 }

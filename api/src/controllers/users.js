@@ -123,7 +123,7 @@ const login = (req, res) => {
                             userType: data.userType,
                             expirationTimestamp: Date.now()
                         }, secretKey, {
-                            expiresIn: "1h"
+                            expiresIn: "48h"
                         });
                         // console.log(token);
                         return res.status(200).send({
@@ -134,7 +134,7 @@ const login = (req, res) => {
                             userId: data._id,
                             userType: data.userType,
                             email: data.email,
-                            expirationTimestamp: Date.now() + 1000 * 60 * 60
+                            expirationTimestamp: Date.now() + 1000 * 60 * 60 * 48
                         });
                     } else {
                         res.status(401).send({
