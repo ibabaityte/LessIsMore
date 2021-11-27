@@ -1,10 +1,5 @@
 import React, {useContext} from "react";
-import {Routes, Route, Link} from "react-router-dom";
-
-// component imports
-import UserProfile from "./users/UserProfile.js";
-import Login from "./users/Login";
-import Register from "./users/Register";
+import {Link} from "react-router-dom";
 
 // util imports
 import {logout} from "../utils/users/userUtils";
@@ -30,11 +25,6 @@ const Header = () => {
                     :
                     <Link to="userProfile">User</Link>
             }
-            <Routes>
-                <Route path="userProfile/*" element={<UserProfile/>}/>
-                <Route path="login" element={<Login/>}/>
-                <Route path="register" element={<Register/>}/>
-            </Routes>
         </div>
     );
 }

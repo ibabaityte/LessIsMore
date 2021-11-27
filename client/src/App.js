@@ -17,6 +17,9 @@ import {automaticLogout} from "./utils/users/userUtils";
 
 // style imports
 import './App.css';
+import UserProfile from "./components/users/UserProfile";
+import Login from "./components/users/Login";
+import Register from "./components/users/Register";
 
 const App = () => {
 
@@ -34,7 +37,7 @@ const App = () => {
 
     useEffect(() => {
         automaticLogout(user.expirationTimestamp);
-    });
+    }, [user.expirationTimestamp]);
 
     return (
         <div className="App">
@@ -45,6 +48,9 @@ const App = () => {
                     <Routes>
                         <Route path="/*" element={<Products/>}/>
                         <Route path="/adminPanel/*" element={<AdminPanel/>}/>
+                        <Route path="/userProfile/*" element={<UserProfile/>}/>
+                        <Route path="login" element={<Login/>}/>
+                        <Route path="register" element={<Register/>}/>
                     </Routes>
                     <Footer setModalOpen={setModalOpen}/>
                 </ApiMessageContext.Provider>

@@ -117,14 +117,14 @@ const remove = async (req, res) => {
         console.log(err)
     });
 
-    Product.deleteOne().then(data => {
+    Product.findByIdAndRemove(req.params.id).then(data => {
         if (!data) {
             return res.status(404).send({
                 code: "404",
                 message: "Product not found with id " + req.params.id
             });
         }
-        res.status(200).send({
+        return res.status(200).send({
             message: "Product deleted successfully"
         });
     }).catch(err => {

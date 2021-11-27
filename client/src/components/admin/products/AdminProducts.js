@@ -14,7 +14,7 @@ const AdminProducts = () => {
 
     useEffect(() => {
         initProducts(setProducts, "all");
-    }, []);
+    }, [setProducts]);
 
     return (
         <div>

@@ -9,6 +9,7 @@ const ProductList = (props) => {
         setSelectedProduct,
         favorites,
         setFavorites,
+        setProducts
     } = props;
 
     return (
@@ -24,6 +25,7 @@ const ProductList = (props) => {
                         setSelectedProduct={setSelectedProduct}
                         favorites={favorites}
                         setFavorites={setFavorites}
+                        setProducts={setProducts}
                     />
                 ))
             }
