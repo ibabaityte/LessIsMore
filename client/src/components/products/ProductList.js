@@ -5,19 +5,28 @@ import MessageComponent from "../common/Message";
 
 // component imports
 import ProductCard from "./ProductCard";
+import Search from "./Search";
 
 const ProductList = (props) => {
     const {
         products,
+        setProducts,
         setSelectedProduct,
         favorites,
-        setFavorites
+        setFavorites,
+        searchQuery,
+        setSearchQuery
     } = props;
 
     return (
         <div>
             <h1>This is the product list</h1>
             <MessageComponent/>
+            <Search
+                searchQuery={searchQuery}
+                setSearchQuery={setSearchQuery}
+                setProducts={setProducts}
+            />
             {
                 products.map((product) => (
                     <ProductCard

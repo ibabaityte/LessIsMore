@@ -2,7 +2,7 @@ import React, {useContext} from "react";
 import {Link} from "react-router-dom";
 
 // util imports
-import {removeFavorite, addFavorite} from "../../utils/shop/favoritesHandlers";
+import {removeFavorite, addFavorite} from "../../utils/products/favoritesHandlers";
 
 // context imports
 import {UserContext} from "../../utils/context/UserContext";

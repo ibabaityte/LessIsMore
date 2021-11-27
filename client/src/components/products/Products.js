@@ -2,13 +2,13 @@ import React, {useContext, useEffect, useState} from "react";
 import {Route, Routes, Outlet} from "react-router-dom";
 
 // util imports
-import {initProducts} from "../../utils/shop/shopUtils";
+import {initProducts} from "../../utils/products/productUtils";
+import {initFavorites} from "../../utils/users/userUtils";
 
 // component imports
 import Product from "./Product";
 import ProductList from "./ProductList";
 import FavoritesList from "../favorites/FavoritesList";
-import {initFavorites} from "../../utils/users/userUtils";
 
 // context imports
 import {UserContext} from "../../utils/context/UserContext";
@@ -17,6 +17,7 @@ const Products = () => {
     const [products, setProducts] = useState([]);
     const [selectedProduct, setSelectedProduct] = useState([]);
     const [favorites, setFavorites] = useState([{}]);
+    const [searchQuery, setSearchQuery] = useState("");
 
     const {user} = useContext(UserContext);
 
@@ -33,9 +34,12 @@ const Products = () => {
                 <Route path="/"
                        element={<ProductList
                            products={products}
+                           setProducts={setProducts}
                            setSelectedProduct={setSelectedProduct}
                            favorites={favorites}
                            setFavorites={setFavorites}
+                           searchQuery={searchQuery}
+                           setSearchQuery={setSearchQuery}
                        />}
                 />
                 <Route path="favorites"
