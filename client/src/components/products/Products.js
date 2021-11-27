@@ -9,6 +9,9 @@ import {initFavorites} from "../../utils/users/userUtils";
 import Product from "./Product";
 import ProductList from "./ProductList";
 import FavoritesList from "../favorites/FavoritesList";
+import MessageComponent from "../common/Message";
+import Search from "./Search";
+import Filter from "./Filter";
 
 // context imports
 import {UserContext} from "../../utils/context/UserContext";
@@ -18,7 +21,6 @@ const Products = () => {
     const [selectedProduct, setSelectedProduct] = useState([]);
     const [favorites, setFavorites] = useState([{}]);
     const [searchQuery, setSearchQuery] = useState("");
-    const [filter, setFilter] = useState("");
 
     const {user} = useContext(UserContext);
 
@@ -31,18 +33,22 @@ const Products = () => {
 
     return (
         <div>
+            <MessageComponent/>
+            <Search
+                searchQuery={searchQuery}
+                setSearchQuery={setSearchQuery}
+                setProducts={setProducts}
+            />
+            <Filter
+                setProducts={setProducts}
+            />
             <Routes>
                 <Route path="/"
                        element={<ProductList
                            products={products}
-                           setProducts={setProducts}
                            setSelectedProduct={setSelectedProduct}
                            favorites={favorites}
                            setFavorites={setFavorites}
-                           searchQuery={searchQuery}
-                           setSearchQuery={setSearchQuery}
-                           filter={filter}
-                           setFilter={setFilter}
                        />}
                 />
                 <Route path="favorites"

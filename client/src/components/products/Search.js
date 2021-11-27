@@ -38,7 +38,7 @@ const Search = (props) => {
                 />
                 <Button
                     value="Search"
-                    onClick={() => initProducts(setProducts)}>Clear and show all
+                    onClick={() => initProducts(setProducts, "all")}>Clear and show all
                 </Button>
             </form>
         </div>

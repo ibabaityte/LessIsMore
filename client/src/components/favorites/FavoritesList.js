@@ -3,9 +3,6 @@ import React from "react";
 // component imports
 import ProductCard from "../products/ProductCard";
 
-// context imports
-import MessageComponent from "../common/Message";
-
 const FavoritesList = (props) => {
 
     const {
@@ -16,7 +13,6 @@ const FavoritesList = (props) => {
 
     return (
         <div>
-            <MessageComponent/>
             {
                 favorites.map((favorite, key) => (
                     <ProductCard
