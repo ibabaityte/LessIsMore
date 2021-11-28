@@ -16,7 +16,12 @@ const ProductCardButton = (props) => {
     } = props;
 
     if(user.userType === "ADMIN") {
-        return <button onClick={() => removeProduct(product, setProducts)}>Remove product</button>
+        return (
+            <div>
+                <button onClick={() => removeProduct(product, setProducts)}>Remove product</button>
+                {/*<Link>Update product</Link>*/}
+            </div>
+        );
     } else if (window.location.href === "http://localhost:3000/favorites") {
         return <button onClick={() => removeFavorite(favorites, product._id, user, setFavorites)}>Remove from favorites</button>
     } else {

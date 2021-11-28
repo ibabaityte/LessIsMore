@@ -23,11 +23,15 @@ const AdminProducts = () => {
                 <Route path="/"
                        element={<ProductList
                            products={products}
+                           setSelectedProduct={null}
+                           favorites={null}
+                           setFavorites={null}
                            setProducts={setProducts}
                        />}
                 />
                 <Route path="create"
                        element={<AdminCreateProduct
+                           setProducts={setProducts}
                        />}
                 />
             </Routes>

@@ -27,7 +27,6 @@ const ProductCard = (props) => {
             <Link to="/product" onClick={() => {setSelectedProduct(product)}}>{title}</Link>
             <div>{price}</div>
             <img style={{width: "300px", height: "300px"}} src={photo} alt="product"/>
-            <div>{product._id}</div>
             <ProductCardButton
                 favorites={favorites}
                 product={product}

@@ -9,7 +9,7 @@ const ProductList = (props) => {
         setSelectedProduct,
         favorites,
         setFavorites,
-        setProducts
+        setProducts,
     } = props;
 
     return (

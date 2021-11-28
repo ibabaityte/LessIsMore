@@ -1,8 +1,7 @@
 let generateRequestConfig = () => {
     return {
-        'headers':
-            {
-            'Authorization': localStorage.getItem('userToken')
+        'headers': {
+            'Authorization': localStorage.getItem('userToken'),
         },
         'params': {
             'favorites': true
@@ -10,6 +9,17 @@ let generateRequestConfig = () => {
     };
 };
 
+let generateCreateProductConfig = () => {
+    return {
+        'headers': {
+            'Authorization': localStorage.getItem('userToken'),
+            'Content-Type': 'multipart/form-data'
+
+        }
+    };
+}
+
 export {
     generateRequestConfig,
+    generateCreateProductConfig
 };
