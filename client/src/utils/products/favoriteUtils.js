@@ -8,10 +8,9 @@ import {initFavorites} from "../users/userUtils";
 import {generateRequestConfig} from "../request/axiosRequestConfig";
 
 const updateFavorites = (favorites, user, setFavorites) => {
-    console.log(favorites);
     axios.put(`${API_URL}/${user.userId}`, {favorites:favorites}, generateRequestConfig())
-        .then((result) => {
-            console.log(result.data);
+        .then(() => {
+            // console.log(result.data);
             initFavorites(user, setFavorites);
         }).catch(err => {
             console.log(err);

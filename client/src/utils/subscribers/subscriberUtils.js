@@ -6,7 +6,7 @@ const subscribe = (subscriberEmail, setMessage) => {
           setMessage(result.data.message);
           localStorage.setItem("apiMessage", result.data.message);
       }).catch(err => {
-         console.log(err.response.data.message);
+         // console.log(err.response.data.message);
          setMessage(err.response.data.message);
           localStorage.setItem("apiMessage", err.response.data.message);
       });

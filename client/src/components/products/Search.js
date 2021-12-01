@@ -7,7 +7,7 @@ import Button from "@material-ui/core/Button";
 // util imports
 import {searchProducts} from "../../utils/products/productUtils";
 import {handleSearchProducts} from "../../utils/products/productHandlers";
-import {initProducts} from "../../utils/products/productUtils";
+import {clearSearch} from "../../utils/products/productUtils";
 
 // context imports
 import {ApiMessageContext} from "../../utils/context/ApiMessageContext";
@@ -38,7 +38,7 @@ const Search = (props) => {
                 />
                 <Button
                     value="Search"
-                    onClick={() => initProducts(setProducts, "all")}>Clear and show all
+                    onClick={() => clearSearch(setProducts, "all", setSearchQuery)}>Clear and show all
                 </Button>
             </form>
         </div>

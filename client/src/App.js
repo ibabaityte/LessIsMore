@@ -20,7 +20,6 @@ import './App.css';
 import UserProfile from "./components/users/UserProfile";
 import Login from "./components/users/Login";
 import Register from "./components/users/Register";
-import MessageComponent from "./components/common/Message";
 
 const App = () => {
 
@@ -45,7 +44,6 @@ const App = () => {
             <UserContext.Provider value={{user, setUser}}>
                 <ApiMessageContext.Provider value={{message, setMessage}}>
                     <Header/>
-                    <MessageComponent/>
                     <Subscribe modalOpen={modalOpen} setModalOpen={setModalOpen}/>
                     <Routes>
                         <Route path="/*" element={<Products/>}/>

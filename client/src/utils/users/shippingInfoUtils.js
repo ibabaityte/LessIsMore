@@ -7,7 +7,7 @@ const updateShippingInfo = (user, shippingInfo, setShippingInfo, setMessage) => 
     // console.log(shippingInfo);
     axios.put(`${API_URL}/${user.userId}`, shippingInfo, {'headers': {'Authorization': localStorage.getItem('userToken'),}})
         .then((result) => {
-            console.log(result);
+            // console.log(result);
             // Stuff for setting context
             // User context
             const shippingInfo = {
@@ -22,7 +22,7 @@ const updateShippingInfo = (user, shippingInfo, setShippingInfo, setMessage) => 
             window.location.href = "/userProfile"
         })
         .catch((err) => {
-            console.log(err);
+            // console.log(err);
             setMessage(err.response.data.message);
             localStorage.setItem("apiMessage", err.response.data.message);
         });

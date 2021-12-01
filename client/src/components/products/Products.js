@@ -14,6 +14,7 @@ import Filter from "./Filter";
 
 // context imports
 import {UserContext} from "../../utils/context/UserContext";
+import MessageComponent from "../common/Message";
 
 const Products = () => {
     const [products, setProducts] = useState([]);
@@ -32,6 +33,7 @@ const Products = () => {
 
     return (
         <div>
+            <MessageComponent/>
             <Search
                 searchQuery={searchQuery}
                 setSearchQuery={setSearchQuery}

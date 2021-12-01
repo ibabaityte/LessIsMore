@@ -11,8 +11,6 @@ const FavoritesList = (props) => {
         setFavorites
     } = props;
 
-    console.log(favorites);
-
     return (
         <div>
             {

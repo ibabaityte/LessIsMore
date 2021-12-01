@@ -11,14 +11,13 @@ const initProducts = (setProducts, category) => {
 
 const searchProducts = (e, setProducts, searchQuery, setMessage) => {
     e.preventDefault();
-    console.log(searchQuery);
     if(searchQuery === "") {
         initProducts(setProducts);
         setMessage("Search parameter cannot be empty.");
         localStorage.setItem("apiMessage", "Search parameter cannot be empty.");
     } else {
         axios.get(`${API_URL}/products/search`, {"params": {"keyword": searchQuery}}).then((result) => {
-            console.log(result);
+            // console.log(result);
             setProducts(result.data.data);
         }).catch(err => {
             // setMessage(err.response.data.message);
@@ -27,7 +26,13 @@ const searchProducts = (e, setProducts, searchQuery, setMessage) => {
     }
 };
 
+const clearSearch = (setProducts, category, setSearchQuery) => {
+        initProducts(setProducts, category);
+        setSearchQuery("");
+};
+
 export {
     initProducts,
-    searchProducts
+    searchProducts,
+    clearSearch
 }
