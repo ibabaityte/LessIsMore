@@ -4,7 +4,7 @@ import React, {useState, useEffect} from "react";
 import AdminCouponsCreate from "./AdminCouponsCreate";
 
 // util imports
-import {fetchCoupons} from "../../../utils/admin/adminCouponUtils";
+import {fetchCoupons, removeCoupon} from "../../../utils/admin/adminCouponUtils";
 
 const AdminCoupons = () => {
 
@@ -27,6 +27,7 @@ const AdminCoupons = () => {
                         <div key={key}>
                             <div>{coupon.code}</div>
                             <div>{coupon.expiryDateHours}</div>
+                            <button onClick={() => removeCoupon(coupon._id, fetchCoupons, setCouponsList)}>Delete</button>
                         </div>
                     );
                 })

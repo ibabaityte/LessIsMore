@@ -20,7 +20,14 @@ const createCoupon = (e, coupon, fetchCoupons, setCouponsList, setMessage) => {
     });
 };
 
+const removeCoupon = (couponId, fetchCoupons, setCouponsList) => {
+    axios.delete(`${API_URL}/coupons/${couponId}`, generateAuthConfig()).then(() => {
+        fetchCoupons(setCouponsList);
+    })
+}
+
 export {
     fetchCoupons,
-    createCoupon
+    createCoupon,
+    removeCoupon
 }
