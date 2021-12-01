@@ -2,7 +2,7 @@ import {API_URL} from "../constants/apiConstants";
 import axios from "axios";
 
 // util imports
-import {generateCreateProductConfig, generateRequestConfig} from "../request/axiosRequestConfig";
+import {generateAuthConfig, generateRequestConfig} from "../request/axiosRequestConfig";
 import {initProducts} from "../products/productUtils";
 
 const removeProduct = (product, setProducts) => {
@@ -26,7 +26,7 @@ const generateFormData = (product) => {
 
 const createProduct = (e, product, setProducts, setMessage) => {
     e.preventDefault();
-    axios.post(`${API_URL}/products/create`, generateFormData(product), generateCreateProductConfig()).then((result) =>{
+    axios.post(`${API_URL}/products/create`, generateFormData(product), generateAuthConfig()).then((result) =>{
         console.log(result.data.message);
         initProducts(setProducts, "all");
         setMessage(result.data.message);
@@ -40,7 +40,7 @@ const createProduct = (e, product, setProducts, setMessage) => {
 
 const updateProduct = (e, selectedProduct, setMessage) => {
     e.preventDefault();
-    axios.put(`${API_URL}/products/update/${selectedProduct._id}`, generateFormData(selectedProduct), generateCreateProductConfig()).then(result => {
+    axios.put(`${API_URL}/products/update/${selectedProduct._id}`, generateFormData(selectedProduct), generateAuthConfig()).then(result => {
         console.log(result.data.message);
         setMessage(result.data.message);
         localStorage.setItem("apiMessage", result.data.message);

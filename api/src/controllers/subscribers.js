@@ -41,8 +41,7 @@ const create = (req, res) => {
 };
 
 const list = (req, res) => {
-    Subscriber.find({"userType": "USER"})
-        .then(data => {
+    Subscriber.find({"userType": "USER"}).then(data => {
             res.status(200).send({
                 code: "200",
                 data: data

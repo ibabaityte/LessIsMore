@@ -2,7 +2,6 @@ import React from "react";
 
 // component imports
 import ProductCard from "./ProductCard";
-import MessageComponent from "../common/Message";
 
 const ProductList = (props) => {
     const {
@@ -15,7 +14,6 @@ const ProductList = (props) => {
 
     return (
         <div>
-            <MessageComponent/>
             {
                 products.map((product) => (
                     <ProductCard

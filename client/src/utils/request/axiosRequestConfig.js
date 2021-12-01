@@ -9,7 +9,7 @@ let generateRequestConfig = () => {
     };
 };
 
-let generateCreateProductConfig = () => {
+let generateAuthConfig = () => {
     return {
         'headers': {
             'Authorization': localStorage.getItem('userToken')
@@ -19,5 +19,5 @@ let generateCreateProductConfig = () => {
 
 export {
     generateRequestConfig,
-    generateCreateProductConfig
+    generateAuthConfig
 };

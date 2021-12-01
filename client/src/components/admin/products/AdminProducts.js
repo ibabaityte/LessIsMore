@@ -5,7 +5,6 @@ import {Link, Outlet, Route, Routes} from "react-router-dom";
 import AdminCreateProduct from "./AdminCreateProduct";
 import ProductList from "../../products/ProductList";
 import AdminUpdateProduct from "./AdminUpdateProduct";
-import MessageComponent from "../../common/Message";
 
 // util imports
 import {initProducts} from "../../../utils/products/productUtils";
@@ -21,7 +20,6 @@ const AdminProducts = () => {
 
     return (
         <div>
-            <MessageComponent/>
             <Link to="create">Create</Link>
             <Routes>
                 <Route path="/"
