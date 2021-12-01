@@ -59,4 +59,20 @@ const remove = (req, res) => {
     });
 };
 
-export default {create, remove};
+const list = (req, res) => {
+    Coupon.find().then(result => {
+        return res.status(200).send({
+            code: "200",
+            message: "OK",
+            data: result
+        });
+    }).catch(err => {
+        console.log(err);
+        return res.status(500).send({
+            code: "500",
+            message: "An error occurred while retrieving coupons"
+        });
+    });
+}
+
+export default {create, remove, list};
