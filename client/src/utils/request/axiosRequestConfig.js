@@ -12,9 +12,7 @@ let generateRequestConfig = () => {
 let generateCreateProductConfig = () => {
     return {
         'headers': {
-            'Authorization': localStorage.getItem('userToken'),
-            'Content-Type': 'multipart/form-data'
-
+            'Authorization': localStorage.getItem('userToken')
         }
     };
 }

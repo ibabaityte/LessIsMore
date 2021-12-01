@@ -2,6 +2,7 @@ import React from "react";
 
 // component imports
 import ProductCard from "./ProductCard";
+import MessageComponent from "../common/Message";
 
 const ProductList = (props) => {
     const {
@@ -14,6 +15,7 @@ const ProductList = (props) => {
 
     return (
         <div>
+            <MessageComponent/>
             {
                 products.map((product) => (
                     <ProductCard
@@ -21,7 +23,7 @@ const ProductList = (props) => {
                         product={product}
                         title={product.title}
                         price={product.price}
-                        photo={product.photo}
+                        image={product.image}
                         setSelectedProduct={setSelectedProduct}
                         favorites={favorites}
                         setFavorites={setFavorites}

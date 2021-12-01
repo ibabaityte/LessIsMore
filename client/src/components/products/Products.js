@@ -9,7 +9,6 @@ import {initFavorites} from "../../utils/users/userUtils";
 import Product from "./Product";
 import ProductList from "./ProductList";
 import FavoritesList from "../favorites/FavoritesList";
-import MessageComponent from "../common/Message";
 import Search from "./Search";
 import Filter from "./Filter";
 
@@ -33,7 +32,6 @@ const Products = () => {
 
     return (
         <div>
-            <MessageComponent/>
             <Search
                 searchQuery={searchQuery}
                 setSearchQuery={setSearchQuery}

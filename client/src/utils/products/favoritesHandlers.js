@@ -15,6 +15,7 @@ const addFavorite = (array, object, objectId, user, setFavorites, setMessage) =>
         updateFavorites(arr, user, setFavorites);
     } else {
         setMessage("This product is already in your favorites list.");
+        localStorage.setItem("apiMessage", "This product is already in your favorites list.");
     }
 };
 

@@ -54,6 +54,7 @@ const register = (setMessage, newUser, setNewUser) => {
         .catch((err) => {
             // console.log(err.response.data);
             setMessage(err.response.data.message);
+            localStorage.setItem("apiMessage", err.response.data.message);
         });
 }
 

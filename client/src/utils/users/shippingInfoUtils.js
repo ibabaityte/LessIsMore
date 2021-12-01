@@ -4,7 +4,8 @@ import {generateRequestConfig} from "../request/axiosRequestConfig";
 
 const updateShippingInfo = (user, shippingInfo, setShippingInfo, setMessage) => {
 
-    axios.put(`${API_URL}/${user.userId}`, shippingInfo, generateRequestConfig())
+    // console.log(shippingInfo);
+    axios.put(`${API_URL}/${user.userId}`, shippingInfo, {'headers': {'Authorization': localStorage.getItem('userToken'),}})
         .then((result) => {
             console.log(result);
             // Stuff for setting context
@@ -23,6 +24,7 @@ const updateShippingInfo = (user, shippingInfo, setShippingInfo, setMessage) => 
         .catch((err) => {
             console.log(err);
             setMessage(err.response.data.message);
+            localStorage.setItem("apiMessage", err.response.data.message);
         });
 }
 

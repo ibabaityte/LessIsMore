@@ -11,6 +11,8 @@ const FavoritesList = (props) => {
         setFavorites
     } = props;
 
+    console.log(favorites);
+
     return (
         <div>
             {
@@ -20,7 +22,7 @@ const FavoritesList = (props) => {
                         product={favorite}
                         title={favorite.title}
                         price={favorite.price}
-                        photo={favorite.photo}
+                        image={favorite.image}
                         setSelectedProduct={setSelectedProduct}
                         favorites={favorites}
                         setFavorites={setFavorites}

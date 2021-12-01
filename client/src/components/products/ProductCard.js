@@ -12,7 +12,7 @@ const ProductCard = (props) => {
         product,
         title,
         price,
-        photo,
+        image,
         setSelectedProduct,
         favorites,
         setFavorites,
@@ -26,7 +26,7 @@ const ProductCard = (props) => {
         <div>
             <Link to="/product" onClick={() => {setSelectedProduct(product)}}>{title}</Link>
             <div>{price}</div>
-            <img style={{width: "300px", height: "300px"}} src={photo} alt="product"/>
+            <img style={{width: "300px", height: "300px"}} src={image} alt="product"/>
             <ProductCardButton
                 favorites={favorites}
                 product={product}
@@ -34,6 +34,7 @@ const ProductCard = (props) => {
                 setFavorites={setFavorites}
                 setMessage={setMessage}
                 setProducts={setProducts}
+                setSelectedProduct={setSelectedProduct}
             />
         </div>
     );

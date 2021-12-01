@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom";
 
 // util imports
 import {addFavorite, removeFavorite} from "../../utils/products/favoritesHandlers";
@@ -12,14 +13,15 @@ const ProductCardButton = (props) => {
         user,
         setFavorites,
         setMessage,
-        setProducts
+        setProducts,
+        setSelectedProduct
     } = props;
 
     if(user.userType === "ADMIN") {
         return (
             <div>
                 <button onClick={() => removeProduct(product, setProducts)}>Remove product</button>
-                {/*<Link>Update product</Link>*/}
+                <Link to="update" onClick={() => setSelectedProduct(product)}>Update product</Link>
             </div>
         );
     } else if (window.location.href === "http://localhost:3000/favorites") {

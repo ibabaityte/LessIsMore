@@ -200,7 +200,7 @@ const remove = (req, res) => {
     });
 };
 
-const update = (req, res) => {
+const update = async (req, res) => {
     if (!inputValidation(req)) {
         return res.status(400).send({
             code: "400",
@@ -208,7 +208,7 @@ const update = (req, res) => {
         });
     }
 
-    User.findByIdAndUpdate(req.params.userId, infoToUpdate(req), {new: true}).then(data => {
+    User.findByIdAndUpdate(req.params.userId, await infoToUpdate(req), {new: true}).then(data => {
         if (!data) {
             return res.status(404).send({
                 code: "404",

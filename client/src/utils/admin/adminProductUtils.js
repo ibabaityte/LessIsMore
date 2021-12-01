@@ -6,7 +6,7 @@ import {generateCreateProductConfig, generateRequestConfig} from "../request/axi
 import {initProducts} from "../products/productUtils";
 
 const removeProduct = (product, setProducts) => {
-    axios.delete(`${API_URL}/products/delete/${product._id}`, generateRequestConfig()).then(result => {
+    axios.delete(`${API_URL}/products/delete/${product._id}`, generateRequestConfig()).then(() => {
         // console.log(result);
         initProducts(setProducts, "all");
     }).catch(err => {
@@ -14,26 +14,44 @@ const removeProduct = (product, setProducts) => {
     })
 }
 
-const createProduct = (e, product, setProducts, setMessage) => {
-    e.preventDefault();
+const generateFormData = (product) => {
     let formData = new FormData();
     formData.append("title", product.title);
-    formData.append("desc", product.desc);
+    formData.append("description", product.description);
     formData.append("price", product.price);
     formData.append("category", product.category);
     formData.append("image", product.image);
+    return formData;
+}
 
-    axios.post(`${API_URL}/products/create`, formData, generateCreateProductConfig()).then((result) =>{
+const createProduct = (e, product, setProducts, setMessage) => {
+    e.preventDefault();
+    axios.post(`${API_URL}/products/create`, generateFormData(product), generateCreateProductConfig()).then((result) =>{
         console.log(result.data.message);
         initProducts(setProducts, "all");
         setMessage(result.data.message);
+        localStorage.setItem("apiMessage", result.data.message);
     }).catch((err) => {
         setMessage(err.response.data.message);
+        localStorage.setItem("apiMessage", err.response.data.message);
         console.log(err.response.data.message);
+    });
+};
+
+const updateProduct = (e, selectedProduct, setMessage) => {
+    e.preventDefault();
+    axios.put(`${API_URL}/products/update/${selectedProduct._id}`, generateFormData(selectedProduct), generateCreateProductConfig()).then(result => {
+        console.log(result.data.message);
+        setMessage(result.data.message);
+        localStorage.setItem("apiMessage", result.data.message);
+        window.location.href = "/adminPanel/products";
+    }).catch(err => {
+        console.log(err);
     });
 };
 
 export {
     removeProduct,
-    createProduct
+    createProduct,
+    updateProduct
 };

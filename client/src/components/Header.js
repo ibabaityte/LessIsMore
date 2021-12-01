@@ -14,11 +14,13 @@ const Header = () => {
         return (
             <div>
                 <h1><Link to="/adminPanel">Less is more</Link></h1>
+                <button onClick={() => logout()}>Logout</button>
             </div>
         )
     } else if (!!user.token) {
         return (
             <div>
+                <h1><Link to="/">Less is more</Link></h1>
                 <h4>Hello, {user.firstName}</h4>
                 <Link to="userProfile">User</Link>
                 <Link to="favorites">Favorites</Link>
@@ -27,7 +29,10 @@ const Header = () => {
             </div>
         );
     } else {
-        return <Link to="userProfile">User</Link>
+        return <div>
+            <h1><Link to="/">Less is more</Link></h1>
+            <Link to="userProfile">User</Link>
+        </div>
     }
 }
 

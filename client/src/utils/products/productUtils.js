@@ -4,7 +4,9 @@ import {API_URL} from "../constants/apiConstants";
 const initProducts = (setProducts, category) => {
     axios.get(`${API_URL}/products/list`, {"params": {"category": category}}).then((response) => {
         setProducts(response.data.data);
-    });
+    }).catch(err => {
+        console.log(err.response);
+    })
 }
 
 const searchProducts = (e, setProducts, searchQuery, setMessage) => {
@@ -13,6 +15,7 @@ const searchProducts = (e, setProducts, searchQuery, setMessage) => {
     if(searchQuery === "") {
         initProducts(setProducts);
         setMessage("Search parameter cannot be empty.");
+        localStorage.setItem("apiMessage", "Search parameter cannot be empty.");
     } else {
         axios.get(`${API_URL}/products/search`, {"params": {"keyword": searchQuery}}).then((result) => {
             console.log(result);
@@ -24,13 +27,7 @@ const searchProducts = (e, setProducts, searchQuery, setMessage) => {
     }
 };
 
-const filterProducts = (filter) => {
-    console.log(filter);
-
-};
-
 export {
     initProducts,
-    searchProducts,
-    filterProducts
+    searchProducts
 }

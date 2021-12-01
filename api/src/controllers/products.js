@@ -22,7 +22,7 @@ const create = async (req, res) => {
         title: req.body.title,
         description: req.body.description,
         price: req.body.price,
-        photo: cloudinaryResult.secure_url,
+        image: cloudinaryResult.secure_url,
         cloudinaryId: cloudinaryResult.public_id,
         category: req.body.category
     });
@@ -76,7 +76,7 @@ const get = (req, res) => {
     });
 };
 
-const update = (req, res) => {
+const update = async (req, res) => {
     if (!inputValidation(req)) {
         return res.status(400).send({
             code: "400",
@@ -84,7 +84,7 @@ const update = (req, res) => {
         });
     }
 
-    Product.findByIdAndUpdate(req.params.id, infoToUpdate(req), {new: true}).then(data => {
+    Product.findByIdAndUpdate(req.params.id, await infoToUpdate(req), {new: true}).then(data => {
         if (!data) {
             return res.status(404).send({
                 code: "404",

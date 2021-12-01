@@ -1,4 +1,4 @@
-const handleCreateProduct = (e, name, product, setProduct) => {
+const handleProduct = (e, name, product, setProduct) => {
     e.preventDefault();
     const value = name === "image" ? e.target.files[0] : e.target.value;
     setProduct({
@@ -9,5 +9,5 @@ const handleCreateProduct = (e, name, product, setProduct) => {
 }
 
 export {
-    handleCreateProduct
+    handleProduct
 };

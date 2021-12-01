@@ -1,75 +1,61 @@
-import React, {useContext, useState} from "react";
-
-// style imports
+import React, {useContext} from "react";
+// import {createProduct} from "../../../utils/admin/adminProductUtils";
 import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
-
-// util imports
 import {handleProduct} from "../../../utils/admin/adminProductsHandlers";
-import {createProduct} from "../../../utils/admin/adminProductUtils";
-
-// component imports
-import MessageComponent from "../../common/Message";
-
-// context imports
+import Button from "@material-ui/core/Button";
 import {ApiMessageContext} from "../../../utils/context/ApiMessageContext";
+import {updateProduct} from "../../../utils/admin/adminProductUtils";
 
-const AdminCreateProduct = (props) => {
-
-    const {setProducts} = props;
+const AdminUpdateProduct = (props) => {
 
     const {setMessage} = useContext(ApiMessageContext);
 
-    const [product, setProduct] = useState({
-        title: "",
-        description: "",
-        price: 0,
-        category: "",
-        image: ""
-    });
+    const {
+        selectedProduct,
+        setSelectedProduct
+    } = props;
 
     return (
         <div>
-            <div>Admin Create Product</div>
-            <MessageComponent/>
-            <form onSubmit={(e) => {createProduct(e, product, setProducts, setMessage)}}>
+            <div>Admin update product</div>
+            <form onSubmit={(e) => {updateProduct(e, selectedProduct, setMessage)}}>
                 <div className="inputs">
                     <TextField
                         type="text"
-                        value={product.title}
+                        value={selectedProduct.title}
                         name="title"
                         label="title"
-                        onChange={e => handleProduct(e, "title", product, setProduct)}
+                        onChange={e => handleProduct(e, "title", selectedProduct, setSelectedProduct)}
                     />
 
                     <br/>
 
                     <TextField
                         type="text"
-                        value={product.description}
+                        value={selectedProduct.description}
                         name="description"
                         label="description"
-                        onChange={e => handleProduct(e, "description", product, setProduct)}
+                        onChange={e => handleProduct(e, "description", selectedProduct, setSelectedProduct)}
                     />
 
                     <br/>
 
                     <TextField
                         type="number"
-                        value={product.price}
+                        value={selectedProduct.price}
                         name="price"
                         label="price"
-                        onChange={e => handleProduct(e, "price", product, setProduct)}
+                        onChange={e => handleProduct(e, "price", selectedProduct, setSelectedProduct)}
                     />
 
                     <br/>
 
                     <TextField
                         type="text"
-                        value={product.category}
+                        value={selectedProduct.category}
                         name="category"
                         label="category"
-                        onChange={e => handleProduct(e, "category", product, setProduct)}
+                        onChange={e => handleProduct(e, "category", selectedProduct, setSelectedProduct)}
                     />
 
                     <br/>
@@ -79,7 +65,7 @@ const AdminCreateProduct = (props) => {
                         name="image"
                         label="image"
                         accept="image/*"
-                        onChange={e => handleProduct(e, "image", product, setProduct)}
+                        onChange={e => handleProduct(e, "image", selectedProduct, setSelectedProduct)}
                     />
 
                 </div>
@@ -89,4 +75,4 @@ const AdminCreateProduct = (props) => {
     );
 };
 
-export default AdminCreateProduct;
+export default AdminUpdateProduct;

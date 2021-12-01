@@ -8,7 +8,7 @@ const MessageComponent = () => {
         const timer = setTimeout(() => {
             setMessage("");
             localStorage.setItem("apiMessage", "");
-        }, 3000);
+        }, 5000);
         return () => clearTimeout(timer);
     });
 
