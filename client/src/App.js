@@ -26,7 +26,6 @@ const App = () => {
 
     const [modalOpen, setModalOpen] = useState(false);
     const [message, setMessage] = useState(localStorage.getItem("apiMessage"));
-    console.log(localStorage.getItem("apiMessage"));
     const [user, setUser] = useState({
         email: localStorage.getItem("userEmail"),
         firstName: localStorage.getItem("userFirstName"),

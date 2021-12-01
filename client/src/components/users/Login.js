@@ -2,7 +2,7 @@ import React from "react";
 import {useContext} from "react";
 
 // utils
-import {handleLogin, handleChangeLogin} from "../../utils/users/userHandlers.js";
+import {handleLogin, handleChangeInput} from "../../utils/users/userHandlers.js";
 
 // style imports
 import TextField from "@material-ui/core/TextField";
@@ -35,7 +35,7 @@ const Login = () => {
                         value={user.email || ""}
                         name="email"
                         label="email"
-                        onChange={e => handleChangeLogin(e, user, setUser)}
+                        onChange={e => handleChangeInput(e, user, setUser)}
                     />
 
                     <br/>
@@ -45,7 +45,7 @@ const Login = () => {
                         value={user.password || ""}
                         name="password"
                         label="password"
-                        onChange={e => handleChangeLogin(e, user, setUser)}
+                        onChange={e => handleChangeInput(e, user, setUser)}
                     />
 
                 </div>

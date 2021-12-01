@@ -8,18 +8,21 @@ import {fetchCoupons} from "../../../utils/admin/adminCouponUtils";
 
 const AdminCoupons = () => {
 
-    const [coupons, setCoupons] = useState([]);
+    const [couponsList, setCouponsList] = useState([]);
 
     useEffect(() => {
-        fetchCoupons(setCoupons);
+        fetchCoupons(setCouponsList);
     }, []);
 
     return (
         <div>
-            <AdminCouponsCreate/>
+            <AdminCouponsCreate
+                fetchCoupons={fetchCoupons}
+                setCouponsList={setCouponsList}
+            />
             <div>Admin Coupons</div>
             {
-                coupons.map((coupon, key) => {
+                couponsList.map((coupon, key) => {
                     return (
                         <div key={key}>
                             <div>{coupon.code}</div>

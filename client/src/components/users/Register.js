@@ -1,7 +1,7 @@
 import React, {useContext, useState} from "react";
 
 // util imports
-import {handleRegister, handleChangeRegister, handleChangeLogin} from "../../utils/users/userHandlers";
+import {handleRegister, handleChangeInput} from "../../utils/users/userHandlers";
 
 // style imports
 import TextField from "@material-ui/core/TextField";
@@ -33,7 +33,7 @@ const Register = () => {
                         value={newUser.firstName}
                         name="firstName"
                         label="firstName"
-                        onChange={e => handleChangeLogin(e, newUser, setNewUser)}
+                        onChange={e => handleChangeInput(e, newUser, setNewUser)}
                     />
 
                     <br/>
@@ -43,7 +43,7 @@ const Register = () => {
                         value={newUser.lastName}
                         name="lastName"
                         label="lastName"
-                        onChange={e => handleChangeLogin(e, newUser, setNewUser)}
+                        onChange={e => handleChangeInput(e, newUser, setNewUser)}
                     />
 
                     <br/>
@@ -53,7 +53,7 @@ const Register = () => {
                         value={newUser.email}
                         label="email"
                         name="email"
-                        onChange={e => handleChangeRegister(e, newUser, setNewUser)}
+                        onChange={e => handleChangeInput(e, newUser, setNewUser)}
                     />
 
                     <br/>
@@ -63,7 +63,7 @@ const Register = () => {
                         value={newUser.password}
                         label="password"
                         name="password"
-                        onChange={e => handleChangeRegister(e, newUser, setNewUser)}
+                        onChange={e => handleChangeInput(e, newUser, setNewUser)}
                     />
 
                 </div>
