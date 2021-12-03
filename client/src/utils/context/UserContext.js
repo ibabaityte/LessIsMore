@@ -1,7 +1,7 @@
 import {createContext} from "react";
 
 export const UserContext = createContext({
-    user: {
+    userC: {
         email: "",
         firstName: "",
         lastName: "",
@@ -10,5 +10,5 @@ export const UserContext = createContext({
         userType: "",
         expirationTimestamp: ""
     },
-    setUser: () => {}
+    setUserC: () => {}
 });
