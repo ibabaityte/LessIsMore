@@ -3,7 +3,6 @@ import {Link} from "react-router-dom";
 
 // context imports
 import {UserContext} from "../../utils/context/UserContext";
-import {ApiMessageContext} from "../../utils/context/ApiMessageContext";
 import ProductCardButton from "./ProductCardButton";
 
 const ProductCard = (props) => {
@@ -16,11 +15,10 @@ const ProductCard = (props) => {
         setSelectedProduct,
         favorites,
         setFavorites,
-        setProducts
+        setProducts,
     } = props;
 
     const {user} = useContext(UserContext);
-    const {setMessage} = useContext(ApiMessageContext);
 
     return (
         <div>
@@ -32,7 +30,6 @@ const ProductCard = (props) => {
                 product={product}
                 user={user}
                 setFavorites={setFavorites}
-                setMessage={setMessage}
                 setProducts={setProducts}
                 setSelectedProduct={setSelectedProduct}
             />

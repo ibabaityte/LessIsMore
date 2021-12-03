@@ -11,6 +11,7 @@ import ProductList from "./ProductList";
 import FavoritesList from "../favorites/FavoritesList";
 import Search from "./Search";
 import Filter from "./Filter";
+import Cart from "../shop/Cart";
 
 // context imports
 import {UserContext} from "../../utils/context/UserContext";
@@ -62,6 +63,9 @@ const Products = () => {
                        element={<Product
                            product={selectedProduct}
                        />}
+                />
+                <Route path="cart"
+                       element={<Cart/>}
                 />
             </Routes>
             <Outlet/>

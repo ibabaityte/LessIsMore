@@ -16,6 +16,7 @@ const router = Router();
 router.post("/products/create", upload.single("image"), checkAdmin, ProductController.create);
 router.get("/products/list", ProductController.list);
 router.get("/products/get/:id", checkAuth, ProductController.get);
+router.get("/products/cart", checkAuth, ProductController.getCartProducts);
 router.put("/products/update/:id", upload.single("image"), checkAdmin, ProductController.update);
 router.delete("/products/delete/:id", checkAdmin, ProductController.remove);
 router.get("/products/search", ProductController.search);

@@ -27,26 +27,28 @@ const generateFormData = (product) => {
 const createProduct = (e, product, setProducts, setMessage) => {
     e.preventDefault();
     axios.post(`${API_URL}/products/create`, generateFormData(product), generateAuthConfig()).then((result) =>{
-        console.log(result.data.message);
+        // console.log(result.data.message);
         initProducts(setProducts, "all");
         setMessage(result.data.message);
         localStorage.setItem("apiMessage", result.data.message);
     }).catch((err) => {
         setMessage(err.response.data.message);
         localStorage.setItem("apiMessage", err.response.data.message);
-        console.log(err.response.data.message);
+        // console.log(err.response.data.message);
     });
 };
 
 const updateProduct = (e, selectedProduct, setMessage) => {
     e.preventDefault();
     axios.put(`${API_URL}/products/update/${selectedProduct._id}`, generateFormData(selectedProduct), generateAuthConfig()).then(result => {
-        console.log(result.data.message);
+        // console.log(result.data.message);
         setMessage(result.data.message);
         localStorage.setItem("apiMessage", result.data.message);
         window.location.href = "/adminPanel/products";
     }).catch(err => {
-        console.log(err);
+        console.log(err.response);
+        setMessage(err.response.data.message);
+        localStorage.setItem("apiMessage", err.response.data.message);
     });
 };
 

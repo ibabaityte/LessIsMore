@@ -17,7 +17,17 @@ let generateAuthConfig = () => {
     };
 }
 
+let generateCartConfig = (idArray) => {
+    return {
+        'headers': {
+            'Authorization': localStorage.getItem('userToken')
+        },
+        'params': {idArray}
+    }
+};
+
 export {
     generateRequestConfig,
-    generateAuthConfig
+    generateAuthConfig,
+    generateCartConfig
 };

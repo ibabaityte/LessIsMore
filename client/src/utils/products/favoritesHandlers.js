@@ -10,6 +10,7 @@ const removeFavorite = (array, objectId, user, setFavorites) => {
 
 const addFavorite = (array, object, objectId, user, setFavorites, setMessage) => {
     let arr = array;
+    console.log(arr);
     if(user.token === null) {
         setMessage("You must be signed in to add this product to favorites list.");
         localStorage.setItem("apiMessage", "You must be signed in to add this product to favorites list.");

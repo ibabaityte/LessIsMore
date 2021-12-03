@@ -166,4 +166,23 @@ const search = (req, res) => {
     });
 };
 
-export default {create, list, get, update, remove, search};
+const getCartProducts = (req, res) => {
+    Product.find({_id: {$in: req.query.idArray}}).then(result => {
+        let objects = {};
+        result.forEach(o => objects[o._id] = o);
+        let dupArray = req.query.idArray.map(id => objects[id]);
+        return res.status(200).send({
+            code: "200",
+            message: "Cart products fetched successfully",
+            data: dupArray
+        })
+    }).catch((err) => {
+        console.log(err);
+        return res.status(500).send({
+            code: "500",
+            message: "Something went wrong while retrieving cart products"
+        })
+    })
+}
+
+export default {create, list, get, update, remove, search, getCartProducts};
