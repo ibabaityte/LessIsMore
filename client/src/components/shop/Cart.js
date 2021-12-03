@@ -27,7 +27,7 @@ const Cart = () => {
     const combinedProducts = cartProducts.map(product => {
         return {
             ...product,
-            product: cartContext.products.find(existingProduct => product.product === existingProduct._id)
+            product: cartContext.products.find(existingProduct => product._id === existingProduct.product)
         }
     });
 

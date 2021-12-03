@@ -20,10 +20,13 @@ const getCartProducts = (setCartProducts, idArray) => {
 }
 
 const updateQuantity = (quantity, productId, cartContext, setCartContext) => {
+    console.log(quantity);
+    console.log(productId);
     let cartProduct = cartContext.products.find(object => object.product === productId);
     cartProduct.quantity = quantity;
     setCartContext(cartContext);
     localStorage.setItem("cart", JSON.stringify(cartContext));
+    console.log(cartContext);
 };
 
 export {
