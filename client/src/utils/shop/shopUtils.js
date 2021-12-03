@@ -19,18 +19,23 @@ const getCartProducts = (setCartProducts, idArray) => {
     });
 }
 
-const updateQuantity = (quantity, productId, cartContext, setCartContext) => {
-    console.log(quantity);
-    console.log(productId);
-    let cartProduct = cartContext.products.find(object => object.product === productId);
-    cartProduct.quantity = quantity;
+const updateQuantity = (newQuantity, product, cartContext, setCartContext) => {
+    let cartProduct = cartContext.products.findIndex(object => object.product === product.product && object.size === product.size);
+    cartContext.products[cartProduct].quantity = newQuantity;
     setCartContext(cartContext);
     localStorage.setItem("cart", JSON.stringify(cartContext));
-    console.log(cartContext);
+};
+
+const removeFromCart = (product, cartContext, setCartContext) => {
+    let cartProduct = cartContext.products.findIndex(object => object.product === product.product && object.size === product.size);
+    setCartContext(cartContext.products.splice(cartProduct, 1));
+    localStorage.setItem("cart", JSON.stringify(cartContext));
+    window.location.href = "/cart";
 };
 
 export {
     addToCart,
     getCartProducts,
-    updateQuantity
+    updateQuantity,
+    removeFromCart
 }

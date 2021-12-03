@@ -23,24 +23,18 @@ const Cart = () => {
         getCartProducts(setCartProducts, idArray);
     }, []);
 
-    // combining full product info array with cart product array
-    const combinedProducts = cartProducts.map(product => {
-        return {
-            ...product,
-            product: cartContext.products.find(existingProduct => product._id === existingProduct.product)
-        }
-    });
-
-    // using combined array to display full product information together with carts information about quantity and size
     return (
         <div>
             <div>Cart component</div>
             {
-                combinedProducts.map((product, key) => {
+                cartProducts.map((productContent, index) => {
+                    const cartProduct = cartContext.products[index];
                     return (
                         <CartProduct
-                            key={key}
-                            product={product}/>
+                            key={index}
+                            productContent={productContent}
+                            cartProduct={cartProduct}
+                        />
                     );
                 })
             }
