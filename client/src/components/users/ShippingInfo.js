@@ -92,7 +92,7 @@ const ShippingInfo = () => {
                 </div>
                 {
                     window.location.href === "http://localhost:3000/cart" ?
-                        <Button onClick={() => {completeOrder(cartContext, setMessage)}}>Create order</Button>
+                        <Button onClick={() => {completeOrder(cartContext, newShippingInfo, setNewShippingInfo, user, setMessage)}}>Create order</Button>
                         :
                         <Button type="submit">Complete</Button>
                 }

@@ -16,8 +16,6 @@ const AdminOrders = () => {
             <div>Admin Order List</div>
             {
                 orders.map((order, index) => {
-                const productDetails = order.products[index].product;
-                const product = order.products[index];
                 return (
                     <div key={index}>
                         <h3>User</h3>
@@ -28,11 +26,20 @@ const AdminOrders = () => {
                         <div>{order.userId.buildingNumber}</div>
                         <div>{order.userId.phoneNumber}</div>
                         <div>{order.userId.postalCode}</div>
+                        <div>{order.userId.email}</div>
                         <h3>Product</h3>
-                        <h3>{productDetails.title}</h3>
-                        <img src={productDetails.image} style={{width: "300px", height: "300px"}} alt="product"/>
-                        <h3>{product.quantity}</h3>
-                        <h3>{product.size}</h3>
+                        {order.products.map((product, index)=> {
+                            return (
+                                <div key={index}>
+                                    <div>{product.product.title}</div>
+                                    <div>{product.quantity}</div>
+                                    <div>{product.size}</div>
+                                    <img src={product.product.image} style={{width: "300px", height: "300px"}} alt="product"/>
+                                </div>
+                            );
+                        })}
+                        <div>{order.bill}</div>
+                        <br/>
                     </div>
                 );
             })

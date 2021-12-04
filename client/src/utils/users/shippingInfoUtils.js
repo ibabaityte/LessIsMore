@@ -3,8 +3,6 @@ import {API_URL} from "../constants/apiConstants";
 import {generateRequestConfig} from "../request/axiosRequestConfig";
 
 const updateShippingInfo = (user, shippingInfo, setShippingInfo, setMessage) => {
-
-    // console.log(shippingInfo);
     axios.put(`${API_URL}/${user.userId}`, shippingInfo, {'headers': {'Authorization': localStorage.getItem('userToken'),}})
         .then((result) => {
             // console.log(result);
@@ -19,16 +17,18 @@ const updateShippingInfo = (user, shippingInfo, setShippingInfo, setMessage) => 
             };
             setShippingInfo(shippingInfo);
 
-            if(window.location.href === "http://localhost:3000/cart") {
-                window.location.href = "/cart"
-            } else {
-                window.location.href = "/userProfile"
-            }
+            // if(window.location.href === "http://localhost:3000/cart") {
+            //     window.location.href = "/cart"
+            // } else {
+            //     window.location.href = "/userProfile"
+            // }
+            return result;
         })
         .catch((err) => {
             // console.log(err);
             setMessage(err.response.data.message);
             localStorage.setItem("apiMessage", err.response.data.message);
+            return err;
         });
 }
 
