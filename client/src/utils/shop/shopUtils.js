@@ -1,6 +1,6 @@
 import axios from "axios";
 import {API_URL} from "../constants/apiConstants";
-import {generateCartConfig} from "../request/axiosRequestConfig";
+import {generateAuthConfig, generateCartConfig} from "../request/axiosRequestConfig";
 
 const addToCart = (cartObject, product, size) => {
     cartObject.bill += product.price;
@@ -33,9 +33,18 @@ const removeFromCart = (product, cartContext, setCartContext) => {
     window.location.href = "/cart";
 };
 
+const completeOrder = (cart, setMessage) => {
+    axios.post(`${API_URL}/order/create`, cart, generateAuthConfig()).then(result => {
+        setMessage(result.data.message);
+        localStorage.setItem("apiMessage", result.data.message);
+        window.location.href = "/";
+    });
+};
+
 export {
     addToCart,
     getCartProducts,
     updateQuantity,
-    removeFromCart
+    removeFromCart,
+    completeOrder
 }

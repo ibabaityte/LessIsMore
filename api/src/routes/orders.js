@@ -11,7 +11,7 @@ import OrderController from "../controllers/orders.js";
 const router = Router();
 
 router.post("/order/create", checkAuth, OrderController.create);
-router.get("/order/list", checkAuth, OrderController.list);
+router.get("/order/list", checkAdmin, OrderController.list);
 router.delete("/order/:id", checkAdmin, OrderController.remove);
 
 export default router;

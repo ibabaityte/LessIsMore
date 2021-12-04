@@ -19,7 +19,11 @@ const updateShippingInfo = (user, shippingInfo, setShippingInfo, setMessage) => 
             };
             setShippingInfo(shippingInfo);
 
-            window.location.href = "/userProfile"
+            if(window.location.href === "http://localhost:3000/cart") {
+                window.location.href = "/cart"
+            } else {
+                window.location.href = "/userProfile"
+            }
         })
         .catch((err) => {
             // console.log(err);

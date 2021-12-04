@@ -19,7 +19,6 @@ const create = (req, res) => {
     const newOrder = new Order({
         userId: req.decodedToken.userId,
         products: products,
-        comment: req.body.comment,
         bill: req.body.bill
     });
 
@@ -40,7 +39,7 @@ const create = (req, res) => {
 
 const list = (req, res) => {
     Order
-        .find({'userId': req.decodedToken.userId})
+        .find()
         .populate("userId", "email firstName lastName phoneNumber city street buildingNumber postalCode")
         .populate("products.product",)
         .then(data => {

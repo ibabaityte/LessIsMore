@@ -16,7 +16,6 @@ const orderSchema = new Schema({
         quantity: Number,
         size: String
     }],
-    comment: String,
     bill: Number
 });
 

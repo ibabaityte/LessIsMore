@@ -3,13 +3,17 @@ import React, {useEffect, useContext, useState} from "react";
 // context imports
 import {CartContext} from "../../utils/context/CartContext";
 
+// component imports
+import ShippingInfo from "../users/ShippingInfo";
+import CartProduct from "./CartProduct";
+
 // util imports
 import {getCartProducts} from "../../utils/shop/shopUtils";
-import CartProduct from "./CartProduct";
 
 const Cart = () => {
 
     const {cartContext} = useContext(CartContext);
+
     const [cartProducts, setCartProducts] = useState([]);
 
     // generate an array from cart context only consisting product id's
@@ -38,6 +42,7 @@ const Cart = () => {
                     );
                 })
             }
+            <ShippingInfo/>
         </div>
     );
 };

@@ -5,10 +5,10 @@ const handleShippingInfo = (e, user, newShippingInfo, setNewShippingInfo, setMes
     updateShippingInfo(user, newShippingInfo, setNewShippingInfo, setMessage);
 }
 
-const handleChangeShippingInfo = (e, info, setNewShippingInfo) => {
+const handleChangeShippingInfo = (e, user, setUser) => {
     e.preventDefault();
-    setNewShippingInfo({
-            ...info,
+    setUser({
+            ...user,
             [e.currentTarget.name]: e.target.value
         }
     );
