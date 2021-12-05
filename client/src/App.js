@@ -48,6 +48,12 @@ const App = () => {
                 bill: null
             }))
         }
+        const timer = setTimeout(() => {
+            setMessage("");
+            localStorage.setItem("apiMessage", "");
+            localStorage.setItem("code", "");
+        }, 5000);
+        return () => clearTimeout(timer);
     }, [user.expirationTimestamp]);
 
     return (

@@ -31,9 +31,11 @@ const createProduct = (e, product, setProducts, setMessage) => {
         initProducts(setProducts, "all");
         setMessage(result.data.message);
         localStorage.setItem("apiMessage", result.data.message);
+        localStorage.setItem("code", "200");
     }).catch((err) => {
         setMessage(err.response.data.message);
         localStorage.setItem("apiMessage", err.response.data.message);
+        localStorage.setItem("code", "400");
         // console.log(err.response.data.message);
     });
 };
@@ -44,11 +46,13 @@ const updateProduct = (e, selectedProduct, setMessage) => {
         // console.log(result.data.message);
         setMessage(result.data.message);
         localStorage.setItem("apiMessage", result.data.message);
+        localStorage.setItem("code", "200");
         window.location.href = "/adminPanel/products";
     }).catch(err => {
         console.log(err.response);
         setMessage(err.response.data.message);
         localStorage.setItem("apiMessage", err.response.data.message);
+        localStorage.setItem("code", "400");
     });
 };
 

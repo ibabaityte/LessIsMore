@@ -15,6 +15,7 @@ const searchProducts = (e, setProducts, searchQuery, setMessage) => {
         initProducts(setProducts);
         setMessage("Search parameter cannot be empty.");
         localStorage.setItem("apiMessage", "Search parameter cannot be empty.");
+        localStorage.setItem("code", "400");
     } else {
         axios.get(`${API_URL}/products/search`, {"params": {"keyword": searchQuery}}).then((result) => {
             // console.log(result);

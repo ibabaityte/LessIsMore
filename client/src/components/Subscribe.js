@@ -44,8 +44,8 @@ const Subscribe = (props) => {
                 <Box>
                     <Grid container className={classes.modalBox}>
                         <Grid item xs={12} className={classes.iconDiv}>
-                            <IconButton>
-                                <CloseIcon onClick={() => setModalOpen(false)} fontSize="large"/>
+                            <IconButton onClick={() => setModalOpen(false)}>
+                                <CloseIcon fontSize="large"/>
                             </IconButton>
                         </Grid>
                         <Grid item xs={12}>

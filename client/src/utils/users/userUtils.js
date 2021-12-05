@@ -29,6 +29,7 @@ const login = (setMessage, setUser, user) => {
             // API message context
             setMessage(result.data.message);
             localStorage.setItem("apiMessage", result.data.message);
+            localStorage.setItem("code", "200");
 
             if(user.userType === "ADMIN") {
                 window.location.href = "/adminPanel"
@@ -39,6 +40,7 @@ const login = (setMessage, setUser, user) => {
         .catch((err) => {
             // console.log(err);
             setMessage(err.response.data.message);
+            localStorage.setItem("code", "400");
         });
 }
 
@@ -49,12 +51,14 @@ const register = (setMessage, newUser, setNewUser) => {
             setNewUser(newUser);
             setMessage(result.data.message);
             localStorage.setItem("apiMessage", result.data.message);
+            localStorage.setItem("code", "200");
             window.location.href = "/login"
         })
         .catch((err) => {
             // console.log(err.response.data);
             setMessage(err.response.data.message);
             localStorage.setItem("apiMessage", err.response.data.message);
+            localStorage.setItem("code", "400");
         });
 }
 

@@ -14,6 +14,7 @@ const addFavorite = (array, object, objectId, user, setFavorites, setMessage) =>
     if(user.token === null) {
         setMessage("You must be signed in to add this product to favorites list.");
         localStorage.setItem("apiMessage", "You must be signed in to add this product to favorites list.");
+        localStorage.setItem("code", "400");
     } else {
         if(arr.findIndex(object => object._id === objectId) === -1) {
             arr.push(object);
@@ -21,6 +22,7 @@ const addFavorite = (array, object, objectId, user, setFavorites, setMessage) =>
         } else {
             setMessage("This product is already in your favorites list.");
             localStorage.setItem("apiMessage", "This product is already in your favorites list.");
+            localStorage.setItem("code", "400");
         }
     }
 };

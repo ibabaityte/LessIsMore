@@ -28,6 +28,7 @@ const updateShippingInfo = (user, shippingInfo, setShippingInfo, setMessage) => 
             // console.log(err);
             setMessage(err.response.data.message);
             localStorage.setItem("apiMessage", err.response.data.message);
+            localStorage.setItem("code", "400");
             return err;
         });
 }

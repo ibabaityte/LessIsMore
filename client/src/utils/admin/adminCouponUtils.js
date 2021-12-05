@@ -17,6 +17,7 @@ const createCoupon = (e, coupon, fetchCoupons, setCouponsList, setMessage) => {
         // console.log(err.response);
         setMessage("Something went wrong while creating a coupon. Try again.");
         localStorage.setItem("apiMessage", "Something went wrong while creating a coupon. Try again.");
+        localStorage.setItem("code", "400");
     });
 };
 

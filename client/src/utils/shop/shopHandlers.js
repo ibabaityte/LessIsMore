@@ -6,17 +6,25 @@ const handleAddToCart = (cart, setCart, product, size, setMessage) => {
     if (cartObject.bill === null) {
         addToCart(cartObject, product, size);
         setMessage("Product successfully added to cart");
+        localStorage.setItem("apiMessage", "Product successfully added to cart");
+        localStorage.setItem("code", "200");
     } else {
         if(productInCart) {
             if(productInCart.size === size) {
                 setMessage("This product is already in your cart");
+                localStorage.setItem("apiMessage", "This product is already in your cart");
+                localStorage.setItem("code", "400");
             } else {
                 addToCart(cartObject, product, size);
                 setMessage("Product successfully added to cart");
+                localStorage.setItem("apiMessage", "Product successfully added to cart");
+                localStorage.setItem("code", "200");
             }
         } else {
             addToCart(cartObject, product, size);
             setMessage("Product successfully added to cart");
+            localStorage.setItem("apiMessage", "Product successfully added to cart");
+            localStorage.setItem("code", "200");
         }
     }
 };
