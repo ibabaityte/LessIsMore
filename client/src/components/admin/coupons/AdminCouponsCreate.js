@@ -7,12 +7,14 @@ import {createCoupon} from "../../../utils/admin/adminCouponUtils";
 
 // context imports
 import {ApiMessageContext} from "../../../utils/context/ApiMessageContext";
+import {ApiCodeContext} from "../../../utils/context/ApiCodeContext";
 
 // style imports
 import Button from "@material-ui/core/Button";
 
 const AdminCouponsCreate = (props) => {
 
+    const {setCode} = useContext(ApiCodeContext);
     const {setMessage} = useContext(ApiMessageContext);
 
     const {
@@ -28,7 +30,7 @@ const AdminCouponsCreate = (props) => {
     return (
         <div>
             <div>Admin coupons create</div>
-            <form onSubmit={e => createCoupon(e, coupon, fetchCoupons, setCouponsList, setMessage)}>
+            <form onSubmit={e => createCoupon(e, coupon, fetchCoupons, setCouponsList, setMessage, setCode)}>
                 <TextField
                     type="text"
                     value={coupon.code || ""}

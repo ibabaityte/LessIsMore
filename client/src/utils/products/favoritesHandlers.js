@@ -8,11 +8,12 @@ const removeFavorite = (array, objectId, user, setFavorites) => {
     updateFavorites(arr, user, setFavorites);
 };
 
-const addFavorite = (array, object, objectId, user, setFavorites, setMessage) => {
+const addFavorite = (array, object, objectId, user, setFavorites, setMessage, setCode) => {
     let arr = array;
     console.log(arr);
     if(user.token === null) {
         setMessage("You must be signed in to add this product to favorites list.");
+        setCode("400");
         localStorage.setItem("apiMessage", "You must be signed in to add this product to favorites list.");
         localStorage.setItem("code", "400");
     } else {
@@ -21,6 +22,7 @@ const addFavorite = (array, object, objectId, user, setFavorites, setMessage) =>
             updateFavorites(arr, user, setFavorites);
         } else {
             setMessage("This product is already in your favorites list.");
+            setCode("400");
             localStorage.setItem("apiMessage", "This product is already in your favorites list.");
             localStorage.setItem("code", "400");
         }

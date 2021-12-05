@@ -23,9 +23,10 @@ const getCartProducts = (setCartProducts, idArray) => {
     });
 }
 
-const updateQuantity = (newQuantity, product, cartContext, setCartContext, setMessage) => {
+const updateQuantity = (newQuantity, product, cartContext, setCartContext, setMessage, setCode) => {
     if(newQuantity > 25 || newQuantity < 1) {
         setMessage("Quantity cant be greater than 25 or less than 1!");
+        setCode("400");
         localStorage.setItem("apiMessage", "Quantity cant be greater than 25 or less than 1!");
         localStorage.setItem("code", "400");
     } else {
@@ -52,14 +53,16 @@ const validateFields = (shippingInfo) => {
     return true;
 };
 
-const completeOrder = async (cart, shippingInfo, setShippingInfo, user, setMessage) => {
+const completeOrder = async (cart, shippingInfo, setShippingInfo, user, setMessage, setCode) => {
     if (validateFields(shippingInfo) === false) {
         setMessage("Please enter shipping information!");
+        setCode("400");
         localStorage.setItem("code", "400");
     } else {
-        await updateShippingInfo(user, shippingInfo, setShippingInfo, setMessage);
+        await updateShippingInfo(user, shippingInfo, setShippingInfo, setMessage, setCode);
         await axios.post(`${API_URL}/order/create`, cart, generateAuthConfig()).then(result => {
             setMessage(result.data.message);
+            setCode("200");
             localStorage.setItem("apiMessage", result.data.message);
             localStorage.setItem("code", "200");
             window.location.href = "/";

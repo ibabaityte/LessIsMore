@@ -13,6 +13,7 @@ import Register from "./components/users/Register";
 
 // context imports
 import {ApiMessageContext} from "./utils/context/ApiMessageContext.js";
+import {ApiCodeContext} from "./utils/context/ApiCodeContext.js";
 import {UserContext} from "./utils/context/UserContext";
 import {CartContext} from "./utils/context/CartContext";
 
@@ -29,6 +30,7 @@ const App = () => {
 
     const [modalOpen, setModalOpen] = useState(false);
     const [message, setMessage] = useState(localStorage.getItem("apiMessage"));
+    const [code, setCode] = useState(localStorage.getItem("code"));
     const [user, setUser] = useState({
         email: localStorage.getItem("userEmail"),
         firstName: localStorage.getItem("userFirstName"),
@@ -50,34 +52,37 @@ const App = () => {
         }
         const timer = setTimeout(() => {
             setMessage("");
+            setCode("");
             localStorage.setItem("apiMessage", "");
             localStorage.setItem("code", "");
         }, 5000);
         return () => clearTimeout(timer);
-    }, [user.expirationTimestamp]);
+    }, [user.expirationTimestamp, code, message]);
 
     return (
         <Grid container className="App">
             <UserContext.Provider value={{user, setUser}}>
                 <ApiMessageContext.Provider value={{message, setMessage}}>
-                    <CartContext.Provider value={{cartContext, setCartContext}}>
-                        <Grid item xs={12}>
-                            <Header/>
-                        </Grid>
-                        <Grid item xs={12}>
-                            <Subscribe modalOpen={modalOpen} setModalOpen={setModalOpen}/>
-                            <Routes>
-                                <Route path="/*" element={<Products/>}/>
-                                <Route path="/adminPanel/*" element={<AdminPanel/>}/>
-                                <Route path="/userProfile/*" element={<UserProfile/>}/>
-                                <Route path="login" element={<Login/>}/>
-                                <Route path="register" element={<Register/>}/>
-                            </Routes>
-                        </Grid>
-                        <Grid item xs={12}>
-                            <Footer setModalOpen={setModalOpen}/>
-                        </Grid>
-                    </CartContext.Provider>
+                    <ApiCodeContext.Provider value={{code, setCode}}>
+                        <CartContext.Provider value={{cartContext, setCartContext}}>
+                            <Grid item xs={12}>
+                                <Header/>
+                            </Grid>
+                            <Grid item xs={12}>
+                                <Subscribe modalOpen={modalOpen} setModalOpen={setModalOpen}/>
+                                <Routes>
+                                    <Route path="/*" element={<Products/>}/>
+                                    <Route path="/adminPanel/*" element={<AdminPanel/>}/>
+                                    <Route path="/userProfile/*" element={<UserProfile/>}/>
+                                    <Route path="login" element={<Login/>}/>
+                                    <Route path="register" element={<Register/>}/>
+                                </Routes>
+                            </Grid>
+                            <Grid item xs={12}>
+                                <Footer setModalOpen={setModalOpen}/>
+                            </Grid>
+                        </CartContext.Provider>
+                    </ApiCodeContext.Provider>
                 </ApiMessageContext.Provider>
             </UserContext.Provider>
         </Grid>

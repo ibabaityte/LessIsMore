@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useContext} from "react";
 
 // utils imports
 import {handleChangeSubscribe, handleSubscribe} from "../utils/subscribers/subscriberHandlers";
@@ -16,14 +16,20 @@ import Box from '@mui/material/Box';
 import CloseIcon from '@mui/icons-material/Close';
 import IconButton from "@mui/material/IconButton";
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
+import MessageComponent from "./common/Message";
+
+// context imports
+import {ApiMessageContext} from "../utils/context/ApiMessageContext";
+import {ApiCodeContext} from "../utils/context/ApiCodeContext";
 
 const Subscribe = (props) => {
     const classes = props.classes;
 
-    const {modalOpen, setModalOpen} = props;
+    const {setCode} = useContext(ApiCodeContext);
+    const {setMessage} = useContext(ApiMessageContext);
 
+    const {modalOpen, setModalOpen} = props;
     const [subscriberEmail, setSubscriberEmail] = useState("");
-    const [message, setMessage] = useState("");
 
     useEffect(() => {
         let modalVisible = localStorage.getItem('modalVisible');
@@ -51,10 +57,10 @@ const Subscribe = (props) => {
                         <Grid item xs={12}>
                             <h1 className={classes.modalHeading}>Subscribe to our newsletter</h1>
                             <EmailOutlinedIcon className={classes.modalIcon} fontSize="large"/>
-                            <div>{message}</div>
+                            <MessageComponent/>
                         </Grid>
                         <Grid item xs={12} className={classes.modalForm}>
-                            <form onSubmit={(e) => handleSubscribe(e, subscriberEmail, setMessage)} className={classes.form}>
+                            <form onSubmit={(e) => handleSubscribe(e, subscriberEmail, setMessage, setCode)} className={classes.form}>
                                 <TextField
                                     type="text"
                                     value={subscriberEmail || ""}

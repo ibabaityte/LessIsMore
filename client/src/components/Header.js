@@ -57,11 +57,6 @@ const Header = (props) => {
                             </Link>
                         </IconButton>
                         <IconButton>
-                            <Link to="" className={classes.link}>
-                                <LogoutIcon className={classes.icon} onClick={() => logout()} fontSize="large"/>
-                            </Link>
-                        </IconButton>
-                        <IconButton>
                             <Link to="favorites" className={classes.link}>
                                 <FavoriteIcon className={classes.icon} fontSize="large"/>
                             </Link>
@@ -69,6 +64,11 @@ const Header = (props) => {
                         <IconButton>
                             <Link to="cart" className={classes.link}>
                                 <ShoppingCartIcon className={classes.icon} fontSize="large"/>
+                            </Link>
+                        </IconButton>
+                        <IconButton>
+                            <Link to="" className={classes.link}>
+                                <LogoutIcon className={classes.icon} onClick={() => logout()} fontSize="large"/>
                             </Link>
                         </IconButton>
                     </Grid>

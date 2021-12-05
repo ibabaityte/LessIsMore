@@ -14,10 +14,12 @@ import MessageComponent from "../common/Message";
 // context imports
 import {UserContext} from "../../utils/context/UserContext";
 import {ApiMessageContext} from "../../utils/context/ApiMessageContext";
+import {ApiCodeContext} from "../../utils/context/ApiCodeContext";
 
 
 const Login = () => {
 
+    const {setCode} = useContext(ApiCodeContext);
     const {setMessage} = useContext(ApiMessageContext);
     const {setUser, user} = useContext(UserContext);
 
@@ -26,7 +28,7 @@ const Login = () => {
             <div>Sign In to your account</div>
             <MessageComponent/>
 
-            <form onSubmit={e => handleLogin(e, setMessage, setUser, user)}>
+            <form onSubmit={e => handleLogin(e, setMessage, setUser, user, setCode)}>
 
                 <div className="inputs">
 

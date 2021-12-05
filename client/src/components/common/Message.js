@@ -1,20 +1,15 @@
-import React, {useState, useContext, useEffect} from "react";
+import React, {useContext} from "react";
 
 // context imports
 import {ApiMessageContext} from "../../utils/context/ApiMessageContext";
+import {ApiCodeContext} from "../../utils/context/ApiCodeContext";
 
 // style imports
 import Alert from '@mui/material/Alert';
 
 const MessageComponent = () => {
 
-    const {setMessage} = useContext(ApiMessageContext);
-
-    const [code, setCode] = useState("");
-
-    useEffect(() => {
-        setCode(localStorage.getItem("code"));
-    }, [setMessage]);
+    const {code} = useContext(ApiCodeContext);
 
     return(
         <div>

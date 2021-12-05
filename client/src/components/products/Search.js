@@ -11,9 +11,11 @@ import {clearSearch} from "../../utils/products/productUtils";
 
 // context imports
 import {ApiMessageContext} from "../../utils/context/ApiMessageContext";
+import {ApiCodeContext} from "../../utils/context/ApiCodeContext";
 
 const Search = (props) => {
 
+    const {setCode} = useContext(ApiCodeContext);
     const {setMessage} = useContext(ApiMessageContext);
 
     const {
@@ -25,7 +27,7 @@ const Search = (props) => {
     return (
         <div>
             <div>Search Component</div>
-            <form onSubmit={e => searchProducts(e, setProducts, searchQuery, setMessage)}>
+            <form onSubmit={e => searchProducts(e, setProducts, searchQuery, setMessage, setCode)}>
                 <TextField
                     id="standard-basic"
                     label="Search by title..."

@@ -7,10 +7,14 @@ import {handleRegister, handleChangeInput} from "../../utils/users/userHandlers"
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import MessageComponent from "../common/Message";
+
+// context imports
 import {ApiMessageContext} from "../../utils/context/ApiMessageContext";
+import {ApiCodeContext} from "../../utils/context/ApiCodeContext";
 
 const Register = () => {
 
+    const {setCode} = useContext(ApiCodeContext);
     const {setMessage} = useContext(ApiMessageContext);
 
     const [newUser, setNewUser] = useState({
@@ -25,7 +29,7 @@ const Register = () => {
             <div>Sign Up in to your account</div>
             <MessageComponent/>
 
-            <form onSubmit={e => handleRegister(e, setMessage, newUser, setNewUser)}>
+            <form onSubmit={e => handleRegister(e, setMessage, newUser, setNewUser, setCode)}>
                 <div className="inputs">
 
                     <TextField

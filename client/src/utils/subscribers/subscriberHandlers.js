@@ -5,9 +5,9 @@ const handleChangeSubscribe = (e, setSubscriberEmail) => {
     setSubscriberEmail(e.target.value);
 }
 
-const handleSubscribe = (e, subscriberEmail, setMessage) => {
+const handleSubscribe = (e, subscriberEmail, setMessage, setCode) => {
     e.preventDefault();
-    subscribe(subscriberEmail, setMessage);
+    subscribe(subscriberEmail, setMessage, setCode);
 };
 
 export {

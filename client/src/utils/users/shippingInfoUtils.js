@@ -2,7 +2,7 @@ import axios from "axios";
 import {API_URL} from "../constants/apiConstants";
 import {generateRequestConfig} from "../request/axiosRequestConfig";
 
-const updateShippingInfo = (user, shippingInfo, setShippingInfo, setMessage) => {
+const updateShippingInfo = (user, shippingInfo, setShippingInfo, setMessage, setCode) => {
     axios.put(`${API_URL}/${user.userId}`, shippingInfo, {'headers': {'Authorization': localStorage.getItem('userToken'),}})
         .then((result) => {
             // console.log(result);
@@ -27,6 +27,7 @@ const updateShippingInfo = (user, shippingInfo, setShippingInfo, setMessage) => 
         .catch((err) => {
             // console.log(err);
             setMessage(err.response.data.message);
+            setCode("400");
             localStorage.setItem("apiMessage", err.response.data.message);
             localStorage.setItem("code", "400");
             return err;

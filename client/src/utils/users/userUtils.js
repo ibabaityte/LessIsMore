@@ -2,7 +2,7 @@ import axios from "axios";
 import {API_URL, LOGIN_URL, REGISTER_URL} from "../constants/apiConstants.js";
 import {generateRequestConfig} from "../request/axiosRequestConfig";
 
-const login = (setMessage, setUser, user) => {
+const login = (setMessage, setUser, user, setCode) => {
     const {email, password} = user;
     axios.post(LOGIN_URL, {email, password})
         .then((result) => {
@@ -28,6 +28,7 @@ const login = (setMessage, setUser, user) => {
 
             // API message context
             setMessage(result.data.message);
+            setCode("200");
             localStorage.setItem("apiMessage", result.data.message);
             localStorage.setItem("code", "200");
 
@@ -40,16 +41,19 @@ const login = (setMessage, setUser, user) => {
         .catch((err) => {
             // console.log(err);
             setMessage(err.response.data.message);
+            setCode("400");
+            localStorage.setItem("apiMessage", err.response.data.message);
             localStorage.setItem("code", "400");
         });
 }
 
-const register = (setMessage, newUser, setNewUser) => {
+const register = (setMessage, newUser, setNewUser, setCode) => {
     axios.post(REGISTER_URL, newUser)
         .then((result) => {
             // console.log(result);
             setNewUser(newUser);
             setMessage(result.data.message);
+            setCode("200");
             localStorage.setItem("apiMessage", result.data.message);
             localStorage.setItem("code", "200");
             window.location.href = "/login"
@@ -57,6 +61,7 @@ const register = (setMessage, newUser, setNewUser) => {
         .catch((err) => {
             // console.log(err.response.data);
             setMessage(err.response.data.message);
+            setCode("400");
             localStorage.setItem("apiMessage", err.response.data.message);
             localStorage.setItem("code", "400");
         });

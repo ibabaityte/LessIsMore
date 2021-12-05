@@ -9,17 +9,19 @@ import {handleAddToCart} from "../../utils/shop/shopHandlers";
 // context imports
 import {CartContext} from "../../utils/context/CartContext";
 import {ApiMessageContext} from "../../utils/context/ApiMessageContext";
-import ToggleButton from "@mui/material/ToggleButton";
-import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 
 // style imports
 import Box from '@mui/material/Box';
+import {ApiCodeContext} from "../../utils/context/ApiCodeContext";
+import ToggleButton from "@mui/material/ToggleButton";
+import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 
 const ProductCardButton = (props) => {
 
     const [showBox, setShowBox] = useState("none");
 
     const {cartContext, setCartContext} = useContext(CartContext);
+    const {setCode} = useContext(ApiCodeContext);
     const {setMessage} = useContext(ApiMessageContext);
 
     const {
@@ -45,7 +47,7 @@ const ProductCardButton = (props) => {
             <Box display={showBox}>
                 <ToggleButtonGroup
                     exclusive
-                    onClick={(e) => {handleAddToCart(cartContext, setCartContext, product, e.target.value, setMessage)}}
+                    onClick={(e) => {handleAddToCart(cartContext, setCartContext, product, e.target.value, setMessage, setCode)}}
                     aria-label="text alignment"
                 >
                     <ToggleButton value="XXS" aria-label="left aligned">XXS</ToggleButton>
@@ -57,7 +59,7 @@ const ProductCardButton = (props) => {
                     <ToggleButton value="XXL" aria-label="justified">XXL</ToggleButton>
                 </ToggleButtonGroup>
             </Box>
-            <button onClick={() => addFavorite(favorites, product, product._id, user, setFavorites, setMessage)}>Add to favorites</button>
+            <button onClick={() => addFavorite(favorites, product, product._id, user, setFavorites, setMessage, setCode)}>Add to favorites</button>
             <button onClick={() => {setShowBox("block")}}>Add to cart</button>
         </div>
     }

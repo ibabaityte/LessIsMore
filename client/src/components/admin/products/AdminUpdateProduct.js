@@ -6,9 +6,11 @@ import Button from "@material-ui/core/Button";
 import {ApiMessageContext} from "../../../utils/context/ApiMessageContext";
 import {updateProduct} from "../../../utils/admin/adminProductUtils";
 import MessageComponent from "../../common/Message";
+import {ApiCodeContext} from "../../../utils/context/ApiCodeContext";
 
 const AdminUpdateProduct = (props) => {
 
+    const {setCode} = useContext(ApiCodeContext);
     const {setMessage} = useContext(ApiMessageContext);
 
     const {
@@ -20,7 +22,7 @@ const AdminUpdateProduct = (props) => {
         <div>
             <div>Admin update product</div>
             <MessageComponent/>
-            <form onSubmit={(e) => {updateProduct(e, selectedProduct, setMessage)}}>
+            <form onSubmit={(e) => {updateProduct(e, selectedProduct, setMessage, setCode)}}>
                 <div className="inputs">
                     <TextField
                         type="text"

@@ -9,11 +9,12 @@ const initProducts = (setProducts, category) => {
     })
 }
 
-const searchProducts = (e, setProducts, searchQuery, setMessage) => {
+const searchProducts = (e, setProducts, searchQuery, setMessage, setCode) => {
     e.preventDefault();
     if(searchQuery === "") {
         initProducts(setProducts);
         setMessage("Search parameter cannot be empty.");
+        setCode("400");
         localStorage.setItem("apiMessage", "Search parameter cannot be empty.");
         localStorage.setItem("code", "400");
     } else {

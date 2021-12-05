@@ -9,13 +9,14 @@ const fetchCoupons = (setCouponsList) => {
     })
 };
 
-const createCoupon = (e, coupon, fetchCoupons, setCouponsList, setMessage) => {
+const createCoupon = (e, coupon, fetchCoupons, setCouponsList, setMessage, setCode) => {
     e.preventDefault();
     axios.post(`${API_URL}/coupons/create`, coupon, generateAuthConfig()).then(() => {
         fetchCoupons(setCouponsList);
     }).catch(() => {
         // console.log(err.response);
         setMessage("Something went wrong while creating a coupon. Try again.");
+        setCode("400");
         localStorage.setItem("apiMessage", "Something went wrong while creating a coupon. Try again.");
         localStorage.setItem("code", "400");
     });

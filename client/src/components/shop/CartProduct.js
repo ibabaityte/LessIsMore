@@ -6,6 +6,7 @@ import {updateQuantity, removeFromCart} from "../../utils/shop/shopUtils";
 // context imports
 import {CartContext} from "../../utils/context/CartContext";
 import {ApiMessageContext} from "../../utils/context/ApiMessageContext";
+import {ApiCodeContext} from "../../utils/context/ApiCodeContext";
 
 // style imports
 // import TextField from '@mui/material/TextField';
@@ -14,6 +15,7 @@ import {ApiMessageContext} from "../../utils/context/ApiMessageContext";
 const CartProduct = (props) => {
 
     const {cartContext, setCartContext} = useContext(CartContext);
+    const {setCode} = useContext(ApiCodeContext);
     const {setMessage} = useContext(ApiMessageContext);
 
     const {productContent, cartProduct} = props;
@@ -25,7 +27,7 @@ const CartProduct = (props) => {
             <div>{productContent.price}</div>
             <div>{cartProduct.size}</div>
             <form>
-                <input onChange={(e) => {updateQuantity(e.target.value, cartProduct, cartContext, setCartContext, setMessage)}} type="number" min="1" max="25" defaultValue={cartProduct.quantity}/>
+                <input onChange={(e) => {updateQuantity(e.target.value, cartProduct, cartContext, setCartContext, setMessage, setCode)}} type="number" min="1" max="25" defaultValue={cartProduct.quantity}/>
             </form>
             <button onClick={() => {removeFromCart(cartProduct, cartContext, setCartContext)}}>Remove from cart</button>
         </div>

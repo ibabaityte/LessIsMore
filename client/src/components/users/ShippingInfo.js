@@ -11,6 +11,7 @@ import MessageComponent from "../common/Message";
 import {UserContext} from "../../utils/context/UserContext";
 import {ApiMessageContext} from "../../utils/context/ApiMessageContext";
 import {CartContext} from "../../utils/context/CartContext";
+import {ApiCodeContext} from "../../utils/context/ApiCodeContext";
 
 // style imports
 import TextField from "@material-ui/core/TextField";
@@ -21,6 +22,7 @@ const ShippingInfo = () => {
 
     const {user} = useContext(UserContext);
     const {cartContext} = useContext(CartContext);
+    const {setCode} = useContext(ApiCodeContext);
     const {setMessage} = useContext(ApiMessageContext);
 
     const [newShippingInfo, setNewShippingInfo] = useState({
@@ -39,7 +41,7 @@ const ShippingInfo = () => {
         <div>
             <h1>Enter shipping info:</h1>
             <MessageComponent/>
-            <form onSubmit={e => handleShippingInfo(e, user, newShippingInfo, setNewShippingInfo, setMessage)}>
+            <form onSubmit={e => handleShippingInfo(e, user, newShippingInfo, setNewShippingInfo, setMessage, setCode)}>
                 <div className="inputs">
 
                     <TextField
@@ -92,7 +94,7 @@ const ShippingInfo = () => {
                 </div>
                 {
                     window.location.href === "http://localhost:3000/cart" ?
-                        <Button onClick={() => {completeOrder(cartContext, newShippingInfo, setNewShippingInfo, user, setMessage)}}>Create order</Button>
+                        <Button onClick={() => {completeOrder(cartContext, newShippingInfo, setNewShippingInfo, user, setMessage, setCode)}}>Create order</Button>
                         :
                         <Button type="submit">Complete</Button>
                 }

@@ -13,11 +13,13 @@ import MessageComponent from "../../common/Message";
 
 // context imports
 import {ApiMessageContext} from "../../../utils/context/ApiMessageContext";
+import {ApiCodeContext} from "../../../utils/context/ApiCodeContext";
 
 const AdminCreateProduct = (props) => {
 
     const {setProducts} = props;
 
+    const {setCode} = useContext(ApiCodeContext);
     const {setMessage} = useContext(ApiMessageContext);
 
     const [product, setProduct] = useState({
@@ -32,7 +34,7 @@ const AdminCreateProduct = (props) => {
         <div>
             <div>Admin Create Product</div>
             <MessageComponent/>
-            <form onSubmit={(e) => {createProduct(e, product, setProducts, setMessage)}}>
+            <form onSubmit={(e) => {createProduct(e, product, setProducts, setMessage, setCode)}}>
                 <div className="inputs">
                     <TextField
                         type="text"

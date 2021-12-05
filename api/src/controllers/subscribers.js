@@ -12,7 +12,6 @@ const create = (req, res) => {
                 message: "You have entered an invalid email address. Try again."
             });
         }
-
         if (data) {
             return res.status(409).send({
                 code: "409",
