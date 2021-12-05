@@ -4,12 +4,22 @@ import React, {useState, useEffect} from "react";
 import {handleChangeSubscribe, handleSubscribe} from "../utils/subscribers/subscriberHandlers";
 
 // style imports
+import {withStyles} from "@material-ui/core/styles";
+import subscribeStyles from "../utils/style/subscribeStyles";
+import Grid from '@mui/material/Grid';
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 
+// icon imports
+import CloseIcon from '@mui/icons-material/Close';
+import IconButton from "@mui/material/IconButton";
+import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
+
 const Subscribe = (props) => {
+    const classes = props.classes;
+
     const {modalOpen, setModalOpen} = props;
 
     const [subscriberEmail, setSubscriberEmail] = useState("");
@@ -17,11 +27,11 @@ const Subscribe = (props) => {
 
     useEffect(() => {
         let modalVisible = localStorage.getItem('modalVisible');
-        if(!modalVisible){
+        if (!modalVisible) {
             setModalOpen(true);
-            localStorage.setItem('modalVisible',"yes");
+            localStorage.setItem('modalVisible', "yes");
         }
-    },[setModalOpen])
+    }, [setModalOpen])
 
     return (
         <div>
@@ -31,24 +41,36 @@ const Subscribe = (props) => {
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
             >
-                <Box style={{width: "500px", height: "500px", margin: "auto"}}>
-                    <div>Subscribe to our newsletter</div>
-                    <div>{message}</div>
-                    <div onClick={() => setModalOpen(false)}>X CLOSE </div>
-                    <form onSubmit={(e) => handleSubscribe(e, subscriberEmail, setMessage)}>
-                        <TextField
-                            type="text"
-                            value={subscriberEmail || ""}
-                            name="email"
-                            label="email"
-                            onChange={e => handleChangeSubscribe(e, setSubscriberEmail)}
-                        />
-                        <Button type="submit">Subscribe</Button>
-                    </form>
+                <Box>
+                    <Grid container className={classes.modalBox}>
+                        <Grid item xs={12} className={classes.iconDiv}>
+                            <IconButton>
+                                <CloseIcon onClick={() => setModalOpen(false)} fontSize="large"/>
+                            </IconButton>
+                        </Grid>
+                        <Grid item xs={12}>
+                            <h1 className={classes.modalHeading}>Subscribe to our newsletter</h1>
+                            <EmailOutlinedIcon className={classes.modalIcon} fontSize="large"/>
+                            <div>{message}</div>
+                        </Grid>
+                        <Grid item xs={12} className={classes.modalForm}>
+                            <form onSubmit={(e) => handleSubscribe(e, subscriberEmail, setMessage)} className={classes.form}>
+                                <TextField
+                                    type="text"
+                                    value={subscriberEmail || ""}
+                                    name="email"
+                                    label="email"
+                                    onChange={e => handleChangeSubscribe(e, setSubscriberEmail)}
+                                    className={classes.input}
+                                />
+                                <Button size="large" type="submit" variant="outlined" className={classes.button}>Subscribe</Button>
+                            </form>
+                        </Grid>
+                    </Grid>
                 </Box>
             </Modal>
         </div>
     );
 };
 
-export default Subscribe;
+export default withStyles(subscribeStyles)(Subscribe);

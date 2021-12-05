@@ -1,11 +1,11 @@
 const headerStyles= (theme) => ({
     header: {
-        backgroundColor: "white",
+        backgroundColor: 'rgb(247, 247, 245)',
         padding: "5px 20px 5px 20px"
     },
     link: {
         textDecoration: "none",
-        color: "black"
+        color: "rgb(51, 51, 50)"
     },
     name: {
         width: "auto",
