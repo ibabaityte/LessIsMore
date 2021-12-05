@@ -7,6 +7,9 @@ import Products from "./components/products/Products";
 import AdminPanel from "./components/admin/AdminPanel";
 import Subscribe from "./components/Subscribe";
 import Footer from "./components/Footer";
+import UserProfile from "./components/users/UserProfile";
+import Login from "./components/users/Login";
+import Register from "./components/users/Register";
 
 // context imports
 import {ApiMessageContext} from "./utils/context/ApiMessageContext.js";
@@ -18,9 +21,7 @@ import {automaticLogout} from "./utils/users/userUtils";
 
 // style imports
 import './App.css';
-import UserProfile from "./components/users/UserProfile";
-import Login from "./components/users/Login";
-import Register from "./components/users/Register";
+import Grid from '@mui/material/Grid';
 
 const App = () => {
 
@@ -40,7 +41,7 @@ const App = () => {
 
     useEffect(() => {
         automaticLogout(user.expirationTimestamp);
-        if(!localStorage.getItem("cart")) {
+        if (!localStorage.getItem("cart")) {
             localStorage.setItem("cart", JSON.stringify({
                 products: [],
                 comment: "",
@@ -50,24 +51,30 @@ const App = () => {
     }, [user.expirationTimestamp]);
 
     return (
-        <div className="App">
+        <Grid container className="App">
             <UserContext.Provider value={{user, setUser}}>
                 <ApiMessageContext.Provider value={{message, setMessage}}>
                     <CartContext.Provider value={{cartContext, setCartContext}}>
-                        <Header/>
-                        <Subscribe modalOpen={modalOpen} setModalOpen={setModalOpen}/>
-                        <Routes>
-                            <Route path="/*" element={<Products/>}/>
-                            <Route path="/adminPanel/*" element={<AdminPanel/>}/>
-                            <Route path="/userProfile/*" element={<UserProfile/>}/>
-                            <Route path="login" element={<Login/>}/>
-                            <Route path="register" element={<Register/>}/>
-                        </Routes>
-                        <Footer setModalOpen={setModalOpen}/>
+                        <Grid item xs={12}>
+                            <Header/>
+                        </Grid>
+                        <Grid item xs={12}>
+                            <Subscribe modalOpen={modalOpen} setModalOpen={setModalOpen}/>
+                            <Routes>
+                                <Route path="/*" element={<Products/>}/>
+                                <Route path="/adminPanel/*" element={<AdminPanel/>}/>
+                                <Route path="/userProfile/*" element={<UserProfile/>}/>
+                                <Route path="login" element={<Login/>}/>
+                                <Route path="register" element={<Register/>}/>
+                            </Routes>
+                        </Grid>
+                        <Grid item xs={12}>
+                            <Footer setModalOpen={setModalOpen}/>
+                        </Grid>
                     </CartContext.Provider>
                 </ApiMessageContext.Provider>
             </UserContext.Provider>
-        </div>
+        </Grid>
     );
 }
 
