@@ -1,11 +1,15 @@
 const favoritesListStyles = (theme) => ({
     productList: {
-        margin: "20px auto 50px auto",
+        margin: "10px auto 50px auto",
         width: "70%",
-        height: "100%",
+        height: "auto",
         display: "flex",
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "flex-start"
+    },
+    heading: {
+        margin: "20px auto 0 auto",
+        textAlign: "center"
     }
 });
 

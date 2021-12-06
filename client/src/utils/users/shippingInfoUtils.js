@@ -17,11 +17,11 @@ const updateShippingInfo = (user, shippingInfo, setShippingInfo, setMessage, set
             };
             setShippingInfo(shippingInfo);
 
-            // if(window.location.href === "http://localhost:3000/cart") {
-            //     window.location.href = "/cart"
-            // } else {
-            //     window.location.href = "/userProfile"
-            // }
+            if(window.location.href === "http://localhost:3000/cart") {
+                window.location.href = "/cart"
+            } else {
+                window.location.href = "/userProfile"
+            }
             return result;
         })
         .catch((err) => {

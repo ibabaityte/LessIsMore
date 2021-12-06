@@ -1,7 +1,16 @@
 import React from "react";
+
+// context imports
 import {UserContext} from "../../utils/context/UserContext";
 
-const UserInfoComponent = () => {
+// style imports
+import {withStyles} from "@material-ui/core/styles";
+import userProfileStyles from "../../utils/style/userProfileStyles";
+
+const UserInfoComponent = (props) => {
+
+    const classes = props.classes;
+
     return (
         <div>
             <UserContext.Consumer>
@@ -9,10 +18,10 @@ const UserInfoComponent = () => {
                     ({user}) => (
                         user ?
                             <div>
-                                <div>Email: {user.email}</div>
-                                {/*<div>{user.token}</div>*/}
-                                <div>Firstname: {user.firstName}</div>
-                                <div>Lastname: {user.lastName}</div>
+                                <h3>User information:</h3>
+                                <div className={classes.info}><span className={classes.infoName}>Email:</span> {user.email}</div>
+                                <div className={classes.info}><span className={classes.infoName}>Firstname:</span> {user.firstName}</div>
+                                <div className={classes.info}><span className={classes.infoName}>Lastname:</span> {user.lastName}</div>
                             </div> : ""
                     )
                 }
@@ -21,4 +30,4 @@ const UserInfoComponent = () => {
     );
 };
 
-export default UserInfoComponent;
+export default withStyles(userProfileStyles)(UserInfoComponent);

@@ -21,6 +21,9 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import IconButton from "@mui/material/IconButton";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
+// icon imports
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+
 const ProductCardButton = (props) => {
 
     const classes = props.classes;
@@ -55,7 +58,11 @@ const ProductCardButton = (props) => {
             </div>
         );
     } else if (window.location.href === "http://localhost:3000/favorites") {
-        return <button onClick={() => removeFavorite(favorites, product._id, user, setFavorites)}>Remove from favorites</button>
+        return (
+            <IconButton onClick={() => removeFavorite(favorites, product._id, user, setFavorites)}>
+                <DeleteForeverIcon sx={{ color: 'rgb(181, 5, 26)' }}  fontSize="large"/>
+            </IconButton>
+        );
     } else {
         return <div className={classes.buttonGroup}>
             <Box display={showBox}>

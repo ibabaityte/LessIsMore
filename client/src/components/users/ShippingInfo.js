@@ -39,7 +39,12 @@ const ShippingInfo = () => {
 
     return (
         <div>
-            <h1>Enter shipping info:</h1>
+            {
+                newShippingInfo.city === "" ?
+                    <h3>Enter shipping info:</h3>
+                    :
+                    <h3>Update shipping info:</h3>
+            }
             <MessageComponent/>
             <form onSubmit={e => handleShippingInfo(e, user, newShippingInfo, setNewShippingInfo, setMessage, setCode)}>
                 <div className="inputs">
@@ -96,7 +101,7 @@ const ShippingInfo = () => {
                     window.location.href === "http://localhost:3000/cart" ?
                         <Button onClick={() => {completeOrder(cartContext, newShippingInfo, setNewShippingInfo, user, setMessage, setCode)}}>Create order</Button>
                         :
-                        <Button type="submit">Complete</Button>
+                        <Button type="submit">Submit</Button>
                 }
 
             </form>
