@@ -60,32 +60,34 @@ const App = () => {
     }, [user.expirationTimestamp, code, message]);
 
     return (
-        <Grid container className="App">
-            <UserContext.Provider value={{user, setUser}}>
-                <ApiMessageContext.Provider value={{message, setMessage}}>
-                    <ApiCodeContext.Provider value={{code, setCode}}>
-                        <CartContext.Provider value={{cartContext, setCartContext}}>
-                            <Grid item xs={12}>
-                                <Header/>
-                            </Grid>
-                            <Grid item xs={12}>
-                                <Subscribe modalOpen={modalOpen} setModalOpen={setModalOpen}/>
-                                <Routes>
-                                    <Route path="/*" element={<Products/>}/>
-                                    <Route path="/adminPanel/*" element={<AdminPanel/>}/>
-                                    <Route path="/userProfile/*" element={<UserProfile/>}/>
-                                    <Route path="login" element={<Login/>}/>
-                                    <Route path="register" element={<Register/>}/>
-                                </Routes>
-                            </Grid>
-                            <Grid item xs={12}>
-                                <Footer setModalOpen={setModalOpen}/>
-                            </Grid>
-                        </CartContext.Provider>
-                    </ApiCodeContext.Provider>
-                </ApiMessageContext.Provider>
-            </UserContext.Provider>
-        </Grid>
+        <div className="backgroundImage">
+            <Grid container className="App">
+                <UserContext.Provider value={{user, setUser}}>
+                    <ApiMessageContext.Provider value={{message, setMessage}}>
+                        <ApiCodeContext.Provider value={{code, setCode}}>
+                            <CartContext.Provider value={{cartContext, setCartContext}}>
+                                <Grid item xs={12}>
+                                    <Header/>
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <Subscribe modalOpen={modalOpen} setModalOpen={setModalOpen}/>
+                                    <Routes>
+                                        <Route path="/*" element={<Products/>}/>
+                                        <Route path="/adminPanel/*" element={<AdminPanel/>}/>
+                                        <Route path="/userProfile/*" element={<UserProfile/>}/>
+                                        <Route path="login" element={<Login/>}/>
+                                        <Route path="register" element={<Register/>}/>
+                                    </Routes>
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <Footer setModalOpen={setModalOpen}/>
+                                </Grid>
+                            </CartContext.Provider>
+                        </ApiCodeContext.Provider>
+                    </ApiMessageContext.Provider>
+                </UserContext.Provider>
+            </Grid>
+        </div>
     );
 }
 

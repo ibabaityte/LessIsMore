@@ -27,8 +27,8 @@ const Header = (props) => {
 
     if (user.userType === "ADMIN") {
         return (
-            <AppBar position="static">
-                <Grid container className={classes.header}>
+            <AppBar position="static" className={classes.header}>
+                <Grid container >
                     <Grid item xs={6}>
                         <h1><Link className={classes.link} to="/adminPanel">Less is more</Link></h1>
                     </Grid>
@@ -44,8 +44,8 @@ const Header = (props) => {
         )
     } else if (!!user.token) {
         return (
-            <AppBar position="static">
-                <Grid container className={classes.header}>
+            <AppBar position="static" className={classes.header}>
+                <Grid container >
                     <Grid item md={6} xs={4}>
                         <h1><Link to="/" className={classes.link}>Less is more</Link></h1>
                     </Grid>
@@ -77,8 +77,8 @@ const Header = (props) => {
         );
     } else {
         return (
-            <AppBar position="static">
-                <Grid container className={classes.header}>
+            <AppBar position="static" className={classes.header}>
+                <Grid container>
                     <Grid item xs={6}>
                         <h1><Link to="/" className={classes.link}>Less is more</Link></h1>
                     </Grid>

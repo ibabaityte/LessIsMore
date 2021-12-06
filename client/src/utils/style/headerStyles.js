@@ -1,17 +1,21 @@
-const headerStyles= (theme) => ({
+const headerStyles = (theme) => ({
     header: {
-        backgroundColor: 'rgb(247, 247, 245)',
-        padding: "5px 20px 5px 20px"
+        '&.css-hip9hq-MuiPaper-root-MuiAppBar-root': {
+            backgroundColor: "rgba(247, 247, 247)",
+        },
+        padding: "5px 20px 5px 20px",
     },
     link: {
         textDecoration: "none",
-        color: "rgb(51, 51, 50)"
+        // color: "rgb(51, 51, 50)"
+        color: "rgb(15, 64, 49)"
     },
     name: {
         width: "auto",
         display: "inline-block",
         marginRight: "10px",
-        color: "black"
+        // color: "black"
+        color: "rgb(15, 64, 49)"
     },
     iconDiv: {
         display: "flex",

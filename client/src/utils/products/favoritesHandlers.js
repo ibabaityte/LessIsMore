@@ -20,6 +20,10 @@ const addFavorite = (array, object, objectId, user, setFavorites, setMessage, se
         if(arr.findIndex(object => object._id === objectId) === -1) {
             arr.push(object);
             updateFavorites(arr, user, setFavorites);
+            setMessage("Product added to favorites list.");
+            setCode("200");
+            localStorage.setItem("apiMessage", "Product added to favorites list.");
+            localStorage.setItem("code", "200");
         } else {
             setMessage("This product is already in your favorites list.");
             setCode("400");

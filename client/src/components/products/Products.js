@@ -9,8 +9,6 @@ import {initFavorites} from "../../utils/users/userUtils";
 import Product from "./Product";
 import ProductList from "./ProductList";
 import FavoritesList from "../favorites/FavoritesList";
-import Search from "./Search";
-import Filter from "./Filter";
 import Cart from "../shop/Cart";
 
 // context imports
@@ -21,7 +19,6 @@ const Products = () => {
     const [products, setProducts] = useState([]);
     const [selectedProduct, setSelectedProduct] = useState([]);
     const [favorites, setFavorites] = useState([{}]);
-    const [searchQuery, setSearchQuery] = useState("");
 
     const {user} = useContext(UserContext);
 
@@ -35,14 +32,6 @@ const Products = () => {
     return (
         <div>
             <MessageComponent/>
-            <Search
-                searchQuery={searchQuery}
-                setSearchQuery={setSearchQuery}
-                setProducts={setProducts}
-            />
-            <Filter
-                setProducts={setProducts}
-            />
             <Routes>
                 <Route path="/"
                        element={<ProductList
