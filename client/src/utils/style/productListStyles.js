@@ -1,6 +1,6 @@
 const productListStyles = (theme) => ({
     productList: {
-        margin: "50px auto",
+        margin: "20px auto 50px auto",
         width: "70%",
         height: "100%",
         display: "flex",
@@ -17,11 +17,12 @@ const productListStyles = (theme) => ({
         fontSize: "16px",
         marginBottom: "15px"
     },
-    searchBar: {
+    searchDiv: {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        flexDirection: "column"
+        flexDirection: "column",
+        marginBottom : "30px"
     },
     cardContent: {
         height: "50px"

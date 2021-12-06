@@ -26,7 +26,7 @@ const ProductList = (props) => {
 
     return (
         <Grid container className={classes.productList}>
-            <Grid item xs={12} className={classes.searchBar}>
+            <Grid item xs={12} className={classes.searchDiv}>
                 <Search
                     searchQuery={searchQuery}
                     setSearchQuery={setSearchQuery}
@@ -38,9 +38,8 @@ const ProductList = (props) => {
             </Grid>
             {
                 products.map((product) => (
-                    <Grid item xl={3} lg={4} md={6} xs={12} className={classes.productList}>
+                    <Grid key={product._id} item xl={3} lg={4} md={6} xs={12} className={classes.productList}>
                         <ProductCard
-                            key={product._id}
                             product={product}
                             title={product.title}
                             price={product.price}

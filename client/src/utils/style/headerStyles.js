@@ -3,7 +3,7 @@ const headerStyles = (theme) => ({
         '&.css-hip9hq-MuiPaper-root-MuiAppBar-root': {
             backgroundColor: "rgba(247, 247, 247)",
         },
-        padding: "5px 20px 5px 20px",
+        padding: "5px 40px 5px 40px",
     },
     link: {
         textDecoration: "none",

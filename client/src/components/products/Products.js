@@ -39,6 +39,7 @@ const Products = () => {
                            setSelectedProduct={setSelectedProduct}
                            favorites={favorites}
                            setFavorites={setFavorites}
+                           setProducts={setProducts}
                        />}
                 />
                 <Route path="favorites"

@@ -1,6 +1,8 @@
 import React, {useContext} from "react";
 
 // style imports
+import {withStyles} from "@material-ui/core/styles";
+import searchStyles from "../../utils/style/searchStyles";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 
@@ -15,6 +17,8 @@ import {ApiCodeContext} from "../../utils/context/ApiCodeContext";
 
 const Search = (props) => {
 
+    const classes = props.classes;
+
     const {setCode} = useContext(ApiCodeContext);
     const {setMessage} = useContext(ApiMessageContext);
 
@@ -25,10 +29,10 @@ const Search = (props) => {
     } = props;
 
     return (
-        <div>
-            <div>Search Component</div>
-            <form onSubmit={e => searchProducts(e, setProducts, searchQuery, setMessage, setCode)}>
+        <div className={classes.search}>
+            <form onSubmit={e => searchProducts(e, setProducts, searchQuery, setMessage, setCode)} className={classes.form}>
                 <TextField
+                    className={classes.searchBar}
                     id="standard-basic"
                     label="Search by title..."
                     type="text"
@@ -47,4 +51,4 @@ const Search = (props) => {
     );
 };
 
-export default Search;
+export default withStyles(searchStyles)(Search);

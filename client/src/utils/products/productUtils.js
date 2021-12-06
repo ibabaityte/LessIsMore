@@ -11,6 +11,7 @@ const initProducts = (setProducts, category) => {
 
 const searchProducts = (e, setProducts, searchQuery, setMessage, setCode) => {
     e.preventDefault();
+    console.log(setProducts);
     if(searchQuery === "") {
         initProducts(setProducts);
         setMessage("Search parameter cannot be empty.");
