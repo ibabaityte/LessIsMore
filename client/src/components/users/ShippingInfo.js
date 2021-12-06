@@ -14,11 +14,16 @@ import {CartContext} from "../../utils/context/CartContext";
 import {ApiCodeContext} from "../../utils/context/ApiCodeContext";
 
 // style imports
+import {withStyles} from "@material-ui/core/styles";
+import shippingInfoStyles from "../../utils/style/shippingInfoStyles";
+import Grid from '@mui/material/Grid';
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import {initShippingInfo} from "../../utils/users/shippingInfoUtils";
 
-const ShippingInfo = () => {
+const ShippingInfo = (props) => {
+
+    const classes = props.classes;
 
     const {user} = useContext(UserContext);
     const {cartContext} = useContext(CartContext);
@@ -38,18 +43,22 @@ const ShippingInfo = () => {
     }, [setNewShippingInfo, user]);
 
     return (
-        <div>
-            {
-                newShippingInfo.city === "" ?
-                    <h3>Enter shipping info:</h3>
-                    :
-                    <h3>Update shipping info:</h3>
-            }
-            <MessageComponent/>
-            <form onSubmit={e => handleShippingInfo(e, user, newShippingInfo, setNewShippingInfo, setMessage, setCode)}>
-                <div className="inputs">
+        <Grid className={classes.shipping}>
+            <Grid item xs={12}>
+                {
+                    newShippingInfo.city === "" ?
+                        <h3>Enter shipping info:</h3>
+                        :
+                        <h3>Update shipping info:</h3>
+                }
+            </Grid>
+            <Grid item xs={12} className={classes.shippingForm}>
+                <MessageComponent/>
+                <form className={classes.form}
+                      onSubmit={e => handleShippingInfo(e, user, newShippingInfo, setNewShippingInfo, setMessage, setCode)}>
 
                     <TextField
+                        className={classes.shippingInput}
                         type="text"
                         value={newShippingInfo.phoneNumber || ""}
                         name="phoneNumber"
@@ -60,6 +69,7 @@ const ShippingInfo = () => {
                     <br/>
 
                     <TextField
+                        className={classes.shippingInput}
                         type="text"
                         value={newShippingInfo.city || ""}
                         name="city"
@@ -70,6 +80,7 @@ const ShippingInfo = () => {
                     <br/>
 
                     <TextField
+                        className={classes.shippingInput}
                         type="text"
                         value={newShippingInfo.street || ""}
                         label="street"
@@ -80,9 +91,10 @@ const ShippingInfo = () => {
                     <br/>
 
                     <TextField
+                        className={classes.shippingInput}
                         type="text"
                         value={newShippingInfo.buildingNumber || ""}
-                        label="buildingNumber"
+                        label="building / apartment number"
                         name="buildingNumber"
                         onChange={e => handleChangeShippingInfo(e, newShippingInfo, setNewShippingInfo)}
                     />
@@ -90,23 +102,29 @@ const ShippingInfo = () => {
                     <br/>
 
                     <TextField
+                        className={classes.shippingInput}
                         type="text"
                         value={newShippingInfo.postalCode || ""}
                         label="postalCode"
                         name="postalCode"
                         onChange={e => handleChangeShippingInfo(e, newShippingInfo, setNewShippingInfo)}
                     />
-                </div>
-                {
-                    window.location.href === "http://localhost:3000/cart" ?
-                        <Button onClick={() => {completeOrder(cartContext, newShippingInfo, setNewShippingInfo, user, setMessage, setCode)}}>Create order</Button>
-                        :
-                        <Button type="submit">Submit</Button>
-                }
+                    {
+                        window.location.href === "http://localhost:3000/cart" ?
+                            <Button
+                                className={classes.button}
+                                onClick={() => {
+                                completeOrder(cartContext, newShippingInfo, setNewShippingInfo, user, setMessage, setCode)}}>Create order</Button>
+                            :
+                            <Button
+                                className={classes.button}
+                                type="submit">Submit</Button>
+                    }
 
-            </form>
-        </div>
+                </form>
+            </Grid>
+        </Grid>
     );
 }
 
-export default ShippingInfo;
+export default withStyles(shippingInfoStyles)(ShippingInfo);

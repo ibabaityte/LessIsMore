@@ -66,7 +66,9 @@ const completeOrder = async (cart, shippingInfo, setShippingInfo, user, setMessa
             localStorage.setItem("apiMessage", result.data.message);
             localStorage.setItem("code", "200");
             window.location.href = "/";
-        });
+        }).catch(err => {
+            console.log(err);
+        })
     }
 
 };
