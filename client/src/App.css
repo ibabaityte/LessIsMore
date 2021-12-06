@@ -6,7 +6,7 @@ body {
 
 .backgroundImage{
     background: url("images/green.png") no-repeat center center fixed;
-    background-size: 150%;
+    background-size: 160%;
     padding: 0;
     margin: 0;
 }

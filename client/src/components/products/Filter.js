@@ -21,15 +21,17 @@ const Filter = (props) => {
         <div className={classes.filter}>
             <ToggleButtonGroup
                 className={classes.categoryButtons}
-                exclusive
                 onClick={(e) => initProducts(setProducts, e.target.value)}
-                aria-label="text alignment"
             >
-                <ToggleButton value="all" className={classes.category}>All</ToggleButton>
-                <ToggleButton value="pants" className={classes.category}>Pants</ToggleButton>
-                <ToggleButton value="shirts" className={classes.category}>Shirts</ToggleButton>
-                <ToggleButton value="accessories" className={classes.category}>Accessories</ToggleButton>
-                <ToggleButton value="sweaters" className={classes.category}>Sweaters</ToggleButton>
+                <div className={classes.categories}>
+                    <ToggleButton value="all" className={classes.category}>All</ToggleButton>
+                    <ToggleButton value="pants" className={classes.category}>Pants</ToggleButton>
+                    <ToggleButton value="shirts" className={classes.category}>Shirts</ToggleButton>
+                </div>
+                <div className={classes.categories}>
+                    <ToggleButton value="accessories" className={classes.category}>Accessories</ToggleButton>
+                    <ToggleButton value="sweaters" className={classes.category}>Sweaters</ToggleButton>
+                </div>
             </ToggleButtonGroup>
         </div>
     );

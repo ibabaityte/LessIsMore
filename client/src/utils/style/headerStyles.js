@@ -15,7 +15,10 @@ const headerStyles = (theme) => ({
         display: "inline-block",
         marginRight: "10px",
         // color: "black"
-        color: "rgb(15, 64, 49)"
+        color: "rgb(15, 64, 49)",
+        [theme.breakpoints.down('xs')]: {
+            display: "none"
+        },
     },
     iconDiv: {
         display: "flex",

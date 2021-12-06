@@ -9,21 +9,32 @@ const searchStyles = (theme) => ({
         alignItems: "flex-end",
     },
     searchBar: {
-        width: "50%"
+        width: "450px"
     },
     filter: {
         marginTop: "30px",
-        width: "65%"
+        width: "95%"
     },
     categoryButtons: {
         display: "flex",
-        justifyContent: "space-between",
+        flexDirection: "row",
+        // justifyContent: "space-around",
+        [theme.breakpoints.down('xs')]: {
+            flexDirection: "column"
+        },
         backgroundColor: "rgba(227, 227, 227, 0.6)"
     },
     category: {
-        width: "20%",
         padding: "5px !important",
-        // margin: "10px"
+    },
+    categories: {
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "space-around",
+        width: "50%",
+        [theme.breakpoints.down('xs')]: {
+            width: "100%",
+        },
     }
 });
 

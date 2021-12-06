@@ -46,10 +46,10 @@ const Header = (props) => {
         return (
             <AppBar position="static" className={classes.header}>
                 <Grid container >
-                    <Grid item md={6} xs={4}>
+                    <Grid item md={3} xs={6}>
                         <h1><Link to="/" className={classes.link}>Less is more</Link></h1>
                     </Grid>
-                    <Grid item md={6} xs={8} className={classes.iconDiv}>
+                    <Grid item md={9} xs={6} className={classes.iconDiv}>
                         <h3 className={classes.name}>Hello, {user.firstName}</h3>
                         <IconButton>
                             <Link to="userProfile" className={classes.link}>

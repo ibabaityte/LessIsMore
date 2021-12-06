@@ -1,4 +1,5 @@
 import React, {useContext} from "react";
+import {Link} from "react-router-dom";
 
 // context imports
 import {UserContext} from "../../utils/context/UserContext";
@@ -40,7 +41,7 @@ const ProductCard = (props) => {
                     alt="product"
                 />
                 <CardContent className={classes.cardContent}>
-                    <Typography className={classes.productTitle}>{title}</Typography>
+                    <Typography className={classes.productTitle} onClick={() => {setSelectedProduct(product)}}><Link className={classes.titleLink} to="/product">{title}</Link></Typography>
                     <Typography variant="h7">{price} €</Typography>
                 </CardContent>
                 <CardActions className={classes.cardButtons}>

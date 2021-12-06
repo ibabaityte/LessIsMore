@@ -3,7 +3,14 @@ import React from "react";
 // component imports
 import ProductCard from "../products/ProductCard";
 
+// style imports
+import {withStyles} from "@material-ui/core/styles";
+import favoritesListStyles from "../../utils/style/favoritesListStyles";
+import Grid from '@mui/material/Grid';
+
 const FavoritesList = (props) => {
+
+    const classes = props.classes;
 
     const {
         setSelectedProduct,
@@ -12,23 +19,24 @@ const FavoritesList = (props) => {
     } = props;
 
     return (
-        <div>
+        <Grid container className={classes.productList}>
             {
                 favorites.map((favorite, key) => (
-                    <ProductCard
-                        key={key}
-                        product={favorite}
-                        title={favorite.title}
-                        price={favorite.price}
-                        image={favorite.image}
-                        setSelectedProduct={setSelectedProduct}
-                        favorites={favorites}
-                        setFavorites={setFavorites}
-                    />
+                    <Grid key={key} item xl={3} lg={4} md={6} xs={12} className={classes.productList}>
+                        <ProductCard
+                            product={favorite}
+                            title={favorite.title}
+                            price={favorite.price}
+                            image={favorite.image}
+                            setSelectedProduct={setSelectedProduct}
+                            favorites={favorites}
+                            setFavorites={setFavorites}
+                        />
+                    </Grid>
                 ))
             }
-        </div>
+        </Grid>
     );
 }
 
-export default FavoritesList;
+export default withStyles(favoritesListStyles)(FavoritesList);

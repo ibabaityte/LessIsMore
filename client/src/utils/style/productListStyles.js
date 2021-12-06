@@ -17,6 +17,10 @@ const productListStyles = (theme) => ({
         fontSize: "16px",
         marginBottom: "15px"
     },
+    titleLink: {
+        textDecoration: "none",
+        color: "black"
+    },
     searchDiv: {
         display: "flex",
         justifyContent: "center",
