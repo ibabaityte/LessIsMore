@@ -38,6 +38,7 @@ const Header = (props) => {
                         <h1><Link className={classes.link} to="/adminPanel">Less is more</Link></h1>
                     </Grid>
                     <Grid item xs={6} className={classes.iconDiv}>
+                        <h3 className={classes.name}>Admin</h3>
                         <IconButton>
                             <Link to="" className={classes.link}>
                                 <LogoutIcon className={classes.icon} onClick={() => logout()} fontSize="large"/>

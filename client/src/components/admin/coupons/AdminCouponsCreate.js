@@ -10,9 +10,13 @@ import {ApiMessageContext} from "../../../utils/context/ApiMessageContext";
 import {ApiCodeContext} from "../../../utils/context/ApiCodeContext";
 
 // style imports
+import {withStyles} from "@material-ui/core/styles";
+import adminCouponsStyles from "../../../utils/style/adminCouponsStyles";
 import Button from "@material-ui/core/Button";
 
 const AdminCouponsCreate = (props) => {
+
+    const classes = props.classes;
 
     const {setCode} = useContext(ApiCodeContext);
     const {setMessage} = useContext(ApiMessageContext);
@@ -29,9 +33,10 @@ const AdminCouponsCreate = (props) => {
 
     return (
         <div>
-            <div>Admin coupons create</div>
-            <form onSubmit={e => createCoupon(e, coupon, fetchCoupons, setCouponsList, setMessage, setCode)}>
+            <h3 className={classes.createHeading}>Create a new coupon</h3>
+            <form onSubmit={e => createCoupon(e, coupon, fetchCoupons, setCouponsList, setMessage, setCode)} className={classes.form}>
                 <TextField
+                    className={classes.input}
                     type="text"
                     value={coupon.code || ""}
                     name="code"
@@ -42,16 +47,17 @@ const AdminCouponsCreate = (props) => {
                 <br/>
 
                 <TextField
+                    className={classes.input}
                     type="number"
                     value={coupon.expiryDateHours}
                     name="expiryDateHours"
                     label="expiryDateHours"
                     onChange={e => handleChangeInput(e, coupon, setCoupon)}
                 />
-                <Button type="submit">Create</Button>
+                <Button type="submit" className={classes.couponCreateButton}>Create</Button>
             </form>
         </div>
     );
 };
 
-export default AdminCouponsCreate;
+export default withStyles(adminCouponsStyles)(AdminCouponsCreate);
