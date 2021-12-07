@@ -8,6 +8,7 @@ import AdminUpdateProduct from "./AdminUpdateProduct";
 
 // util imports
 import {initProducts} from "../../../utils/products/productUtils";
+import Product from "../../products/Product";
 
 const AdminProducts = () => {
 
@@ -28,6 +29,16 @@ const AdminProducts = () => {
                            favorites={null}
                            setFavorites={null}
                            setProducts={setProducts}
+                       />}
+                />
+                <Route path="product"
+                       element={<Product
+                           selectedProduct={selectedProduct}
+                           favorites={null}
+                           setFavorites={null}
+                           user={null}
+                           setProducts={setProducts}
+                           setSelectedProduct={setSelectedProduct}
                        />}
                 />
                 <Route path="create"

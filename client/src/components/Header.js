@@ -35,7 +35,7 @@ const Header = (props) => {
             <AppBar position="static" className={classes.header}>
                 <Grid container>
                     <Grid item xs={6}>
-                        <h1><Link className={classes.link} to="/adminPanel">Less is more</Link></h1>
+                        <h1><Link className={classes.link} to="/adminPanel/products">Less is more</Link></h1>
                     </Grid>
                     <Grid item xs={6} className={classes.iconDiv}>
                         <h3 className={classes.name}>Admin</h3>

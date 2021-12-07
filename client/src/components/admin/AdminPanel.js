@@ -19,6 +19,7 @@ import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 
 // icon imports
 import AddIcon from '@mui/icons-material/Add';
+import AdminCreateProduct from "./products/AdminCreateProduct";
 
 const AdminPanel = (props) => {
 
@@ -72,6 +73,9 @@ const AdminPanel = (props) => {
                 />
                 <Route path="coupons"
                        element={<AdminCoupons/>}
+                />
+                <Route path="create"
+                       element={<AdminCreateProduct/>}
                 />
             </Routes>
         </div>

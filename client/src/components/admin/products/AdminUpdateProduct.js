@@ -1,14 +1,27 @@
 import React, {useContext} from "react";
-// import {createProduct} from "../../../utils/admin/adminProductUtils";
-import TextField from "@material-ui/core/TextField";
+
+// util imports
 import {handleProduct} from "../../../utils/admin/adminProductsHandlers";
-import Button from "@material-ui/core/Button";
-import {ApiMessageContext} from "../../../utils/context/ApiMessageContext";
 import {updateProduct} from "../../../utils/admin/adminProductUtils";
+
+// component imports
 import MessageComponent from "../../common/Message";
+
+// context imports
+import {ApiMessageContext} from "../../../utils/context/ApiMessageContext";
+
+// style imports
+import {withStyles} from "@material-ui/core/styles";
+import adminFormStyles from "../../../utils/style/adminFormStyles";
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
+import Grid from '@mui/material/Grid';
+
 import {ApiCodeContext} from "../../../utils/context/ApiCodeContext";
 
 const AdminUpdateProduct = (props) => {
+
+    const classes = props.classes;
 
     const {setCode} = useContext(ApiCodeContext);
     const {setMessage} = useContext(ApiMessageContext);
@@ -19,64 +32,72 @@ const AdminUpdateProduct = (props) => {
     } = props;
 
     return (
-        <div>
-            <div>Admin update product</div>
-            <MessageComponent/>
-            <form onSubmit={(e) => {updateProduct(e, selectedProduct, setMessage, setCode)}}>
-                <div className="inputs">
-                    <TextField
-                        type="text"
-                        value={selectedProduct.title}
-                        name="title"
-                        label="title"
-                        onChange={e => handleProduct(e, "title", selectedProduct, setSelectedProduct)}
-                    />
+        <Grid container>
+            <Grid item xs={12}>
+                <h2 className={classes.heading}>Admin update product</h2>
+            </Grid>
+            <Grid item xs={12} className={classes.formGrid}>
+                <MessageComponent/>
+                <form onSubmit={(e) => {updateProduct(e, selectedProduct, setMessage, setCode)}} className={classes.form}>
+                        <TextField
+                            className={classes.input}
+                            type="text"
+                            value={selectedProduct.title}
+                            name="title"
+                            label="title"
+                            onChange={e => handleProduct(e, "title", selectedProduct, setSelectedProduct)}
+                        />
 
-                    <br/>
+                        <br/>
 
-                    <TextField
-                        type="text"
-                        value={selectedProduct.description}
-                        name="description"
-                        label="description"
-                        onChange={e => handleProduct(e, "description", selectedProduct, setSelectedProduct)}
-                    />
+                        <TextField
+                            className={classes.input}
+                            type="text"
+                            value={selectedProduct.description}
+                            name="description"
+                            label="description"
+                            onChange={e => handleProduct(e, "description", selectedProduct, setSelectedProduct)}
+                        />
 
-                    <br/>
+                        <br/>
 
-                    <TextField
-                        type="number"
-                        value={selectedProduct.price}
-                        name="price"
-                        label="price"
-                        onChange={e => handleProduct(e, "price", selectedProduct, setSelectedProduct)}
-                    />
+                        <TextField
+                            className={classes.input}
+                            type="number"
+                            value={selectedProduct.price}
+                            inputProps={{min: 0}}
+                            name="price"
+                            label="price"
+                            onChange={e => handleProduct(e, "price", selectedProduct, setSelectedProduct)}
+                        />
 
-                    <br/>
+                        <br/>
 
-                    <TextField
-                        type="text"
-                        value={selectedProduct.category}
-                        name="category"
-                        label="category"
-                        onChange={e => handleProduct(e, "category", selectedProduct, setSelectedProduct)}
-                    />
+                        <TextField
+                            className={classes.input}
+                            type="text"
+                            value={selectedProduct.category}
+                            name="category"
+                            label="category"
+                            onChange={e => handleProduct(e, "category", selectedProduct, setSelectedProduct)}
+                        />
 
-                    <br/>
+                        <br/>
 
-                    <TextField
-                        type="file"
-                        name="image"
-                        label="image"
-                        accept="image/*"
-                        onChange={e => handleProduct(e, "image", selectedProduct, setSelectedProduct)}
-                    />
+                        <TextField
+                            className={classes.input}
+                            type="file"
+                            name="image"
+                            label="image"
+                            accept="image/*"
+                            onChange={e => handleProduct(e, "image", selectedProduct, setSelectedProduct)}
+                        />
 
-                </div>
-                <Button type="submit">Create</Button>
-            </form>
-        </div>
+                    <Button type="submit" className={classes.button}>Create</Button>
+                </form>
+            </Grid>
+        </Grid>
     );
 };
 
-export default AdminUpdateProduct;
+export default withStyles(adminFormStyles)(AdminUpdateProduct);
