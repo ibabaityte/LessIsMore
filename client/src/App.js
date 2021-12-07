@@ -69,7 +69,7 @@ const App = () => {
                                 <Grid item xs={12}>
                                     <Header/>
                                 </Grid>
-                                <Grid item xs={12}>
+                                <Grid item xs={12} style={{minHeight: "100vh"}}>
                                     <Subscribe modalOpen={modalOpen} setModalOpen={setModalOpen}/>
                                     <Routes>
                                         <Route path="/*" element={<Products/>}/>

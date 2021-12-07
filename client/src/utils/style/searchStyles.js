@@ -18,7 +18,6 @@ const searchStyles = (theme) => ({
     categoryButtons: {
         display: "flex",
         flexDirection: "row",
-        // justifyContent: "space-around",
         [theme.breakpoints.down('xs')]: {
             flexDirection: "column"
         },

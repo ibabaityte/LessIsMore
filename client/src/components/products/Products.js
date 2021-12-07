@@ -51,7 +51,12 @@ const Products = () => {
                 />
                 <Route path="product"
                        element={<Product
-                           product={selectedProduct}
+                           selectedProduct={selectedProduct}
+                           favorites={favorites}
+                           setFavorites={setFavorites}
+                           user={user}
+                           setProducts={setProducts}
+                           setSelectedProduct={setSelectedProduct}
                        />}
                 />
                 <Route path="cart"

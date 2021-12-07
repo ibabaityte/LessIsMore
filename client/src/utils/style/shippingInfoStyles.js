@@ -21,7 +21,12 @@ const shippingInfoStyles = () => ({
         margin: "40px auto 15px auto",
         width: "50%",
         backgroundColor: "rgba(227, 227, 227)"
-    }
+    },
+    formMessage: {
+        width: "70%",
+        margin: "0 auto"
+    },
+
 });
 
 export default shippingInfoStyles;

@@ -37,7 +37,7 @@ const Cart = (props) => {
     }, []);
 
     return (
-        <Grid container className={classes.cart} style={{minHeight: "100vh"}}>
+        <Grid container className={classes.cart}>
             <Grid item xs={12} style={{height: "21vh"}}>
                 <h1 className={classes.heading}>Cart</h1>
             </Grid>

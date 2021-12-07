@@ -34,7 +34,7 @@ const UserProfile = (props) => {
     }, [setShippingInfo, user]);
 
     return (
-        <Grid container style={{minHeight: "100vh"}} className={classes.grid}>
+        <Grid container className={classes.grid}>
             {
                 user.token ?
                     <Grid container>

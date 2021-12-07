@@ -53,9 +53,11 @@ const ShippingInfo = (props) => {
                 }
             </Grid>
             <Grid item xs={12} className={classes.shippingForm}>
-                <MessageComponent/>
                 <form className={classes.form}
                       onSubmit={e => handleShippingInfo(e, user, newShippingInfo, setNewShippingInfo, setMessage, setCode)}>
+                    <div className={classes.formMessage}>
+                        <MessageComponent />
+                    </div>
 
                     <TextField
                         className={classes.shippingInput}

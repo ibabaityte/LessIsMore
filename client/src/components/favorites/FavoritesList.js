@@ -19,7 +19,7 @@ const FavoritesList = (props) => {
     } = props;
 
     return (
-        <Grid container className={classes.productList} style={{minHeight: "100vh"}}>
+        <Grid container className={classes.productList}>
             <Grid>
                 <Grid item xs={12} style={{height: "21vh"}}>
                     <h1 className={classes.heading}>Favorite products</h1>

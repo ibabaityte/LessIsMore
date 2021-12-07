@@ -64,31 +64,33 @@ const ProductCardButton = (props) => {
             </IconButton>
         );
     } else {
-        return <div className={classes.buttonGroup}>
-            <Box display={showBox}>
-                <ToggleButtonGroup
-                    className={classes.sizeButtons}
-                    exclusive
-                    onClick={(e) => {
-                        handleAddToCart(cartContext, setCartContext, product, e.target.value, setMessage, setCode)
-                    }}
-                >
-                    <ToggleButton  className={classes.size} value="XXS">XXS</ToggleButton>
-                    <ToggleButton  className={classes.size} value="XS">XS</ToggleButton>
-                    <ToggleButton  className={classes.size} value="S">S</ToggleButton>
-                    <ToggleButton  className={classes.size} value="M">M</ToggleButton>
-                    <ToggleButton  className={classes.size} value="L">L</ToggleButton>
-                    <ToggleButton  className={classes.size} value="XL">XL</ToggleButton>
-                    <ToggleButton  className={classes.size} value="XXL">XXL</ToggleButton>
-                </ToggleButtonGroup>
-            </Box>
-            <IconButton onClick={() => addFavorite(favorites, product, product._id, user, setFavorites, setMessage, setCode)}>
-                <FavoriteIcon sx={{ color: 'rgb(181, 5, 26)' }} className={classes.icon} fontSize="large"/>
-            </IconButton>
-            <IconButton onClick={() => {showSizeBox()}}>
-                <ShoppingCartIcon sx={{ color: 'rgb(20, 87, 66)' }} className={classes.icon} fontSize="large"/>
-            </IconButton>
-        </div>
+        return (
+            <div className={classes.buttonGroup}>
+                <Box display={showBox}>
+                    <ToggleButtonGroup
+                        className={classes.sizeButtons}
+                        exclusive
+                        onClick={(e) => {
+                            handleAddToCart(cartContext, setCartContext, product, e.target.value, setMessage, setCode)
+                        }}
+                    >
+                        <ToggleButton  className={classes.size} value="XXS">XXS</ToggleButton>
+                        <ToggleButton  className={classes.size} value="XS">XS</ToggleButton>
+                        <ToggleButton  className={classes.size} value="S">S</ToggleButton>
+                        <ToggleButton  className={classes.size} value="M">M</ToggleButton>
+                        <ToggleButton  className={classes.size} value="L">L</ToggleButton>
+                        <ToggleButton  className={classes.size} value="XL">XL</ToggleButton>
+                        <ToggleButton  className={classes.size} value="XXL">XXL</ToggleButton>
+                    </ToggleButtonGroup>
+                </Box>
+                <IconButton onClick={() => addFavorite(favorites, product, product._id, user, setFavorites, setMessage, setCode)}>
+                    <FavoriteIcon sx={{ color: 'rgb(181, 5, 26)' }} className={classes.icon} fontSize="large"/>
+                </IconButton>
+                <IconButton onClick={() => {showSizeBox()}}>
+                    <ShoppingCartIcon sx={{ color: 'rgb(20, 87, 66)' }} className={classes.icon} fontSize="large"/>
+                </IconButton>
+            </div>
+        );
     }
 };
 
