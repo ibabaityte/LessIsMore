@@ -20,6 +20,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import LogoutIcon from '@mui/icons-material/Logout';
 import EmailIcon from '@mui/icons-material/Email';
+import CheckroomIcon from '@mui/icons-material/Checkroom';
 
 const Header = (props) => {
 
@@ -61,6 +62,11 @@ const Header = (props) => {
                             </Link>
                         </IconButton>
                         <IconButton>
+                            <Link to="/" className={classes.link}>
+                                <CheckroomIcon className={classes.icon} fontSize="large"/>
+                            </Link>
+                        </IconButton>
+                        <IconButton>
                             <Link to="favorites" className={classes.link}>
                                 <FavoriteIcon className={classes.icon} fontSize="large"/>
                             </Link>
@@ -70,13 +76,13 @@ const Header = (props) => {
                                 <ShoppingCartIcon className={classes.icon} fontSize="large"/>
                             </Link>
                         </IconButton>
-                        <IconButton>
-                            <Link to="" className={classes.link} onClick={() => setModalOpen(true)}>
+                        <IconButton onClick={() => setModalOpen(true)}>
+                            <Link to="" className={classes.link} >
                                 <EmailIcon className={classes.icon} fontSize="large"/>
                             </Link>
                         </IconButton>
-                        <IconButton>
-                            <Link to="" className={classes.link} onClick={() => logout()}>
+                        <IconButton onClick={() => logout()}>
+                            <Link to="" className={classes.link} >
                                 <LogoutIcon className={classes.icon} fontSize="large"/>
                             </Link>
                         </IconButton>

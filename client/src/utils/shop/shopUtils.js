@@ -54,23 +54,31 @@ const validateFields = (shippingInfo) => {
 };
 
 const completeOrder = async (cart, shippingInfo, setShippingInfo, user, setMessage, setCode) => {
-    if (validateFields(shippingInfo) === false) {
-        setMessage("Please enter shipping information!");
+    console.log(cart.quantity);
+    if(cart.quantity === undefined) {
+        setMessage("Cart cannot be empty!");
         setCode("400");
+        localStorage.setItem("apiMessage", "400");
         localStorage.setItem("code", "400");
     } else {
-        await updateShippingInfo(user, shippingInfo, setShippingInfo, setMessage, setCode);
-        await axios.post(`${API_URL}/order/create`, cart, generateAuthConfig()).then(result => {
-            setMessage(result.data.message);
-            setCode("200");
-            localStorage.setItem("apiMessage", result.data.message);
-            localStorage.setItem("code", "200");
-            window.location.href = "/";
-        }).catch(err => {
-            console.log(err);
-        })
+        if (validateFields(shippingInfo) === false) {
+            setMessage("Please enter shipping information!");
+            setCode("400");
+            localStorage.setItem("apiMessage", "Please enter shipping information!");
+            localStorage.setItem("code", "400");
+        } else {
+            await updateShippingInfo(user, shippingInfo, setShippingInfo, setMessage, setCode);
+            await axios.post(`${API_URL}/order/create`, cart, generateAuthConfig()).then(result => {
+                setMessage(result.data.message);
+                setCode("200");
+                localStorage.setItem("apiMessage", result.data.message);
+                localStorage.setItem("code", "200");
+                window.location.href = "/";
+            }).catch(err => {
+                console.log(err);
+            })
+        }
     }
-
 };
 
 export {

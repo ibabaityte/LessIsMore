@@ -65,13 +65,13 @@ const App = () => {
                     <ApiMessageContext.Provider value={{message, setMessage}}>
                         <ApiCodeContext.Provider value={{code, setCode}}>
                             <CartContext.Provider value={{cartContext, setCartContext}}>
+                                <Subscribe modalOpen={modalOpen} setModalOpen={setModalOpen}/>
                                 <Grid item xs={12}>
                                     <Header
                                         setModalOpen={setModalOpen}
                                     />
                                 </Grid>
                                 <Grid item xs={12} style={{minHeight: "100vh"}}>
-                                    <Subscribe modalOpen={modalOpen} setModalOpen={setModalOpen}/>
                                     <Routes>
                                         <Route path="/*" element={<Products/>}/>
                                         <Route path="/adminPanel/*" element={<AdminPanel/>}/>

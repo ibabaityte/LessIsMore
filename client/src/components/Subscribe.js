@@ -44,8 +44,6 @@ const Subscribe = (props) => {
             <Modal
                 open={modalOpen}
                 onClose={() => setModalOpen(false)}
-                aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
             >
                 <Box>
                     <Grid container className={classes.modalBox}>

@@ -15,10 +15,13 @@ const adminPanelStyles = () => ({
         display: "flex",
         flexDirection: "row",
         justifyContent: "space-around",
-        backgroundColor: "rgba(227, 227, 227, 0.6)"
+        backgroundColor: "rgba(227, 227, 227, 0.6)",
     },
     category: {
         padding: "5px 15px !important",
+        '&.css-ueukts-MuiButtonBase-root-MuiToggleButton-root': {
+            border: "none !important"
+        }
     },
     addButton: {
         color: "black",
