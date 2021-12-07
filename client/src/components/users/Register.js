@@ -3,16 +3,21 @@ import React, {useContext, useState} from "react";
 // util imports
 import {handleRegister, handleChangeInput} from "../../utils/users/userHandlers";
 
-// style imports
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
-import MessageComponent from "../common/Message";
-
 // context imports
 import {ApiMessageContext} from "../../utils/context/ApiMessageContext";
 import {ApiCodeContext} from "../../utils/context/ApiCodeContext";
 
-const Register = () => {
+// style imports
+import {withStyles} from "@material-ui/core/styles";
+import formStyles from "../../utils/style/formStyles";
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
+import MessageComponent from "../common/Message";
+import Grid from '@mui/material/Grid';
+
+const Register = (props) => {
+
+    const classes = props.classes;
 
     const {setCode} = useContext(ApiCodeContext);
     const {setMessage} = useContext(ApiMessageContext);
@@ -25,56 +30,59 @@ const Register = () => {
     });
 
     return (
-        <div>
-            <div>Sign Up in to your account</div>
-            <MessageComponent/>
+        <Grid container>
+            <Grid item xs={12}>
+                <h2 className={classes.heading}>Sign Up to your account</h2>
+            </Grid>
+            <Grid item xs={12} className={classes.formGrid}>
+                <MessageComponent/>
+                <form onSubmit={e => handleRegister(e, setMessage, newUser, setNewUser, setCode)} className={classes.form}>
+                        <TextField
+                            className={classes.userInput}
+                            type="text"
+                            value={newUser.firstName}
+                            name="firstName"
+                            label="First name"
+                            onChange={e => handleChangeInput(e, newUser, setNewUser)}
+                        />
 
-            <form onSubmit={e => handleRegister(e, setMessage, newUser, setNewUser, setCode)}>
-                <div className="inputs">
+                        <br/>
 
-                    <TextField
-                        type="text"
-                        value={newUser.firstName}
-                        name="firstName"
-                        label="firstName"
-                        onChange={e => handleChangeInput(e, newUser, setNewUser)}
-                    />
+                        <TextField
+                            className={classes.userInput}
+                            type="text"
+                            value={newUser.lastName}
+                            name="lastName"
+                            label="Last name"
+                            onChange={e => handleChangeInput(e, newUser, setNewUser)}
+                        />
 
-                    <br/>
+                        <br/>
 
-                    <TextField
-                        type="text"
-                        value={newUser.lastName}
-                        name="lastName"
-                        label="lastName"
-                        onChange={e => handleChangeInput(e, newUser, setNewUser)}
-                    />
+                        <TextField
+                            className={classes.userInput}
+                            type="text"
+                            value={newUser.email}
+                            label="Email"
+                            name="email"
+                            onChange={e => handleChangeInput(e, newUser, setNewUser)}
+                        />
 
-                    <br/>
+                        <br/>
 
-                    <TextField
-                        type="text"
-                        value={newUser.email}
-                        label="email"
-                        name="email"
-                        onChange={e => handleChangeInput(e, newUser, setNewUser)}
-                    />
-
-                    <br/>
-
-                    <TextField
-                        type="password"
-                        value={newUser.password}
-                        label="password"
-                        name="password"
-                        onChange={e => handleChangeInput(e, newUser, setNewUser)}
-                    />
-
-                </div>
-                <Button type="submit">Sign Up</Button>
-            </form>
-        </div>
+                        <TextField
+                            className={classes.userInput}
+                            type="password"
+                            value={newUser.password}
+                            label="Password"
+                            name="password"
+                            onChange={e => handleChangeInput(e, newUser, setNewUser)}
+                        />
+                    <Button type="submit" className={classes.button}>Sign Up</Button>
+                </form>
+            </Grid>
+        </Grid>
     );
 }
 
-export default Register;
+export default withStyles(formStyles)(Register);

@@ -48,18 +48,26 @@ const UserProfile = (props) => {
                                 </Grid>
                                 <Grid item md={6} xs={12} className={classes.infoGrid}>
                                     <h3>Shipping information:</h3>
-                                    <div className={classes.info}><span className={classes.infoName}>Phone number:</span> {shippingInfo.phoneNumber}</div>
-                                    <div className={classes.info}><span className={classes.infoName}>City:</span> {shippingInfo.city}</div>
-                                    <div className={classes.info}><span className={classes.infoName}>Street:</span> {shippingInfo.street}</div>
-                                    <div className={classes.info}><span className={classes.infoName}>Building/apartment number:</span> {shippingInfo.buildingNumber}</div>
-                                    <div className={classes.info}><span className={classes.infoName}>Postal code:</span> {shippingInfo.postalCode}</div>
+                                    <div className={classes.info}><span
+                                        className={classes.infoName}>Phone number:</span> {shippingInfo.phoneNumber}
+                                    </div>
+                                    <div className={classes.info}><span
+                                        className={classes.infoName}>City:</span> {shippingInfo.city}</div>
+                                    <div className={classes.info}><span
+                                        className={classes.infoName}>Street:</span> {shippingInfo.street}</div>
+                                    <div className={classes.info}><span className={classes.infoName}>Building/apartment number:</span> {shippingInfo.buildingNumber}
+                                    </div>
+                                    <div className={classes.info}><span
+                                        className={classes.infoName}>Postal code:</span> {shippingInfo.postalCode}</div>
                                 </Grid>
                                 <Grid item xs={12} className={classes.buttonDiv}>
                                     {
                                         shippingInfo.city === "" ?
-                                            <Link to="shippingInfo" className={classes.link}><Button className={classes.button}>Enter shipping info</Button></Link>
+                                            <Link to="shippingInfo" className={classes.link}><Button
+                                                className={classes.button}>Enter shipping info</Button></Link>
                                             :
-                                            <Link to="shippingInfo" className={classes.link}><Button className={classes.button}>Update shipping info</Button></Link>
+                                            <Link to="shippingInfo" className={classes.link}><Button
+                                                className={classes.button}>Update shipping info</Button></Link>
                                     }
                                 </Grid>
                             </Grid>
@@ -76,11 +84,14 @@ const UserProfile = (props) => {
                         </Grid>
                     </Grid>
                     :
-                    <Grid>
-                        <div>You are not logged in. Please log in, or if you dont have an account, please sign up!
-                        </div>
-                        <Link to="/login">Login</Link>
-                        <Link to="/register">Register</Link>
+                    <Grid container className={classes.loginRegisterPanel}>
+                        <Grid item xs={12}>
+                            <h4 className={classes.panelMessage}>You are not logged in. Please log in, or if you dont have an account, please sign up!</h4>
+                            <div className={classes.buttons}>
+                                <Link to="/login" className={classes.panelLink}><Button className={classes.panelButton}>Login</Button></Link>
+                                <Link to="/register" className={classes.panelLink}><Button className={classes.panelButton}>Register</Button></Link>
+                            </div>
+                        </Grid>
                     </Grid>
             }
         </Grid>

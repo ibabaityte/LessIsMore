@@ -12,7 +12,7 @@ import {ApiMessageContext} from "../../../utils/context/ApiMessageContext";
 
 // style imports
 import {withStyles} from "@material-ui/core/styles";
-import adminFormStyles from "../../../utils/style/adminFormStyles";
+import formStyles from "../../../utils/style/formStyles";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Grid from '@mui/material/Grid';
@@ -100,4 +100,4 @@ const AdminUpdateProduct = (props) => {
     );
 };
 
-export default withStyles(adminFormStyles)(AdminUpdateProduct);
+export default withStyles(formStyles)(AdminUpdateProduct);
