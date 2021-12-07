@@ -54,8 +54,7 @@ const validateFields = (shippingInfo) => {
 };
 
 const completeOrder = async (cart, shippingInfo, setShippingInfo, user, setMessage, setCode) => {
-    console.log(cart.quantity);
-    if(cart.quantity === undefined) {
+    if(cart.bill === "") {
         setMessage("Cart cannot be empty!");
         setCode("400");
         localStorage.setItem("apiMessage", "400");

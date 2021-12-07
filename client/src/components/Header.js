@@ -33,7 +33,7 @@ const Header = (props) => {
     if (user.userType === "ADMIN") {
         return (
             <AppBar position="static" className={classes.header}>
-                <Grid container >
+                <Grid container>
                     <Grid item xs={6}>
                         <h1><Link className={classes.link} to="/adminPanel">Less is more</Link></h1>
                     </Grid>
@@ -50,7 +50,7 @@ const Header = (props) => {
     } else if (!!user.token) {
         return (
             <AppBar position="static" className={classes.header}>
-                <Grid container >
+                <Grid container>
                     <Grid item md={3} xs={6}>
                         <h1><Link to="/" className={classes.link}>Less is more</Link></h1>
                     </Grid>
@@ -77,12 +77,12 @@ const Header = (props) => {
                             </Link>
                         </IconButton>
                         <IconButton onClick={() => setModalOpen(true)}>
-                            <Link to="" className={classes.link} >
+                            <Link to="" className={classes.link}>
                                 <EmailIcon className={classes.icon} fontSize="large"/>
                             </Link>
                         </IconButton>
                         <IconButton onClick={() => logout()}>
-                            <Link to="" className={classes.link} >
+                            <Link to="" className={classes.link}>
                                 <LogoutIcon className={classes.icon} fontSize="large"/>
                             </Link>
                         </IconButton>
@@ -101,6 +101,16 @@ const Header = (props) => {
                         <IconButton>
                             <Link to="userProfile" className={classes.link}>
                                 <AccountCircleIcon className={classes.icon} fontSize="large"/>
+                            </Link>
+                        </IconButton>
+                        <IconButton>
+                            <Link to="/" className={classes.link}>
+                                <CheckroomIcon className={classes.icon} fontSize="large"/>
+                            </Link>
+                        </IconButton>
+                        <IconButton onClick={() => setModalOpen(true)}>
+                            <Link to="" className={classes.link}>
+                                <EmailIcon className={classes.icon} fontSize="large"/>
                             </Link>
                         </IconButton>
                     </Grid>
