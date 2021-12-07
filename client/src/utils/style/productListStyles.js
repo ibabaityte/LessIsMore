@@ -29,12 +29,22 @@ const productListStyles = (theme) => ({
         marginBottom : "30px"
     },
     cardContent: {
-        height: "50px"
+        height: "50px",
+        [theme.breakpoints.down('md')]: {
+            height: "70px"
+        }
     },
     cardButtons: {
         height: "80px",
         display: "flex",
         alignItems: "flex-end"
+    },
+    cartProductCard: {
+        margin: "15px",
+        [theme.breakpoints.down(900)]: {
+            width: "60%",
+            margin: "15px auto"
+        }
     },
     buttonGroup: {
         width: "100%"
@@ -53,6 +63,15 @@ const productListStyles = (theme) => ({
     },
     icon: {
         margin: "0 15px 0 5px"
+    },
+    numberInput: {
+        padding: "5px"
+    },
+    removeIcon: {
+        padding: "5px"
+    },
+    infoName: {
+        fontWeight: "bold"
     }
 });
 

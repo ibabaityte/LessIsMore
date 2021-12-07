@@ -10,6 +10,9 @@ const favoritesListStyles = (theme) => ({
     heading: {
         margin: "20px auto 0 auto",
         textAlign: "center"
+    },
+    headingGrid: {
+        height: "100px"
     }
 });
 

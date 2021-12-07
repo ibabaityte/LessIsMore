@@ -10,7 +10,16 @@ import CartProduct from "./CartProduct";
 // util imports
 import {getCartProducts} from "../../utils/shop/shopUtils";
 
-const Cart = () => {
+// style imports
+import {withStyles} from "@material-ui/core/styles";
+import cartStyles from "../../utils/style/cartStyles";
+import Grid from '@mui/material/Grid';
+
+const Cart = (props) => {
+
+    const classes = props.classes;
+
+    const {setSelectedProduct} = props;
 
     const {cartContext} = useContext(CartContext);
 
@@ -28,23 +37,34 @@ const Cart = () => {
     }, []);
 
     return (
-        <div>
-            <div>Cart component</div>
-            {
-                cartProducts.map((productContent, index) => {
-                    const cartProduct = cartContext.products[index];
-                    return (
-                        <CartProduct
-                            key={index}
-                            productContent={productContent}
-                            cartProduct={cartProduct}
-                        />
-                    );
-                })
-            }
-            <ShippingInfo/>
-        </div>
+        <Grid container className={classes.cart} style={{minHeight: "100vh"}}>
+            <Grid item xs={12} style={{height: "21vh"}}>
+                <h1 className={classes.heading}>Cart</h1>
+            </Grid>
+            <Grid item xs={12} md={6}>
+                <Grid container>
+                    {
+                        cartProducts.map((productContent, index) => {
+                            const cartProduct = cartContext.products[index];
+                            return (
+                                <Grid item xs={12} md={6}>
+                                    <CartProduct
+                                        key={index}
+                                        productContent={productContent}
+                                        cartProduct={cartProduct}
+                                        setSelectedProduct={setSelectedProduct}
+                                    />
+                                </Grid>
+                            );
+                        })
+                    }
+                </Grid>
+            </Grid>
+            <Grid item xs={12} md={6}>
+                <ShippingInfo/>
+            </Grid>
+        </Grid>
     );
 };
 
-export default Cart;
+export default withStyles(cartStyles)(Cart);

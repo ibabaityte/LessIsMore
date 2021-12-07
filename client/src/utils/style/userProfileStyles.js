@@ -29,6 +29,9 @@ const userProfileStyles = (theme) => ({
         backgroundColor: "rgba(227, 227, 227)",
         color: "black",
     },
+    buttonDiv: {
+        marginBottom: "50px"
+    },
     link: {
         textDecoration: "none",
         display: "flex",

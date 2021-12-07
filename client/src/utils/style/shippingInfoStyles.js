@@ -1,6 +1,5 @@
 const shippingInfoStyles = () => ({
     shipping: {
-        marginTop: "50px",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
@@ -10,7 +9,6 @@ const shippingInfoStyles = () => ({
         width: "100%",
     },
     form: {
-        width: "100%",
         display: "flex",
         justifyContent: "center",
         flexDirection: "column"
@@ -20,7 +18,7 @@ const shippingInfoStyles = () => ({
         margin: "0 auto"
     },
     button: {
-        margin: "15px auto",
+        margin: "40px auto 15px auto",
         width: "50%",
         backgroundColor: "rgba(227, 227, 227)"
     }

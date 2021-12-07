@@ -43,13 +43,13 @@ const ShippingInfo = (props) => {
     }, [setNewShippingInfo, user]);
 
     return (
-        <Grid className={classes.shipping}>
+        <Grid container className={classes.shipping}>
             <Grid item xs={12}>
                 {
-                    newShippingInfo.city === "" ?
-                        <h3>Enter shipping info:</h3>
+                    window.location.href === "http://localhost:3000/cart" || newShippingInfo.city === "" ?
+                        <h3>Enter shipping information:</h3>
                         :
-                        <h3>Update shipping info:</h3>
+                        <h3>Update shipping information:</h3>
                 }
             </Grid>
             <Grid item xs={12} className={classes.shippingForm}>
@@ -113,14 +113,14 @@ const ShippingInfo = (props) => {
                         window.location.href === "http://localhost:3000/cart" ?
                             <Button
                                 className={classes.button}
-                                onClick={() => {
-                                completeOrder(cartContext, newShippingInfo, setNewShippingInfo, user, setMessage, setCode)}}>Create order</Button>
+                                onClick={() => {completeOrder(cartContext, newShippingInfo, setNewShippingInfo, user, setMessage, setCode)}}
+                            >Complete order</Button>
                             :
                             <Button
                                 className={classes.button}
-                                type="submit">Submit</Button>
+                                type="submit">Submit
+                            </Button>
                     }
-
                 </form>
             </Grid>
         </Grid>

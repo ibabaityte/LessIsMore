@@ -54,7 +54,7 @@ const UserProfile = (props) => {
                                     <div className={classes.info}><span className={classes.infoName}>Building/apartment number:</span> {shippingInfo.buildingNumber}</div>
                                     <div className={classes.info}><span className={classes.infoName}>Postal code:</span> {shippingInfo.postalCode}</div>
                                 </Grid>
-                                <Grid item xs={12}>
+                                <Grid item xs={12} className={classes.buttonDiv}>
                                     {
                                         shippingInfo.city === "" ?
                                             <Link to="shippingInfo" className={classes.link}><Button className={classes.button}>Enter shipping info</Button></Link>
