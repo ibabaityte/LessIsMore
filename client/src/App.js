@@ -6,7 +6,6 @@ import Header from "./components/Header";
 import Products from "./components/products/Products";
 import AdminPanel from "./components/admin/AdminPanel";
 import Subscribe from "./components/Subscribe";
-import Footer from "./components/Footer";
 import UserProfile from "./components/users/UserProfile";
 import Login from "./components/users/Login";
 import Register from "./components/users/Register";
@@ -67,7 +66,9 @@ const App = () => {
                         <ApiCodeContext.Provider value={{code, setCode}}>
                             <CartContext.Provider value={{cartContext, setCartContext}}>
                                 <Grid item xs={12}>
-                                    <Header/>
+                                    <Header
+                                        setModalOpen={setModalOpen}
+                                    />
                                 </Grid>
                                 <Grid item xs={12} style={{minHeight: "100vh"}}>
                                     <Subscribe modalOpen={modalOpen} setModalOpen={setModalOpen}/>
@@ -78,9 +79,6 @@ const App = () => {
                                         <Route path="login" element={<Login/>}/>
                                         <Route path="register" element={<Register/>}/>
                                     </Routes>
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <Footer setModalOpen={setModalOpen}/>
                                 </Grid>
                             </CartContext.Provider>
                         </ApiCodeContext.Provider>

@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {Link, Outlet, Route, Routes} from "react-router-dom";
+import {Outlet, Route, Routes} from "react-router-dom";
 
 // component imports
 import AdminCreateProduct from "./AdminCreateProduct";
@@ -20,7 +20,6 @@ const AdminProducts = () => {
 
     return (
         <div>
-            <Link to="create">Create</Link>
             <Routes>
                 <Route path="/"
                        element={<ProductList

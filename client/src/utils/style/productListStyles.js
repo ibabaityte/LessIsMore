@@ -55,7 +55,7 @@ const productListStyles = (theme) => ({
         backgroundColor: "rgba(227, 227, 227, 0.3)"
     },
     size: {
-        padding: "5px 5px 5px 5px !important",
+        padding: "5px 15px 5px 15px !important",
     },
     link: {
         textDecoration: "none",

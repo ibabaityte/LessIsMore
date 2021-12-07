@@ -10,7 +10,19 @@ import AdminOrders from "./orders/AdminOrders";
 import AdminSubscribers from "./subscribers/AdminSubscribers";
 import AdminCoupons from "./coupons/AdminCoupons";
 
-const AdminPanel = () => {
+// style imports
+import {withStyles} from "@material-ui/core/styles";
+import adminPanelStyles from "../../utils/style/adminPanelStyles";
+import Button from '@mui/material/Button';
+import ToggleButton from "@mui/material/ToggleButton";
+import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
+
+// icon imports
+import AddIcon from '@mui/icons-material/Add';
+
+const AdminPanel = (props) => {
+
+    const classes = props.classes;
 
     return (
         <div>
@@ -18,12 +30,28 @@ const AdminPanel = () => {
                 {
                     ({user}) => (
                         user.userType === "ADMIN" ?
-                            <div>
+                            <div className={classes.adminPanel}>
                                 <h1>This is the admin panel</h1>
-                                <Link to="products">Products</Link>
-                                <Link to="subscribers">Subscribers</Link>
-                                <Link to="orders">Orders</Link>
-                                <Link to="coupons">Coupons</Link>
+                                <ToggleButtonGroup className={classes.categoryButtons}>
+                                    <Link className={classes.link} to="products">
+                                        <ToggleButton value="all" className={classes.category}>Products</ToggleButton>
+                                    </Link>
+                                    <Link className={classes.link} to="subscribers">
+                                        <ToggleButton value="pants"
+                                                      className={classes.category}>Subscribers</ToggleButton>
+                                    </Link>
+                                    <Link className={classes.link} to="orders">
+                                        <ToggleButton value="shirts" className={classes.category}>Orders</ToggleButton>
+                                    </Link>
+                                    <Link className={classes.link} to="coupons">
+                                        <ToggleButton value="accessories"
+                                                      className={classes.category}>Coupons</ToggleButton>
+                                    </Link>
+                                </ToggleButtonGroup>
+
+                                <Link to="create" className={classes.link}>
+                                    <Button className={classes.addButton}><AddIcon/>New product</Button>
+                                </Link>
                             </div>
                             :
                             <div>
@@ -50,4 +78,4 @@ const AdminPanel = () => {
     );
 }
 
-export default AdminPanel;
+export default withStyles(adminPanelStyles)(AdminPanel);

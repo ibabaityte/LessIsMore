@@ -19,8 +19,12 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import LogoutIcon from '@mui/icons-material/Logout';
+import EmailIcon from '@mui/icons-material/Email';
 
 const Header = (props) => {
+
+    const {setModalOpen} = props;
+
     const classes = props.classes;
 
     const {user} = useContext(UserContext);
@@ -67,8 +71,13 @@ const Header = (props) => {
                             </Link>
                         </IconButton>
                         <IconButton>
-                            <Link to="" className={classes.link}>
-                                <LogoutIcon className={classes.icon} onClick={() => logout()} fontSize="large"/>
+                            <Link to="" className={classes.link} onClick={() => setModalOpen(true)}>
+                                <EmailIcon className={classes.icon} fontSize="large"/>
+                            </Link>
+                        </IconButton>
+                        <IconButton>
+                            <Link to="" className={classes.link} onClick={() => logout()}>
+                                <LogoutIcon className={classes.icon} fontSize="large"/>
                             </Link>
                         </IconButton>
                     </Grid>
