@@ -8,10 +8,10 @@ const formStyles = (theme) => ({
     },
     heading: {
         textAlign: "center",
-        margin: "50px"
+        margin: "50px",
+        fontFamily: "'Zilla Slab', serif"
     },
     form: {
-        width: "70%",
         margin: "0 auto",
         display: "flex",
         flexDirection: "column",
@@ -22,10 +22,11 @@ const formStyles = (theme) => ({
         }
     },
     input: {
+        width: "50%",
         margin: "15px auto",
     },
     userInput: {
-        width: "70%",
+        width: "50%",
         margin: "5px auto;"
     },
     button: {

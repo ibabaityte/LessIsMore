@@ -14,7 +14,8 @@ const adminSubscriberStyle = (theme) => ({
     },
     heading: {
         textAlign: "center",
-        margin: "50px"
+        margin: "50px",
+        fontFamily: "'Zilla Slab', serif"
     },
     emailWrapper: {
         textAlign: "center",

@@ -1,7 +1,8 @@
 const adminOrdersStyles = () => ({
     heading: {
         textAlign: "center",
-        margin: "50px"
+        margin: "50px",
+        fontFamily: "'Zilla Slab', serif"
     },
     order: {
         width: "70%",

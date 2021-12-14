@@ -4,17 +4,16 @@ const headerStyles = (theme) => ({
             backgroundColor: "rgba(247, 247, 247)",
         },
         padding: "5px 40px 5px 40px",
+        fontFamily: "'Zilla Slab', serif"
     },
     link: {
         textDecoration: "none",
-        // color: "rgb(51, 51, 50)"
         color: "rgb(15, 64, 49)"
     },
     name: {
         width: "auto",
         display: "inline-block",
         marginRight: "10px",
-        // color: "black"
         color: "rgb(15, 64, 49)",
         [theme.breakpoints.down('xs')]: {
             display: "none"

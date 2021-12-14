@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 
 // style imports
 import {withStyles} from "@material-ui/core/styles";
@@ -12,10 +12,21 @@ import {initProducts} from "../../utils/products/productUtils";
 const Filter = (props) => {
 
     const classes = props.classes;
+    const {setProducts} = props;
 
-    const {
-        setProducts
-    } = props;
+    const [markedCategory, setMarkedCategory] = useState("all");
+
+    const markCategory = (btn) => {
+        setMarkedCategory(btn);
+    };
+
+    const addMarkedClass = (btn) => {
+        if (markedCategory === btn) {
+            return `${classes.markedCategory}`;
+        } else {
+            return `${classes.category}`;
+        }
+    };
 
     return (
         <div className={classes.filter}>
@@ -24,13 +35,13 @@ const Filter = (props) => {
                 onClick={(e) => initProducts(setProducts, e.target.value)}
             >
                 <div className={classes.categories}>
-                    <ToggleButton value="all" className={classes.category}>All</ToggleButton>
-                    <ToggleButton value="pants" className={classes.category}>Pants</ToggleButton>
-                    <ToggleButton value="shirts" className={classes.category}>Shirts</ToggleButton>
+                    <ToggleButton value="all" onClick={() => {markCategory("all")}} className={addMarkedClass("all")}>All</ToggleButton>
+                    <ToggleButton value="pants" onClick={() => {markCategory("pants")}} className={addMarkedClass("pants")}>Pants</ToggleButton>
+                    <ToggleButton value="shirts" onClick={() => {markCategory("shirts")}} className={addMarkedClass("shirts")}>Shirts</ToggleButton>
                 </div>
                 <div className={classes.categories}>
-                    <ToggleButton value="accessories" className={classes.category}>Accessories</ToggleButton>
-                    <ToggleButton value="sweaters" className={classes.category}>Sweaters</ToggleButton>
+                    <ToggleButton value="accessories" onClick={() => {markCategory("accessories")}} className={addMarkedClass("accessories")}>Accessories</ToggleButton>
+                    <ToggleButton value="sweaters" onClick={() => {markCategory("sweaters")}} className={addMarkedClass("sweaters")}>Sweaters</ToggleButton>
                 </div>
             </ToggleButtonGroup>
         </div>

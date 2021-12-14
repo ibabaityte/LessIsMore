@@ -33,7 +33,7 @@ const login = (setMessage, setUser, user, setCode) => {
             localStorage.setItem("code", "200");
 
             if(user.userType === "ADMIN") {
-                window.location.href = "/adminPanel"
+                window.location.href = "/adminPanel/products"
             } else {
                 window.location.href = "/"
             }

@@ -23,6 +23,13 @@ const adminPanelStyles = () => ({
             border: "none !important"
         }
     },
+    markedCategory: {
+        padding: "5px 15px !important",
+        '&.css-ueukts-MuiButtonBase-root-MuiToggleButton-root': {
+            border: "none !important"
+        },
+        backgroundColor: "rgb(220, 220, 220)"
+    },
     addButton: {
         color: "black",
         backgroundColor: "rgba(210, 210, 210)",

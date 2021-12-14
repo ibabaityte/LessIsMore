@@ -1,10 +1,5 @@
 import {login, register} from "./userUtils.js";
 
-const handleLogin = (e, setMessage, setUser, user, setCode) => {
-    e.preventDefault();
-    login(setMessage, setUser, user, setCode);
-}
-
 const handleChangeInput = (e, state, setState) => {
     e.preventDefault();
     setState({
@@ -12,6 +7,11 @@ const handleChangeInput = (e, state, setState) => {
             [e.currentTarget.name]: e.target.value
         }
     );
+}
+
+const handleLogin = (e, setMessage, setUser, user, setCode) => {
+    e.preventDefault();
+    login(setMessage, setUser, user, setCode);
 }
 
 const handleRegister = (e, setMessage, newUser, setNewUser, setCode) => {

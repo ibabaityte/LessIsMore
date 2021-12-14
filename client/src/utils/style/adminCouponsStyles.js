@@ -15,6 +15,7 @@ const adminCouponsStyles = (theme) => ({
     heading: {
         textAlign: "center",
         margin: "50px",
+        fontFamily: "'Zilla Slab', serif"
     },
     createHeading: {
         textAlign: "center",

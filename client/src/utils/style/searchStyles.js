@@ -24,7 +24,11 @@ const searchStyles = (theme) => ({
         backgroundColor: "rgba(227, 227, 227, 0.6)"
     },
     category: {
+        padding: "5px 15px !important"
+    },
+    markedCategory: {
         padding: "5px 15px !important",
+        backgroundColor: "rgb(220, 220, 220)"
     },
     categories: {
         display: "flex",

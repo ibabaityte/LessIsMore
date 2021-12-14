@@ -18,6 +18,7 @@ const subscribeStyles = (theme) => ({
     },
     modalHeading: {
         textAlign: "center",
+        fontFamily: "'Zilla Slab', serif",
         [theme.breakpoints.down(900)]: {
             fontSize: "20px"
         },

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {Link, Route, Routes} from "react-router-dom";
 
 // context imports
@@ -25,6 +25,20 @@ const AdminPanel = (props) => {
 
     const classes = props.classes;
 
+    const [markedCategory, setMarkedCategory] = useState("products");
+
+    const markCategory = (btn) => {
+        setMarkedCategory(btn);
+    };
+
+    const addMarkedClass = (btn) => {
+        if (markedCategory === btn) {
+            return `${classes.markedCategory}`;
+        } else {
+            return `${classes.category}`;
+        }
+    };
+
     return (
         <div>
             <UserContext.Consumer>
@@ -32,21 +46,19 @@ const AdminPanel = (props) => {
                     ({user}) => (
                         user.userType === "ADMIN" ?
                             <div className={classes.adminPanel}>
-                                <h1>This is the admin panel</h1>
+                                <h1 style={{fontFamily: "'Zilla Slab', serif"}}>This is the admin panel</h1>
                                 <ToggleButtonGroup className={classes.categoryButtons}>
                                     <Link className={classes.link} to="products">
-                                        <ToggleButton value="all" className={classes.category}>Products</ToggleButton>
+                                        <ToggleButton value="products" onClick={() => {markCategory("products")}} className={addMarkedClass("products")}>Products</ToggleButton>
                                     </Link>
                                     <Link className={classes.link} to="subscribers">
-                                        <ToggleButton value="pants"
-                                                      className={classes.category}>Subscribers</ToggleButton>
+                                        <ToggleButton value="subscribers" onClick={() => {markCategory("subscribers")}} className={addMarkedClass("subscribers")}>Subscribers</ToggleButton>
                                     </Link>
                                     <Link className={classes.link} to="orders">
-                                        <ToggleButton value="shirts" className={classes.category}>Orders</ToggleButton>
+                                        <ToggleButton value="orders" onClick={() => {markCategory("orders")}} className={addMarkedClass("orders")}>Orders</ToggleButton>
                                     </Link>
                                     <Link className={classes.link} to="coupons">
-                                        <ToggleButton value="accessories"
-                                                      className={classes.category}>Coupons</ToggleButton>
+                                        <ToggleButton value="coupons" onClick={() => {markCategory("coupons")}} className={addMarkedClass("coupons")}>Coupons</ToggleButton>
                                     </Link>
                                 </ToggleButtonGroup>
 

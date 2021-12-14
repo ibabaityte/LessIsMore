@@ -13,7 +13,8 @@ const userProfileStyles = (theme) => ({
     },
     heading: {
         margin: "20px auto 20px auto",
-        textAlign: "center"
+        textAlign: "center",
+        fontFamily: "'Zilla Slab', serif"
     },
     info: {
         margin: "10px 0 10px 0"

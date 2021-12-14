@@ -5,7 +5,8 @@ const cartStyles = () => ({
     },
     heading: {
         margin: "20px auto 20px auto",
-        textAlign: "center"
+        textAlign: "center",
+        fontFamily: "'Zilla Slab', serif"
     },
 });
 
