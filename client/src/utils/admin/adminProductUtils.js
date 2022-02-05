@@ -5,10 +5,14 @@ import axios from "axios";
 import {generateAuthConfig, generateRequestConfig} from "../request/axiosRequestConfig";
 import {initProducts} from "../products/productUtils";
 
-const removeProduct = (product, setProducts) => {
+const removeProduct = (product, setProducts, setMessage, setCode) => {
     axios.delete(`${API_URL}/products/delete/${product._id}`, generateRequestConfig()).then(() => {
         // console.log(result);
         initProducts(setProducts, "all");
+        setMessage("Product deleted successfully.");
+        setCode("200");
+        localStorage.setItem("apiMessage", "Product deleted successfully.");
+        localStorage.setItem("code", "200");
     }).catch(err => {
         console.log(err);
     })

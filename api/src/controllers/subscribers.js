@@ -6,10 +6,16 @@ const create = (req, res) => {
 
     Subscriber.findOne({email: req.body.email}).then(data => {
 
+        if(!req.body.email) {
+            return res.status(400).send({
+                code: "400",
+                message: "Email address is not provided. Please provide an email address. "
+            });
+        }
         if (!testEmail(req.body.email)) {
             return res.status(400).send({
                 code: "400",
-                message: "You have entered an invalid email address. Try again."
+                message: "This is not a valid email address. Please try again. "
             });
         }
         if (data) {
@@ -21,11 +27,10 @@ const create = (req, res) => {
             const newSubscriber = new Subscriber({
                 email: req.body.email
             });
-
             newSubscriber.save().then(data => {
                 res.status(200).send({
                     code: "200",
-                    message: "You have subscribed to our newsletter!",
+                    message: "Thank you for subscribing to our newsletter!.",
                     data: data
                 });
             }).catch(err => {

@@ -8,6 +8,13 @@ const cartStyles = () => ({
         textAlign: "center",
         fontFamily: "'Zilla Slab', serif"
     },
+    bill: {
+        textAlign: "center",
+        backgroundColor: "rgba(227, 227, 227)",
+        padding: "10px",
+        margin: "0 auto",
+        width: "70%"
+    }
 });
 
 export default cartStyles;

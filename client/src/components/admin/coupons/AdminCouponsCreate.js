@@ -9,6 +9,9 @@ import {createCoupon} from "../../../utils/admin/adminCouponUtils";
 import {ApiMessageContext} from "../../../utils/context/ApiMessageContext";
 import {ApiCodeContext} from "../../../utils/context/ApiCodeContext";
 
+// component imports
+import MessageComponent from "../../common/Message";
+
 // style imports
 import {withStyles} from "@material-ui/core/styles";
 import adminCouponsStyles from "../../../utils/style/adminCouponsStyles";
@@ -34,7 +37,8 @@ const AdminCouponsCreate = (props) => {
     return (
         <div>
             <h3 className={classes.createHeading}>Create a new coupon</h3>
-            <form onSubmit={e => createCoupon(e, coupon, fetchCoupons, setCouponsList, setMessage, setCode)} className={classes.form}>
+            <MessageComponent/>
+            <form onSubmit={e => createCoupon(e, coupon, fetchCoupons, setCouponsList, setCoupon, setMessage, setCode)} className={classes.form}>
                 <TextField
                     className={classes.input}
                     type="text"
@@ -49,7 +53,7 @@ const AdminCouponsCreate = (props) => {
                 <TextField
                     className={classes.input}
                     type="number"
-                    value={coupon.expiryDateHours}
+                    value={coupon.expiryDateHours || 1}
                     name="expiryDateHours"
                     label="expiryDateHours"
                     onChange={e => handleChangeInput(e, coupon, setCoupon)}

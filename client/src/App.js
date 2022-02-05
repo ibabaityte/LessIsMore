@@ -32,6 +32,7 @@ const App = () => {
     const [code, setCode] = useState(localStorage.getItem("code"));
     const [user, setUser] = useState({
         email: localStorage.getItem("userEmail"),
+        password: localStorage.getItem("password"),
         firstName: localStorage.getItem("userFirstName"),
         lastName: localStorage.getItem("userLastName"),
         token: localStorage.getItem("userToken"),
@@ -46,7 +47,7 @@ const App = () => {
             localStorage.setItem("cart", JSON.stringify({
                 products: [],
                 comment: "",
-                bill: null
+                bill: 0
             }))
         }
         const timer = setTimeout(() => {

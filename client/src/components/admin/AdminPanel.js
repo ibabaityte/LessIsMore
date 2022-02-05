@@ -25,10 +25,11 @@ const AdminPanel = (props) => {
 
     const classes = props.classes;
 
-    const [markedCategory, setMarkedCategory] = useState("products");
+    const [markedCategory, setMarkedCategory] = useState(localStorage.getItem("markedCategory"));
 
     const markCategory = (btn) => {
         setMarkedCategory(btn);
+        localStorage.setItem("markedCategory", btn);
     };
 
     const addMarkedClass = (btn) => {

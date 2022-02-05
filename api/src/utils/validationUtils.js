@@ -15,18 +15,23 @@ const testEmail = (input) => {
 };
 
 // testing if password contains at least one number
-const testPassword = (input) => {
+const testNumeric = (input) => {
     const number = /\d/;
     return number.test(input);
 };
 
 const isUpperCase = (input) => {
-      return /[A-Z]/.test(input.charAt(0));
+    return /[A-Z]/.test(input.charAt(0));
 };
+
+const isAllUpperCase = (input) => {
+    return input === input.toUpperCase();
+}
 
 export {
     inputValidation,
     testEmail,
-    testPassword,
-    isUpperCase
+    testNumeric,
+    isUpperCase,
+    isAllUpperCase
 };

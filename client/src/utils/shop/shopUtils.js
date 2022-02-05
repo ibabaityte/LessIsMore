@@ -13,6 +13,7 @@ const addToCart = (cartObject, product, size) => {
         quantity: 1,
         size: size
     }
+    console.log(cartObject);
     cartObject.products.push(cartProduct);
     localStorage.setItem("cart", JSON.stringify(cartObject));
 };
@@ -37,9 +38,12 @@ const updateQuantity = (newQuantity, product, cartContext, setCartContext, setMe
     }
 };
 
-const removeFromCart = (product, cartContext, setCartContext) => {
-    let cartProduct = cartContext.products.findIndex(object => object.product === product.product && object.size === product.size);
-    setCartContext(cartContext.products.splice(cartProduct, 1));
+const removeFromCart = (product, productContent, cartContext, setCartContext) => {
+    let cart = cartContext;
+    let cartProductIndex = cartContext.products.findIndex(object => object.product === product.product && object.size === product.size);
+    cart.bill = cart.bill - productContent.price;
+    cart.products.splice(cartProductIndex, 1);
+    setCartContext(cart);
     localStorage.setItem("cart", JSON.stringify(cartContext));
     window.location.href = "/cart";
 };
@@ -54,7 +58,8 @@ const validateFields = (shippingInfo) => {
 };
 
 const completeOrder = async (cart, shippingInfo, setShippingInfo, user, setMessage, setCode) => {
-    if(cart.bill === null) {
+    if(cart.bill === null || cart.bill === 0) {
+        console.log(cart.bill);
         setMessage("Cart cannot be empty!");
         setCode("400");
         localStorage.setItem("apiMessage", "400");

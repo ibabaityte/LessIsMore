@@ -4,8 +4,6 @@ import React, {useContext, useEffect, useState} from "react";
 import {handleChangeShippingInfo, handleShippingInfo} from "../../utils/users/shippingInfoHandlers";
 import {completeOrder} from "../../utils/shop/shopUtils";
 
-// component imports
-import MessageComponent from "../common/Message";
 
 // context imports
 import {UserContext} from "../../utils/context/UserContext";
@@ -45,19 +43,11 @@ const ShippingInfo = (props) => {
     return (
         <Grid container className={classes.shipping}>
             <Grid item xs={12}>
-                {
-                    window.location.href === "http://localhost:3000/cart" || newShippingInfo.city === "" ?
-                        <h3>Enter shipping information:</h3>
-                        :
-                        <h3>Update shipping information:</h3>
-                }
+                <h3>Edit shipping information:</h3>
             </Grid>
             <Grid item xs={12} className={classes.shippingForm}>
                 <form className={classes.form}
                       onSubmit={e => handleShippingInfo(e, user, newShippingInfo, setNewShippingInfo, setMessage, setCode)}>
-                    <div className={classes.formMessage}>
-                        <MessageComponent />
-                    </div>
 
                     <TextField
                         className={classes.shippingInput}
@@ -115,12 +105,14 @@ const ShippingInfo = (props) => {
                         window.location.href === "http://localhost:3000/cart" ?
                             <Button
                                 className={classes.button}
-                                onClick={() => {completeOrder(cartContext, newShippingInfo, setNewShippingInfo, user, setMessage, setCode)}}
+                                onClick={() => {
+                                    completeOrder(cartContext, newShippingInfo, setNewShippingInfo, user, setMessage, setCode)
+                                }}
                             >Complete order</Button>
                             :
                             <Button
                                 className={classes.button}
-                                type="submit">Submit
+                                type="submit">Confirm
                             </Button>
                     }
                 </form>

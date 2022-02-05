@@ -63,10 +63,9 @@ const CartProduct = (props) => {
                         defaultValue={cartProduct.quantity}
                     />
                 </form>
-                <IconButton >
+                <IconButton onClick={() => {removeFromCart(cartProduct, productContent, cartContext, setCartContext)}}>
                     <DeleteForeverIcon
                         className={classes.removeIcon} sx={{ color: 'rgb(181, 5, 26)' }}
-                        onClick={() => {removeFromCart(cartProduct, cartContext, setCartContext)}}
                         fontSize="large"
                     />
                 </IconButton>

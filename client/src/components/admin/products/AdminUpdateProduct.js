@@ -93,7 +93,7 @@ const AdminUpdateProduct = (props) => {
                             onChange={e => handleProduct(e, "image", selectedProduct, setSelectedProduct)}
                         />
 
-                    <Button type="submit" className={classes.button}>Create</Button>
+                    <Button type="submit" className={classes.button}>Update</Button>
                 </form>
             </Grid>
         </Grid>

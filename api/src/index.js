@@ -13,6 +13,7 @@ import OrderRoutes from "./routes/orders.js";
 import ProductRoutes from "./routes/products.js";
 import CouponRoutes from "./routes/coupons.js";
 import SubscriberRoutes from "./routes/subscribers.js";
+import CartItemRoutes from "./routes/cartItems.js";
 
 // constants from env file
 const port = process.env.PORT || 8080;
@@ -31,6 +32,7 @@ api.use(OrderRoutes);
 api.use(ProductRoutes);
 api.use(CouponRoutes);
 api.use(SubscriberRoutes);
+api.use(CartItemRoutes);
 
 // connecting to DB
 mongoose.connect(`mongodb://127.0.0.1:27017/${dbUrl}`, (err) => {

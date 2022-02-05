@@ -14,7 +14,7 @@ import {infoToUpdate} from "../utils/userControllerUtils.js";
 import {
     inputValidation,
     testEmail,
-    testPassword,
+    testNumeric,
     isUpperCase
 } from "../utils/validationUtils.js"
 
@@ -32,21 +32,21 @@ const register = (req, res) => {
     if(!isUpperCase(req.body.firstName) || !isUpperCase(req.body.lastName)) {
         return res.status(400).send({
             code: "400",
-            message: "Firstname and last name should start with uppercase letters. Try again. "
+            message: "First name and last name should start with uppercase letters. Try again. "
         });
     }
 
-    if (!testPassword(req.body.password)) {
+    if (!testNumeric(req.body.password)) {
         return res.status(400).send({
             code: "400",
-            message: "Password has to contain at least one number."
+            message: "Password must contain at least one number. Please try again. "
         });
     }
 
     if (!testEmail(req.body.email)) {
         return res.status(400).send({
             code: "400",
-            message: "You have entered an invalid email address. Try again."
+            message: "This is not a valid email address. Please try again. "
         });
     }
 
@@ -75,11 +75,11 @@ const register = (req, res) => {
                     newUser.save().then(data => {
                         res.status(200).send({
                             code: "200",
-                            message: "User registered successfully",
+                            message: "Profile created successfully",
                             data: data
                         });
                     }).catch((err) => {
-                        console.log(err);
+                        // console.log(err);
                         res.status(500).send({
                             code: "500",
                             message: "Something went wrong during register. Try again."
@@ -92,26 +92,26 @@ const register = (req, res) => {
 };
 
 const login = (req, res) => {
+    // console.log(req.body);
+    if (!inputValidation(req)) {
+        return res.status(400).send({
+            code: "400",
+            message: "Email and password cannot be empty. Please complete email and password fields. "
+        });
+    }
+
+    if (!testEmail(req.body.email)) {
+        return res.status(400).send({
+            code: "400",
+            message: "A user with this email does not exist. Please try again. "
+        });
+    }
+
     User.findOne({email: req.body.email}).then(data => {
-
-        if (!inputValidation(req)) {
-            return res.status(400).send({
-                code: "400",
-                message: "Username and password can not be empty."
-            });
-        }
-
-        if (!testEmail(req.body.email)) {
-            return res.status(400).send({
-                code: "400",
-                message: "You have entered an invalid email address. Try again."
-            });
-        }
-
         if (!data) {
             return res.status(404).send({
                 code: "404",
-                message: "There is no such user. Try again."
+                message: "Email or password is incorrect. Please try again. "
             });
         } else {
             bcrypt.compare(req.body.password, data.password)
@@ -139,7 +139,7 @@ const login = (req, res) => {
                     } else {
                         res.status(401).send({
                             code: "401",
-                            message: "Something went wrong during login. Try again."
+                            message: "Email or password is incorrect. Please try again."
                         });
                     }
                 })
@@ -204,7 +204,7 @@ const update = async (req, res) => {
     if (!inputValidation(req)) {
         return res.status(400).send({
             code: "400",
-            message: "All inputs must be completed. Please complete the missing information."
+            message: "All information must be provided. Please fill in missing information. "
         });
     }
 
@@ -217,7 +217,7 @@ const update = async (req, res) => {
         }
         res.status(200).send({
             code: "200",
-            message: "Successfully updated your contact information",
+            message: "User information updated successfully",
             data: data
         });
     }).catch(err => {

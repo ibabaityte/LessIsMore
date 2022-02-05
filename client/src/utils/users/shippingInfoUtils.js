@@ -17,6 +17,11 @@ const updateShippingInfo = (user, shippingInfo, setShippingInfo, setMessage, set
             };
             setShippingInfo(shippingInfo);
 
+            setMessage(result.data.message);
+            setCode("200");
+            localStorage.setItem("apiMessage", result.data.message);
+            localStorage.setItem("code", "200");
+
             if(window.location.href === "http://localhost:3000/cart") {
                 window.location.href = "/cart"
             } else {

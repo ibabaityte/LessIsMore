@@ -9,22 +9,32 @@ const fetchCoupons = (setCouponsList) => {
     })
 };
 
-const createCoupon = (e, coupon, fetchCoupons, setCouponsList, setMessage, setCode) => {
+const createCoupon = (e, coupon, fetchCoupons, setCouponsList, setCoupon, setMessage, setCode) => {
     e.preventDefault();
-    axios.post(`${API_URL}/coupons/create`, coupon, generateAuthConfig()).then(() => {
+    axios.post(`${API_URL}/coupons/create`, coupon, generateAuthConfig()).then((result) => {
         fetchCoupons(setCouponsList);
-    }).catch(() => {
-        // console.log(err.response);
-        setMessage("Something went wrong while creating a coupon. Try again.");
+        setCoupon("");
+        setMessage(result.data.message);
+        setCode("200");
+        localStorage.setItem("apiMessage", result.data.message);
+        localStorage.setItem("code", "200");
+    }).catch((err) => {
+        setMessage(err.response.data.message);
         setCode("400");
-        localStorage.setItem("apiMessage", "Something went wrong while creating a coupon. Try again.");
+        localStorage.setItem("apiMessage", err.response.data.message);
         localStorage.setItem("code", "400");
     });
 };
 
-const removeCoupon = (couponId, fetchCoupons, setCouponsList) => {
+const removeCoupon = (couponId, fetchCoupons, setCouponsList, setMessage, setCode) => {
     axios.delete(`${API_URL}/coupons/${couponId}`, generateAuthConfig()).then(() => {
         fetchCoupons(setCouponsList);
+        setMessage("Discount code deleted successfully");
+        setCode("200");
+        localStorage.setItem("apiMessage", "Discount code deleted successfully");
+        localStorage.setItem("code", "200");
+    }).catch(err => {
+        console.log(err);
     })
 }
 

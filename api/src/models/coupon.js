@@ -10,7 +10,8 @@ const couponSchema = new Schema(
     },
     {
         timestamps: true
-    });
+    }
+);
 
 const Coupon = mongoose.model("Coupon", couponSchema);
 

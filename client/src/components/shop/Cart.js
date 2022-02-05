@@ -47,9 +47,8 @@ const Cart = (props) => {
                         cartProducts.map((productContent, index) => {
                             const cartProduct = cartContext.products[index];
                             return (
-                                <Grid item xs={12} md={6}>
+                                <Grid item xs={12} md={6} key={index}>
                                     <CartProduct
-                                        key={index}
                                         productContent={productContent}
                                         cartProduct={cartProduct}
                                         setSelectedProduct={setSelectedProduct}
@@ -61,6 +60,7 @@ const Cart = (props) => {
                 </Grid>
             </Grid>
             <Grid item xs={12} md={6}>
+                <h3 className={classes.bill}>Total: {cartContext.bill} Є</h3>
                 <ShippingInfo/>
             </Grid>
         </Grid>

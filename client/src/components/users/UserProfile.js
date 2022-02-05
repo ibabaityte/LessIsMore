@@ -8,6 +8,7 @@ import {UserContext} from "../../utils/context/UserContext";
 import UserInfoComponent from "../common/UserInfo.js";
 import ShippingInfo from "./ShippingInfo.js";
 import {initShippingInfo} from "../../utils/users/shippingInfoUtils";
+import MessageComponent from "../common/Message";
 
 // style imports
 import {withStyles} from "@material-ui/core/styles";
@@ -61,14 +62,10 @@ const UserProfile = (props) => {
                                         className={classes.infoName}>Postal code:</span> {shippingInfo.postalCode}</div>
                                 </Grid>
                                 <Grid item xs={12} className={classes.buttonDiv}>
-                                    {
-                                        shippingInfo.city === "" ?
-                                            <Link to="shippingInfo" className={classes.link}><Button
-                                                className={classes.button}>Enter shipping info</Button></Link>
-                                            :
-                                            <Link to="shippingInfo" className={classes.link}><Button
-                                                className={classes.button}>Update shipping info</Button></Link>
-                                    }
+                                    <Link to="shippingInfo" className={classes.link}>
+                                        <Button className={classes.button}>Edit shipping information</Button>
+                                    </Link>
+                                    <MessageComponent/>
                                 </Grid>
                             </Grid>
                             <Grid item xs={12}>
@@ -86,10 +83,13 @@ const UserProfile = (props) => {
                     :
                     <Grid container className={classes.loginRegisterPanel}>
                         <Grid item xs={12}>
-                            <h4 className={classes.panelMessage}>You are not logged in. Please log in, or if you dont have an account, please sign up!</h4>
+                            <h4 className={classes.panelMessage}>You are not logged in. Please log in, or if you dont
+                                have an account, please sign up!</h4>
                             <div className={classes.buttons}>
-                                <Link to="/login" className={classes.panelLink}><Button className={classes.panelButton}>Login</Button></Link>
-                                <Link to="/register" className={classes.panelLink}><Button className={classes.panelButton}>Register</Button></Link>
+                                <Link to="/login" className={classes.panelLink}><Button
+                                    className={classes.panelButton}>Login</Button></Link>
+                                <Link to="/register" className={classes.panelLink}><Button
+                                    className={classes.panelButton}>Register</Button></Link>
                             </div>
                         </Grid>
                     </Grid>

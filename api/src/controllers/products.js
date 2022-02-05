@@ -153,7 +153,8 @@ const search = (req, res) => {
     Product.find({'title': {'$regex': keyword, '$options': 'i'}}).then(data => {
         if (data.length === 0) {
             return res.status(404).send({
-                message: "No products were found"
+                code: "404",
+                message: "There is no such product."
             });
         } else {
             res.status(200).send({

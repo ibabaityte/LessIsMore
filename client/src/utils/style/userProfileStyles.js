@@ -1,4 +1,4 @@
-const userProfileStyles = (theme) => ({
+const userProfileStyles = () => ({
     grid: {
         width: "60%",
         minHeight: "20vh",
@@ -29,6 +29,7 @@ const userProfileStyles = (theme) => ({
         width: "50%",
         backgroundColor: "rgba(227, 227, 227)",
         color: "black",
+        marginBottom: "30px"
     },
     buttonDiv: {
         marginBottom: "50px"

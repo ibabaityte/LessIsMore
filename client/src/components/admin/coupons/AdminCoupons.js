@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useContext} from "react";
 
 // component imports
 import AdminCouponsCreate from "./AdminCouponsCreate";
@@ -12,10 +12,17 @@ import adminCouponsStyles from "../../../utils/style/adminCouponsStyles";
 import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
 
+// context imports
+import {ApiMessageContext} from "../../../utils/context/ApiMessageContext";
+import {ApiCodeContext} from "../../../utils/context/ApiCodeContext";
+
 // icon imports
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 const AdminCoupons = (props) => {
+
+    const {setMessage} = useContext(ApiMessageContext);
+    const {setCode} = useContext(ApiCodeContext);
 
     const classes = props.classes;
 
@@ -48,7 +55,7 @@ const AdminCoupons = (props) => {
                                     <Grid item xs={12} md={6} lg={4} key={key}>
                                         <Grid container className={classes.couponNames}>
                                             <Grid item xs={2} className={classes.deleteIcon}>
-                                                <IconButton onClick={() => removeCoupon(coupon._id, fetchCoupons, setCouponsList)}>
+                                                <IconButton onClick={() => removeCoupon(coupon._id, fetchCoupons, setCouponsList, setMessage, setCode)}>
                                                     <DeleteForeverIcon  sx={{color: 'rgb(181, 5, 26)'}} fontSize="large" />
                                                 </IconButton>
                                             </Grid>

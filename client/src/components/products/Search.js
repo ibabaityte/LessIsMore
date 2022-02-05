@@ -42,6 +42,7 @@ const Search = (props) => {
                         handleSearchProducts(e, setSearchQuery)
                     }}
                 />
+                <Button type="submit">Search</Button>
                 <Button
                     value="Search"
                     onClick={() => clearSearch(setProducts, "all", setSearchQuery)}>Clear

@@ -62,7 +62,7 @@ const ProductCardButton = (props) => {
     if (user.userType === "ADMIN") {
         return (
             <div>
-                <IconButton onClick={() => removeProduct(product, setProducts)}>
+                <IconButton onClick={() => removeProduct(product, setProducts, setMessage, setCode)}>
                     <Link to="">
                         <DeleteForeverIcon sx={{color: 'rgb(181, 5, 26)'}} fontSize="large"/>
                     </Link>
