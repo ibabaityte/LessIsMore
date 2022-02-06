@@ -16,9 +16,14 @@ const addToCart = (userId, product, size, setMessage, setCode) => {
     });
 };
 
-const getCartProducts = (setCartProducts) => {
+const getCart = (setCart, setBill) => {
     axios.get(`${API_URL}/cartItem/list`, generateCartConfig()).then((result) => {
-        setCartProducts(result.data.data);
+        setCart(result.data.data);
+        let bill = 0;
+        for(let i in result.data.data) {
+            bill += result.data.data[i].productId.price;
+        }
+        setBill(bill);
     });
 }
 
@@ -90,7 +95,7 @@ const completeOrder = async (cart, shippingInfo, setShippingInfo, user, setMessa
 
 export {
     addToCart,
-    getCartProducts,
+    getCart,
     updateQuantity,
     removeFromCart,
     completeOrder

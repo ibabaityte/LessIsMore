@@ -1,7 +1,7 @@
-import React, {useEffect, useContext, useState} from "react";
+import React, {useEffect, useState} from "react";
 
 // util imports
-import {getCartProducts} from "../../utils/shop/shopUtils";
+import {getCart} from "../../utils/shop/shopUtils";
 
 // component imports
 import ShippingInfo from "../users/ShippingInfo";
@@ -18,10 +18,11 @@ const Cart = (props) => {
 
     const {setSelectedProduct} = props;
 
-    const [cartProducts, setCartProducts] = useState([]);
+    const [cart, setCart] = useState([]);
+    const [bill, setBill] = useState(null);
 
-    useEffect(() => {
-        getCartProducts(setCartProducts);
+    useEffect(()  => {
+        getCart(setCart, setBill);
     }, []);
 
     return (
@@ -32,7 +33,7 @@ const Cart = (props) => {
             <Grid item xs={12} md={6}>
                 <Grid container>
                     {
-                        cartProducts.map((product, index) => {
+                        cart.map((product, index) => {
                             return (
                                 <Grid item xs={12} md={6} key={index}>
                                     <CartProduct
@@ -45,10 +46,10 @@ const Cart = (props) => {
                     }
                 </Grid>
             </Grid>
-            {/*<Grid item xs={12} md={6}>*/}
-            {/*    <h3 className={classes.bill}>Total: {cartContext.bill} Є</h3>*/}
-            {/*    <ShippingInfo/>*/}
-            {/*</Grid>*/}
+            <Grid item xs={12} md={6}>
+                <h3 className={classes.bill}>Total: {bill} Є</h3>
+                {/*<ShippingInfo/>*/}
+            </Grid>
         </Grid>
     );
 };
