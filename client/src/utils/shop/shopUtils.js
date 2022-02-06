@@ -1,25 +1,23 @@
 import axios from "axios";
 import {API_URL} from "../constants/apiConstants";
 
-import {generateAuthConfig, generateCartConfig} from "../request/axiosRequestConfig";
+import {generateAuthConfig, generateCartConfig, generateRemoveFromCartConfig} from "../request/axiosRequestConfig";
 
 // util imports
 import {updateShippingInfo} from "../users/shippingInfoUtils";
 
-const addToCart = (cartObject, product, size) => {
-    cartObject.bill += product.price;
-    let cartProduct = {
-        product: product._id,
-        quantity: 1,
-        size: size
-    }
-    console.log(cartObject);
-    cartObject.products.push(cartProduct);
-    localStorage.setItem("cart", JSON.stringify(cartObject));
+const addToCart = (userId, product, size, setMessage, setCode) => {
+    axios.post(`${API_URL}/cartItem/create`, {userId: userId, productId: product._id, size: size, quantity: 1}, generateAuthConfig()).then(result => {
+        setMessage(result.data.message);
+        setCode(result.data.code);
+    }).catch(err => {
+        setMessage(err.response.message);
+        setCode(err.response.code);
+    });
 };
 
-const getCartProducts = (setCartProducts, idArray) => {
-    axios.get(`${API_URL}/products/cart`, generateCartConfig(idArray)).then((result) => {
+const getCartProducts = (setCartProducts) => {
+    axios.get(`${API_URL}/cartItem/list`, generateCartConfig()).then((result) => {
         setCartProducts(result.data.data);
     });
 }
@@ -38,14 +36,19 @@ const updateQuantity = (newQuantity, product, cartContext, setCartContext, setMe
     }
 };
 
-const removeFromCart = (product, productContent, cartContext, setCartContext) => {
-    let cart = cartContext;
-    let cartProductIndex = cartContext.products.findIndex(object => object.product === product.product && object.size === product.size);
-    cart.bill = cart.bill - productContent.price;
-    cart.products.splice(cartProductIndex, 1);
-    setCartContext(cart);
-    localStorage.setItem("cart", JSON.stringify(cartContext));
-    window.location.href = "/cart";
+const removeFromCart = (cartItemId, setMessage, setCode) => {
+    axios.delete(`${API_URL}/cartItem/remove`, generateRemoveFromCartConfig(cartItemId)).then(result => {
+        setMessage(result.data.message);
+        setCode(result.data.code);
+        localStorage.setItem("apiMessage", result.data.message);
+        localStorage.setItem("code", result.data.code);
+        window.location.href = "/cart";
+    }).catch(err => {
+        setMessage(err.response.message);
+        setCode(err.response.code);
+        localStorage.setItem("apiMessage", err.response.message);
+        localStorage.setItem("code", err.response.code);
+    });
 };
 
 const validateFields = (shippingInfo) => {

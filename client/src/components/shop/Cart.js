@@ -1,14 +1,11 @@
 import React, {useEffect, useContext, useState} from "react";
 
-// context imports
-import {CartContext} from "../../utils/context/CartContext";
+// util imports
+import {getCartProducts} from "../../utils/shop/shopUtils";
 
 // component imports
 import ShippingInfo from "../users/ShippingInfo";
 import CartProduct from "./CartProduct";
-
-// util imports
-import {getCartProducts} from "../../utils/shop/shopUtils";
 
 // style imports
 import {withStyles} from "@material-ui/core/styles";
@@ -21,19 +18,10 @@ const Cart = (props) => {
 
     const {setSelectedProduct} = props;
 
-    const {cartContext} = useContext(CartContext);
-
     const [cartProducts, setCartProducts] = useState([]);
 
-    // generate an array from cart context only consisting product id's
-    const idArray = [];
-    cartContext.products.forEach(element => {
-        idArray.push(element.product);
-    });
-
-    // using the generated product ids array to make a request to get an array of full information about each product
     useEffect(() => {
-        getCartProducts(setCartProducts, idArray);
+        getCartProducts(setCartProducts);
     }, []);
 
     return (
@@ -44,13 +32,11 @@ const Cart = (props) => {
             <Grid item xs={12} md={6}>
                 <Grid container>
                     {
-                        cartProducts.map((productContent, index) => {
-                            const cartProduct = cartContext.products[index];
+                        cartProducts.map((product, index) => {
                             return (
                                 <Grid item xs={12} md={6} key={index}>
                                     <CartProduct
-                                        productContent={productContent}
-                                        cartProduct={cartProduct}
+                                        product={product}
                                         setSelectedProduct={setSelectedProduct}
                                     />
                                 </Grid>
@@ -59,10 +45,10 @@ const Cart = (props) => {
                     }
                 </Grid>
             </Grid>
-            <Grid item xs={12} md={6}>
-                <h3 className={classes.bill}>Total: {cartContext.bill} Є</h3>
-                <ShippingInfo/>
-            </Grid>
+            {/*<Grid item xs={12} md={6}>*/}
+            {/*    <h3 className={classes.bill}>Total: {cartContext.bill} Є</h3>*/}
+            {/*    <ShippingInfo/>*/}
+            {/*</Grid>*/}
         </Grid>
     );
 };

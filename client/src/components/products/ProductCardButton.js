@@ -4,10 +4,9 @@ import {Link} from "react-router-dom";
 // util imports
 import {addFavorite, removeFavorite} from "../../utils/products/favoritesHandlers";
 import {removeProduct} from "../../utils/admin/adminProductUtils";
-import {handleAddToCart} from "../../utils/shop/shopHandlers";
+import {addToCart} from "../../utils/shop/shopUtils";
 
 // context imports
-import {CartContext} from "../../utils/context/CartContext";
 import {ApiMessageContext} from "../../utils/context/ApiMessageContext";
 
 // style imports
@@ -31,7 +30,6 @@ const ProductCardButton = (props) => {
 
     const [showBox, setShowBox] = useState("none");
 
-    const {cartContext, setCartContext} = useContext(CartContext);
     const {setCode} = useContext(ApiCodeContext);
     const {setMessage} = useContext(ApiMessageContext);
 
@@ -88,7 +86,7 @@ const ProductCardButton = (props) => {
                         className={classes.sizeButtons}
                         exclusive
                         onClick={(e) => {
-                            handleAddToCart(cartContext, setCartContext, product, e.target.value, setMessage, setCode)
+                            addToCart(user.userId, product, e.target.value, setMessage, setCode)
                         }}
                     >
                         <ToggleButton className={classes.size} value="XXS">XXS</ToggleButton>

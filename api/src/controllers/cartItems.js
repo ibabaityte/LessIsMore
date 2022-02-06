@@ -2,13 +2,6 @@
 import CartItem from "../models/cartItem.js";
 
 const create = async (req, res) => {
-    const newCartItem = new CartItem ({
-        userId: req.body.userId,
-        productId: req.body.productId,
-        size: req.body.size,
-        quantity: req.body.quantity
-    });
-
     let item = await CartItem.findOne({"productId": req.body.productId, "size": req.body.size, "quantity": req.body.quantity}).exec();
 
     if(item) {
@@ -17,6 +10,12 @@ const create = async (req, res) => {
             message: "This product is already in your cart"
         });
     } else {
+        const newCartItem = new CartItem ({
+            userId: req.body.userId,
+            productId: req.body.productId,
+            size: req.body.size,
+            quantity: req.body.quantity
+        });
         newCartItem.save().then(data => {
             res.status(200).send({
                 code: "200",
@@ -33,7 +32,7 @@ const create = async (req, res) => {
 };
 
 const list = (req, res) => {
-    CartItem.find({"userId": req.body.userId}).populate("productId").then(result => {
+    CartItem.find({"userId": req.headers.userid}).populate("productId").then(result => {
         return res.status(200).send({
             code: "200",
             message: "Cart item",
@@ -48,7 +47,7 @@ const list = (req, res) => {
 }
 
 const remove = (req, res) => {
-    CartItem.findOneAndDelete(req.body._id).then(result => {
+    CartItem.findByIdAndRemove(req.headers.cartitemid).then(result => {
         res.status(200).send({
             code: "200",
             message: "Product successfully removed from cart"
