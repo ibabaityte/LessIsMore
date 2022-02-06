@@ -48,7 +48,10 @@ const Cart = (props) => {
             </Grid>
             <Grid item xs={12} md={6}>
                 <h3 className={classes.bill}>Total: {bill} Є</h3>
-                <ShippingInfo/>
+                <ShippingInfo
+                    cart={cart}
+                    bill={bill}
+                />
             </Grid>
         </Grid>
     );

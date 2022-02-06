@@ -2,23 +2,16 @@
 import Order from "../models/order.js";
 
 const create = (req, res) => {
-    if (!req.body.products) {
+    if (!req.body.cart) {
         return res.status(400).send({
             code: "400",
             message: "Your cart is empty. Please add items to your shopping cart."
         });
     }
 
-    const reqProducts = req.body.products;
-    let products = [];
-
-    reqProducts.map(product => {
-        products.push(product);
-    });
-
     const newOrder = new Order({
         userId: req.decodedToken.userId,
-        products: products,
+        products: req.body.cart,
         bill: req.body.bill
     });
 

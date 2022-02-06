@@ -12,6 +12,7 @@ const router = Router();
 router.post("/cartItem/create", checkAuth, CartItemController.create);
 router.get("/cartItem/list", checkAuth, CartItemController.list);
 router.delete("/cartItem/remove", checkAuth, CartItemController.remove);
+router.delete("/cartItem/clear", checkAuth, CartItemController.clear);
 router.put("/cartItem/update", checkAuth, CartItemController.updateQuantity)
 
 export default router;

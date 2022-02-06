@@ -69,12 +69,19 @@ const validateFields = (shippingInfo) => {
     return true;
 };
 
-const completeOrder = async (cart, shippingInfo, setShippingInfo, user, setMessage, setCode) => {
-    if(cart.bill === null || cart.bill === 0) {
-        console.log(cart.bill);
+const clearCart = (user) => {
+    axios.delete(`${API_URL}/cartItem/clear`, {'headers': {'Authorization': localStorage.getItem('userToken'), 'userId': `${user.userId}`}}).then(result => {
+        console.log(result.data);
+    }).catch(err => {
+        console.log(err);
+    });
+}
+
+const completeOrder = async (cart, bill, shippingInfo, setShippingInfo, user, setMessage, setCode) => {
+    if(bill === null || bill === 0) {
         setMessage("Cart cannot be empty!");
         setCode("400");
-        localStorage.setItem("apiMessage", "400");
+        localStorage.setItem("apiMessage", "Cart cannot be empty!");
         localStorage.setItem("code", "400");
     } else {
         if (validateFields(shippingInfo) === false) {
@@ -84,15 +91,16 @@ const completeOrder = async (cart, shippingInfo, setShippingInfo, user, setMessa
             localStorage.setItem("code", "400");
         } else {
             await updateShippingInfo(user, shippingInfo, setShippingInfo, setMessage, setCode);
-            await axios.post(`${API_URL}/order/create`, cart, generateAuthConfig()).then(result => {
+            await axios.post(`${API_URL}/order/create`, {cart: cart, bill: bill}, generateAuthConfig()).then(result => {
                 setMessage(result.data.message);
                 setCode("200");
                 localStorage.setItem("apiMessage", result.data.message);
                 localStorage.setItem("code", "200");
                 window.location.href = "/";
+                clearCart(user);
             }).catch(err => {
                 console.log(err);
-            })
+            });
         }
     }
 };

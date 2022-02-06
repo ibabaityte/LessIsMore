@@ -73,4 +73,16 @@ const updateQuantity = (req, res) => {
     });
 }
 
-export default {create, list, remove, updateQuantity};
+const clear = (req, res) => {
+    CartItem.deleteMany({'userId': req.headers.userid}).then(result => {
+        res.status(200).send({
+            code: "200",
+            message: "successfully deleted cart",
+            data: result
+        })
+    }).catch(err => {
+        console.log(err);
+    })
+}
+
+export default {create, list, remove, updateQuantity, clear};

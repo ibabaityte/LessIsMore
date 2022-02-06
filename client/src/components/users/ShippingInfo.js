@@ -21,6 +21,11 @@ const ShippingInfo = (props) => {
 
     const classes = props.classes;
 
+    const {
+        cart,
+        bill
+    } = props;
+
     const {user} = useContext(UserContext);
     const {setCode} = useContext(ApiCodeContext);
     const {setMessage} = useContext(ApiMessageContext);
@@ -102,9 +107,9 @@ const ShippingInfo = (props) => {
                         window.location.href === "http://localhost:3000/cart" ?
                             <Button
                                 className={classes.button}
-                                // onClick={() => {
-                                //     completeOrder(cartContext, newShippingInfo, setNewShippingInfo, user, setMessage, setCode)
-                                // }}
+                                onClick={() => {
+                                    completeOrder(cart, bill, newShippingInfo, setNewShippingInfo, user, setMessage, setCode)
+                                }}
                             >Complete order</Button>
                             :
                             <Button
