@@ -22,7 +22,7 @@ import Card from "@mui/material/Card";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import IconButton from "@mui/material/IconButton";
 
-const CartProduct = (props) => {
+const CartItem = (props) => {
 
     const classes = props.classes;
 
@@ -30,7 +30,7 @@ const CartProduct = (props) => {
     const {setMessage} = useContext(ApiMessageContext);
 
     const {
-        product,
+        item,
         setSelectedProduct
     } = props;
 
@@ -39,28 +39,28 @@ const CartProduct = (props) => {
             <CardMedia
                 component="img"
                 height="300"
-                image={product.productId.image}
-                alt="product"
+                image={item.productId.image}
+                alt="item"
             />
             <CardContent className={classes.cardContent}>
                 <Typography className={classes.productTitle} onClick={() => {
-                    setSelectedProduct(product.productId._id)
-                }}><Link className={classes.titleLink} to="/product">{product.productId.title}</Link></Typography>
-                <Typography variant="h7">Price: <span className={classes.infoName}>{product.productId.price}</span> €</Typography>
+                    setSelectedProduct(item.productId._id)
+                }}><Link className={classes.titleLink} to="/item">{item.productId.title}</Link></Typography>
+                <Typography variant="h7">Price: <span className={classes.infoName}>{item.productId.price}</span> €</Typography>
                 <br/>
-                <Typography variant="h7">Size: <span className={classes.infoName}>{product.size}</span></Typography>
+                <Typography variant="h7">Size: <span className={classes.infoName}>{item.size}</span></Typography>
             </CardContent>
             <CardActions className={classes.cardButtons}>
-            {/*    <form>*/}
-            {/*        <TextField*/}
-            {/*            className={classes.numberInput}*/}
-            {/*            onChange={(e) => {updateQuantity(e.target.value, cartProduct, cartContext, setCartContext, setMessage, setCode)}}*/}
-            {/*            type="number"*/}
-            {/*            inputProps={{max: 25, min: 1}}*/}
-            {/*            defaultValue={product.quantity}*/}
-            {/*        />*/}
-            {/*    </form>*/}
-                <IconButton onClick={() => {removeFromCart(product._id, setMessage, setCode)}}>
+                <form>
+                    <TextField
+                        className={classes.numberInput}
+                        onChange={(e) => {updateQuantity(e.target.value, item._id, setMessage, setCode)}}
+                        type="number"
+                        inputProps={{max: 25, min: 1}}
+                        defaultValue={item.quantity}
+                    />
+                </form>
+                <IconButton onClick={() => {removeFromCart(item._id, setMessage, setCode)}}>
                     <DeleteForeverIcon
                         className={classes.removeIcon} sx={{ color: 'rgb(181, 5, 26)' }}
                         fontSize="large"
@@ -71,4 +71,4 @@ const CartProduct = (props) => {
     );
 };
 
-export default withStyles(productListStyles)(CartProduct);
+export default withStyles(productListStyles)(CartItem);

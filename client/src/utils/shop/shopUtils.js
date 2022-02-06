@@ -27,17 +27,21 @@ const getCart = (setCart, setBill) => {
     });
 }
 
-const updateQuantity = (newQuantity, product, cartContext, setCartContext, setMessage, setCode) => {
+const updateQuantity = (newQuantity, itemId, setMessage, setCode) => {
     if(newQuantity > 25 || newQuantity < 1) {
         setMessage("Quantity cant be greater than 25 or less than 1!");
         setCode("400");
         localStorage.setItem("apiMessage", "Quantity cant be greater than 25 or less than 1!");
         localStorage.setItem("code", "400");
     } else {
-        let cartProduct = cartContext.products.findIndex(object => object.product === product.product && object.size === product.size);
-        cartContext.products[cartProduct].quantity = newQuantity;
-        setCartContext(cartContext);
-        localStorage.setItem("cart", JSON.stringify(cartContext));
+        axios.put(`${API_URL}/cartItem/update`, {itemId: itemId, quantity: newQuantity}, generateAuthConfig()).then(result => {
+            console.log(result);
+        }).catch(err => {
+            setMessage(err.response.message);
+            setCode(err.response.code);
+            localStorage.setItem("apiMessage", err.response.message);
+            localStorage.setItem("code", err.response.code);
+        });
     }
 };
 

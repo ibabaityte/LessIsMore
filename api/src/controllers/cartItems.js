@@ -60,4 +60,17 @@ const remove = (req, res) => {
     });
 }
 
-export default {create, list, remove};
+const updateQuantity = (req, res) => {
+    CartItem.findByIdAndUpdate(req.body.itemId, {quantity: req.body.quantity}).then(result => {
+        res.status(200).send({
+            data: result.data
+        });
+    }).catch(err => {
+        res.status(500).send({
+            code: "500",
+            message: "An error occurred while updating product quantity. Try again."
+        });
+    });
+}
+
+export default {create, list, remove, updateQuantity};

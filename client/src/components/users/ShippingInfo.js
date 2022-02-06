@@ -4,11 +4,9 @@ import React, {useContext, useEffect, useState} from "react";
 import {handleChangeShippingInfo, handleShippingInfo} from "../../utils/users/shippingInfoHandlers";
 import {completeOrder} from "../../utils/shop/shopUtils";
 
-
 // context imports
 import {UserContext} from "../../utils/context/UserContext";
 import {ApiMessageContext} from "../../utils/context/ApiMessageContext";
-import {CartContext} from "../../utils/context/CartContext";
 import {ApiCodeContext} from "../../utils/context/ApiCodeContext";
 
 // style imports
@@ -24,7 +22,6 @@ const ShippingInfo = (props) => {
     const classes = props.classes;
 
     const {user} = useContext(UserContext);
-    const {cartContext} = useContext(CartContext);
     const {setCode} = useContext(ApiCodeContext);
     const {setMessage} = useContext(ApiMessageContext);
 
@@ -105,9 +102,9 @@ const ShippingInfo = (props) => {
                         window.location.href === "http://localhost:3000/cart" ?
                             <Button
                                 className={classes.button}
-                                onClick={() => {
-                                    completeOrder(cartContext, newShippingInfo, setNewShippingInfo, user, setMessage, setCode)
-                                }}
+                                // onClick={() => {
+                                //     completeOrder(cartContext, newShippingInfo, setNewShippingInfo, user, setMessage, setCode)
+                                // }}
                             >Complete order</Button>
                             :
                             <Button

@@ -5,7 +5,7 @@ import {getCart} from "../../utils/shop/shopUtils";
 
 // component imports
 import ShippingInfo from "../users/ShippingInfo";
-import CartProduct from "./CartProduct";
+import CartItem from "./CartItem";
 
 // style imports
 import {withStyles} from "@material-ui/core/styles";
@@ -33,11 +33,11 @@ const Cart = (props) => {
             <Grid item xs={12} md={6}>
                 <Grid container>
                     {
-                        cart.map((product, index) => {
+                        cart.map((item, index) => {
                             return (
                                 <Grid item xs={12} md={6} key={index}>
-                                    <CartProduct
-                                        product={product}
+                                    <CartItem
+                                        item={item}
                                         setSelectedProduct={setSelectedProduct}
                                     />
                                 </Grid>
@@ -48,7 +48,7 @@ const Cart = (props) => {
             </Grid>
             <Grid item xs={12} md={6}>
                 <h3 className={classes.bill}>Total: {bill} Є</h3>
-                {/*<ShippingInfo/>*/}
+                <ShippingInfo/>
             </Grid>
         </Grid>
     );
