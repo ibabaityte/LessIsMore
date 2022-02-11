@@ -19,7 +19,7 @@ const Cart = (props) => {
     const {setSelectedProduct} = props;
 
     const [cart, setCart] = useState([]);
-    const [bill, setBill] = useState(null);
+    const [bill, setBill] = useState(0);
 
     useEffect(()  => {
         getCart(setCart, setBill);
@@ -33,16 +33,18 @@ const Cart = (props) => {
             <Grid item xs={12} md={6}>
                 <Grid container>
                     {
-                        cart.map((item, index) => {
-                            return (
-                                <Grid item xs={12} md={6} key={index}>
-                                    <CartItem
-                                        item={item}
-                                        setSelectedProduct={setSelectedProduct}
-                                    />
-                                </Grid>
-                            );
-                        })
+                        cart.length === 0 ?
+                            <h1 className={classes.heading}>Cart is empty</h1> :
+                            cart.map((item, index) => {
+                                return (
+                                    <Grid item xs={12} md={6} key={index}>
+                                        <CartItem
+                                            item={item}
+                                            setSelectedProduct={setSelectedProduct}
+                                        />
+                                    </Grid>
+                                );
+                            })
                     }
                 </Grid>
             </Grid>

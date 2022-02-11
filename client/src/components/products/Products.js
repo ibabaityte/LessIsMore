@@ -18,7 +18,7 @@ import MessageComponent from "../common/Message";
 const Products = () => {
     const [products, setProducts] = useState([]);
     const [selectedProduct, setSelectedProduct] = useState([]);
-    const [favorites, setFavorites] = useState([{}]);
+    const [favorites, setFavorites] = useState([]);
 
     const {user} = useContext(UserContext);
 

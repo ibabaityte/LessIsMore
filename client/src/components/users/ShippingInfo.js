@@ -45,7 +45,12 @@ const ShippingInfo = (props) => {
     return (
         <Grid container className={classes.shipping}>
             <Grid item xs={12}>
-                <h3>Edit shipping information:</h3>
+                {
+                    window.location.href === "http://localhost:3000/cart" ?
+                        <h3>Please provide your shipping information:</h3>
+                        :
+                        <h3>Edit shipping information:</h3>
+                }
             </Grid>
             <Grid item xs={12} className={classes.shippingForm}>
                 <form className={classes.form}
