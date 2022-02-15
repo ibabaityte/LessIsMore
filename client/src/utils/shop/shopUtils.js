@@ -19,6 +19,7 @@ const addToCart = (userId, product, size, setMessage, setCode) => {
 const getCart = (setCart, setBill) => {
     axios.get(`${API_URL}/cartItem/list`, generateCartConfig()).then((result) => {
         setCart(result.data.data);
+        localStorage.setItem("cart", JSON.stringify(result.data.data));
         let bill = 0;
         for(let i in result.data.data) {
             bill += result.data.data[i].productId.price;
@@ -77,6 +78,20 @@ const clearCart = (user) => {
     });
 }
 
+const clearExpiredCart = (cart, user) => {
+    let lastCartItemAddedAt = 0;
+    if(cart.length !== 0) {
+        for(let i = 0; i < cart.length; i++){
+            if(cart[i].addedAt >= lastCartItemAddedAt) {
+                lastCartItemAddedAt = cart[i].addedAt;
+            }
+        }
+        if(Date.now() >= lastCartItemAddedAt + 1000 * 60 * 60 * 24) {
+            clearCart(user);
+        }
+    }
+}
+
 const completeOrder = async (cart, bill, shippingInfo, setShippingInfo, user, setMessage, setCode) => {
     if(bill === null || bill === 0) {
         setMessage("Cart cannot be empty!");
@@ -108,6 +123,8 @@ const completeOrder = async (cart, bill, shippingInfo, setShippingInfo, user, se
 export {
     addToCart,
     getCart,
+    clearCart,
+    clearExpiredCart,
     updateQuantity,
     removeFromCart,
     completeOrder

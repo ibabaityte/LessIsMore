@@ -76,7 +76,9 @@ const initFavorites = (user, setFavorites) => {
     axios.get(`${API_URL}/${user.userId}`, generateRequestConfig()).then((response) => {
         // console.log(response);
         setFavorites(response.data.favorites);
-    });
+    }).catch(err => {
+        console.log(err);
+    })
 }
 
 const automaticLogout = (ExpirationTimestamp) => {

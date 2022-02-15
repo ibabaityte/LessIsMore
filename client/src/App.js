@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useContext} from "react";
 import {Route, Routes} from "react-router-dom";
 
 // component imports
@@ -17,6 +17,7 @@ import {UserContext} from "./utils/context/UserContext";
 
 // util imports
 import {automaticLogout} from "./utils/users/userUtils";
+import {clearExpiredCart, getCart} from "./utils/shop/shopUtils";
 
 // style imports
 import './App.css';
@@ -27,6 +28,8 @@ const App = () => {
     const [modalOpen, setModalOpen] = useState(false);
     const [message, setMessage] = useState(localStorage.getItem("apiMessage"));
     const [code, setCode] = useState(localStorage.getItem("code"));
+    const [cart, setCart] = useState(JSON.parse(localStorage.getItem("cart")));
+    const [bill, setBill] = useState(0);
     const [user, setUser] = useState({
         email: localStorage.getItem("userEmail"),
         password: localStorage.getItem("password"),
@@ -39,7 +42,13 @@ const App = () => {
     });
 
     useEffect(() => {
+        // automatic logout method
         automaticLogout(user.expirationTimestamp);
+        // initializing cart and bill state
+        getCart(setCart, setBill);
+        // deleting user cart after 24 hours from adding last item to the cart
+        clearExpiredCart(cart, user);
+        // clearing error and success messages after every 5 seconds 
         const timer = setTimeout(() => {
             setMessage("");
             setCode("");

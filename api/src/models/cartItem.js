@@ -14,7 +14,11 @@ const cartItemSchema = new Schema(
             ref: "Product"
         },
         size: String,
-        quantity: Number
+        quantity: Number,
+        addedAt: {
+            type: Number,
+            default: () => new Date(Date.now())
+        }
     }
 );
 
