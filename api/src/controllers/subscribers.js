@@ -1,5 +1,7 @@
-// model import
+// model imports
 import Subscriber from "../models/subscriber.js";
+
+// util imports
 import {testEmail} from "../utils/validationUtils.js";
 
 const create = (req, res) => {

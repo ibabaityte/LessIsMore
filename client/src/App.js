@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useContext} from "react";
+import React, {useState, useEffect} from "react";
 import {Route, Routes} from "react-router-dom";
 
 // component imports
@@ -45,9 +45,11 @@ const App = () => {
         // automatic logout method
         automaticLogout(user.expirationTimestamp);
         // initializing cart and bill state
-        getCart(setCart, setBill);
+        if(user.token) {
+            getCart(setCart, setBill);
+            clearExpiredCart(cart, user);
+        }
         // deleting user cart after 24 hours from adding last item to the cart
-        clearExpiredCart(cart, user);
         // clearing error and success messages after every 5 seconds 
         const timer = setTimeout(() => {
             setMessage("");

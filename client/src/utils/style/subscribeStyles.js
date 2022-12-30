@@ -42,7 +42,6 @@ const subscribeStyles = (theme) => ({
         margin: "30px"
     },
     button: {
-        // marginTop: "30px",
         padding: "10px 30px 10px 30px",
         backgroundColor: "rgba(51, 51, 50, 0.1)"
     }

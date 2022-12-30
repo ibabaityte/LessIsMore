@@ -25,6 +25,10 @@ const generateFormData = (product) => {
     formData.append("price", product.price);
     formData.append("category", product.category);
     formData.append("image", product.image);
+    // console.log(formData);
+    for (var pair of formData.entries()) {
+        console.log(pair[0]+ ', ' + pair[1]);
+    }
     return formData;
 }
 
@@ -46,9 +50,13 @@ const createProduct = (e, product, setProducts, setMessage, setCode) => {
     });
 };
 
-const updateProduct = (e, selectedProduct, setMessage, setCode) => {
+const updateProduct = (e, user, selectedProduct, setMessage, setCode) => {
     e.preventDefault();
-    axios.put(`${API_URL}/products/update/${selectedProduct._id}`, generateFormData(selectedProduct), generateAuthConfig()).then(result => {
+    axios.put(`${API_URL}/products/update/${selectedProduct._id}`, generateFormData(selectedProduct), {
+        headers: {
+            "Authorization": user.token
+        }
+    }).then(result => {
         // console.log(result.data.message);
         setMessage(result.data.message);
         setCode("200");

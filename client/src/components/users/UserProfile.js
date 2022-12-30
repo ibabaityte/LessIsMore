@@ -7,7 +7,6 @@ import {UserContext} from "../../utils/context/UserContext";
 // component imports
 import UserInfoComponent from "../common/UserInfo.js";
 import ShippingInfo from "./ShippingInfo.js";
-import {initShippingInfo} from "../../utils/users/shippingInfoUtils";
 import MessageComponent from "../common/Message";
 
 // style imports
@@ -15,6 +14,9 @@ import {withStyles} from "@material-ui/core/styles";
 import userProfileStyles from "../../utils/style/userProfileStyles";
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
+
+// util imports
+import {initShippingInfo} from "../../utils/users/shippingInfoUtils";
 
 const UserProfile = (props) => {
 

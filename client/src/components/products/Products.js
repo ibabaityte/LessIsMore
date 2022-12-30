@@ -10,10 +10,10 @@ import Product from "./Product";
 import ProductList from "./ProductList";
 import FavoritesList from "../favorites/FavoritesList";
 import Cart from "../shop/Cart";
+import MessageComponent from "../common/Message";
 
 // context imports
 import {UserContext} from "../../utils/context/UserContext";
-import MessageComponent from "../common/Message";
 
 const Products = () => {
     const [products, setProducts] = useState([]);

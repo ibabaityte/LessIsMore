@@ -80,7 +80,8 @@ const clearCart = (user) => {
 
 const clearExpiredCart = (cart, user) => {
     let lastCartItemAddedAt = 0;
-    if(cart.length !== 0) {
+    if(cart !== null && cart.length !== 0) {
+        console.log(cart);
         for(let i = 0; i < cart.length; i++){
             if(cart[i].addedAt >= lastCartItemAddedAt) {
                 lastCartItemAddedAt = cart[i].addedAt;

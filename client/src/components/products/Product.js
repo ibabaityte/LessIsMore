@@ -10,7 +10,6 @@ import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import Grid from '@mui/material/Grid';
 
-
 const Product = (props) => {
 
     const classes = props.classes;

@@ -6,6 +6,7 @@ import {UserContext} from "../../utils/context/UserContext";
 
 // component imports
 import AdminProducts from "./products/AdminProducts";
+import AdminCreateProduct from "./products/AdminCreateProduct";
 import AdminOrders from "./orders/AdminOrders";
 import AdminSubscribers from "./subscribers/AdminSubscribers";
 import AdminCoupons from "./coupons/AdminCoupons";
@@ -19,7 +20,6 @@ import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 
 // icon imports
 import AddIcon from '@mui/icons-material/Add';
-import AdminCreateProduct from "./products/AdminCreateProduct";
 
 const AdminPanel = (props) => {
 

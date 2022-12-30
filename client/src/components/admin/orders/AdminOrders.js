@@ -20,7 +20,7 @@ const AdminOrders = (props) => {
 
     useEffect(() => {
         initOrders(orders, setOrders);
-    }, []);
+    }, [setOrders]);
 
     return (
         <Grid container>
@@ -28,7 +28,8 @@ const AdminOrders = (props) => {
                 <h1 className={classes.heading}>Admin order list</h1>
             </Grid>
             <Grid item xs={12}>
-                    {
+                {
+                    orders.length !== 0 ?
                         orders.map((order, index) => {
                             return (
                                 <Grid container key={index} className={classes.order}>
@@ -42,38 +43,44 @@ const AdminOrders = (props) => {
                                         <h3>Shipping information</h3>
                                         <div className={classes.orderInfo}>City: {order.userId.city}</div>
                                         <div className={classes.orderInfo}>Street: {order.userId.street}</div>
-                                        <div className={classes.orderInfo}>Building/apartment number: {order.userId.buildingNumber}</div>
+                                        <div className={classes.orderInfo}>Building/apartment
+                                            number: {order.userId.buildingNumber}</div>
                                         <div className={classes.orderInfo}>Postal code: {order.userId.postalCode}</div>
-                                        <div className={classes.orderInfo}>Phone number: {order.userId.phoneNumber}</div>
+                                        <div className={classes.orderInfo}>Phone
+                                            number: {order.userId.phoneNumber}</div>
                                     </Grid>
                                     <h3 className={classes.bill}>Total: {order.bill} Є</h3>
                                     <h3>Products: </h3>
                                     <Grid container>
                                         {
-                                            order.products.map((product, index) => {
-                                            return (
-                                                <Grid item xs={12} md={6} lg={4} key={index}>
-                                                    <Card className={classes.product}>
-                                                        <CardMedia
-                                                            component="img"
-                                                            height="300"
-                                                            image={product.product.image}
-                                                            alt="product"
-                                                        />
-                                                        <CardContent className={classes.cardContent}>
-                                                            <Typography className={classes.productTitle}>{product.product.title}</Typography>
-                                                            <Typography className={classes.productSize}>Size: {product.size}</Typography>
-                                                            <Typography variant="h7">Quantity: {product.quantity}</Typography>
-                                                        </CardContent>
-                                                    </Card>
-                                                </Grid>
-                                            );
-                                        })}
+                                            order.products[0].product ?
+                                                order.products.map((product, index) => {
+                                                    return (
+                                                        <Grid item xs={12} md={6} lg={4} key={index}>
+                                                            <Card className={classes.product}>
+                                                                <CardMedia
+                                                                    component="img"
+                                                                    height="300"
+                                                                    image={product.product.image}
+                                                                    alt="product"
+                                                                />
+                                                                <CardContent className={classes.cardContent}>
+                                                                    <Typography className={classes.productTitle}>{product.product.title}</Typography>
+                                                                    <Typography className={classes.productSize}>Size: {product.size}</Typography>
+                                                                    <Typography variant="h7">Quantity: {product.quantity}</Typography>
+                                                                </CardContent>
+                                                            </Card>
+                                                        </Grid>
+                                                    );
+                                                })
+                                                : null
+                                        }
                                     </Grid>
                                 </Grid>
                             );
                         })
-                    }
+                        : null
+                }
             </Grid>
         </Grid>
     );

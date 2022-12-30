@@ -2,13 +2,13 @@ import React, {useState} from "react";
 
 // component imports
 import ProductCard from "./ProductCard";
+import Search from "./Search";
+import Filter from "./Filter";
 
 // style imports
 import {withStyles} from "@material-ui/core/styles";
 import productListStyles from "../../utils/style/productListStyles";
 import Grid from '@mui/material/Grid';
-import Search from "./Search";
-import Filter from "./Filter";
 
 const ProductList = (props) => {
 

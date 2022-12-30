@@ -9,6 +9,7 @@ import MessageComponent from "../../common/Message";
 
 // context imports
 import {ApiMessageContext} from "../../../utils/context/ApiMessageContext";
+import {UserContext} from "../../../utils/context/UserContext";
 
 // style imports
 import {withStyles} from "@material-ui/core/styles";
@@ -25,6 +26,7 @@ const AdminUpdateProduct = (props) => {
 
     const {setCode} = useContext(ApiCodeContext);
     const {setMessage} = useContext(ApiMessageContext);
+    const {user} = useContext(UserContext);
 
     const {
         selectedProduct,
@@ -38,7 +40,7 @@ const AdminUpdateProduct = (props) => {
             </Grid>
             <Grid item xs={12} className={classes.formGrid}>
                 <MessageComponent/>
-                <form onSubmit={(e) => {updateProduct(e, selectedProduct, setMessage, setCode)}} className={classes.form}>
+                <form onSubmit={(e) => {updateProduct(e, user, selectedProduct, setMessage, setCode)}} className={classes.form}>
                         <TextField
                             className={classes.input}
                             type="text"
