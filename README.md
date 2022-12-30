@@ -24,8 +24,8 @@ On this app an admin can:
 * View all orders
 
 ## Screenshots
-![img_1.png](src/images/img_1.png)
-![img_2.png](src/images/img_2.png)
+![img_1.png](client/src/images/img_1.png)
+![img_2.png](client/src/images/img_2.png)
 
 ## Technologies
 Project is created with:
