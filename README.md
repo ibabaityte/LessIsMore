@@ -42,34 +42,56 @@ Project is created with:
 * Material-ui
 
 ## Setup
-1. Clone repository:
+
+### Create Cloudinary account:
+1. First, create a Cloudinary account:
+![](client/public/images/Screenshot_1.jpg)
+2. Choose preferred sign up method
+![](client/public/images/Screenshot_2.jpg)
+3. Go through initial questions
+![](client/public/images/Screenshot_3.jpg)
+4. In your account, in the header select "Dashboard". Below you will see Cloudinary credentials, which are needed for setup later.
+![](client/public/images/Screenshot_4.jpg)
+
+## Clone project to your machine:
+5. Clone repository:
 ```
 git clone https://github.com/ibabaityte/LessIsMore.git
 ```
-### Install server:
-2. Get in the api folder:
+## Install and setup server
+6. Get in the api folder:
 ```
 cd api
 ```
-3. Install dependencies:
+7. Setup some environment variables, which are found at "Dashboard" section in your Cloudinary account:
+```
+echo CLOUDINARY_CLOUD_NAME=*your Cloudinary Cloud Name* >> .env
+echo CLOUDINARY_API_KEY=*your Cloudinary API Key* >> .env
+echo CLOUDINARY_API_SECRET=*your Cloudinary API Secret* >> .env
+```
+8. Install dependencies:
 ```
 npm i
 ```
-4. Start server:
+9. Seed the database by adding products and an administrator account:
+```
+node seed.js
+```
+10. Start server:
 ```
 npm start
 ```
 
 ### Install client
-5. Get in the client folder:
+11. Get in the client folder:
 ```
 cd client
 ```
-6. Install dependencies:
+12. Install dependencies:
 ```
 npm i
 ```
-7. Start server:
+13. Start server:
 ```
 npm start
 ```

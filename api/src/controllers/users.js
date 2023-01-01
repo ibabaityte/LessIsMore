@@ -235,41 +235,6 @@ const update = async (req, res) => {
     });
 };
 
-const init = (req, res) => {
-    User.findOne({userType: "ADMIN"}).then(data => {
-        if (!data) {
-            bcrypt.hash("admin123", 10, (err, hash) => {
-                if (err) {
-                    return res.status(500).send({
-                        code: "500",
-                        message: err.message
-                    });
-                } else {
-                    //create new user
-                    const newUser = new User({
-                        email: "admin123@admin123.com",
-                        password: hash,
-                        userType: "ADMIN"
-                    });
-                    //save user in database
-                    newUser.save().then(data => {
-                        return res.status(200).send(data);
-                    }).catch(err => {
-                        console.log(err);
-                        return res.status(500).send({
-                            code: "500",
-                            message: "Some error occurred while trying to create this user"
-                        });
-                    });
-                }
-            });
-        } else {
-            return res.send({
-                message: "User already exists"
-            });
-        }
-    });
-}
 
 const listAllUsers = (req, res) => {
     User.find({userType: "USER"}).then(data => {
@@ -286,4 +251,4 @@ const listAllUsers = (req, res) => {
     });
 }
 
-export default {register, login, get, remove, update, init, listAllUsers};
+export default {register, login, get, remove, update, listAllUsers};

@@ -19,6 +19,9 @@ import CartItemRoutes from "./routes/cartItems.js";
 const port = process.env.PORT || 8080;
 const dbUrl = process.env.DB_URL;
 
+// util imports
+import {initAdmin} from "./utils/initUtils.js";
+
 // config
 const api = express();
 api.use(cors());
@@ -46,4 +49,5 @@ mongoose.connect(`mongodb://127.0.0.1:27017/${dbUrl}`, (err) => {
 // running the server
 api.listen(port, () => {
     console.log(`Server is running on port: ${port}`);
+    initAdmin();
 });

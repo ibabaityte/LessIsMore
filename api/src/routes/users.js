@@ -15,7 +15,6 @@ router.post("/register", UsersController.register);
 router.get("/:userId", checkAuth, UsersController.get);
 router.delete("/:userId", checkAuth, UsersController.remove);
 router.put("/:userId", checkAuth, UsersController.update);
-router.get("/admin/init", UsersController.init);
 router.get("/admin/allUsers", checkAdmin, UsersController.listAllUsers);
 
 export default router;
