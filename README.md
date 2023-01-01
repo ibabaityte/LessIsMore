@@ -95,3 +95,10 @@ npm i
 ```
 npm start
 ```
+
+## Notes
+* To access admin panel, sign in with these credentials:
+
+email: admin123@admin123.com
+
+password: admin123
