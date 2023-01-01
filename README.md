@@ -53,12 +53,12 @@ Project is created with:
 4. In your account, in the header select "Dashboard". Below you will see Cloudinary credentials, which are needed for setup later.
 ![](client/public/images/Screenshot_4.jpg)
 
-## Clone project to your machine:
+### Clone project to your machine:
 5. Clone repository:
 ```
 git clone https://github.com/ibabaityte/LessIsMore.git
 ```
-## Install and setup server
+### Install and setup server
 6. Get in the api folder:
 ```
 cd api
